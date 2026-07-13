@@ -71,15 +71,28 @@ The main goal is to practice enterprise backend architecture using NestJS.
 
 # Architecture
 
-- Feature Based Architecture
+## Project Architecture
+
+- Feature-Based Architecture
 - Layered Architecture
 - Repository Pattern
-- REST API
+
+## API Design
+
+- RESTful API
 - DTO Validation
-- Global Exception Filter
-- Response Interceptor
+- Global Exception Handling
+- Response Interceptors
+
+## Security
+
 - Authentication & Authorization
-- RBAC
+- Role-Based Access Control (RBAC)
+- JWT Authentication
+- Refresh Token Rotation
+
+## Data Management
+
 - Soft Delete
 - Pagination
 - Filtering
