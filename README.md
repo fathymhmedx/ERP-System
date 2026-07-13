@@ -87,7 +87,7 @@ The main goal is to practice enterprise backend architecture using NestJS.
 ## Security
 
 - Authentication & Authorization
-- Role-Based Access Control (RBAC)
+- Dynamic Role-Based Access Control (RBAC)
 - JWT Authentication
 - Refresh Token Rotation
 
