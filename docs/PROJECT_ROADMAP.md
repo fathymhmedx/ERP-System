@@ -8,9 +8,9 @@
 
 - [Project Goals](#project-goals)
 - [Project Overview](#project-overview)
-- [Features](#features)
 - [Tech Stack](#tech-stack)
 - [Architecture](#architecture)
+- [Project Structure](#project-structure)
 - [Development Roadmap](#development-roadmap)
 - [Future Improvements](#future-improvements)
 - [Implementation Status](#implementation-status)
@@ -85,6 +85,58 @@ The main goal is to practice enterprise backend architecture using NestJS.
 - Filtering
 - Searching
 - Sorting
+
+---
+
+# Project Structure
+
+```text
+src
+├── common
+│   ├── decorators
+│   ├── dto
+│   ├── entities
+│   ├── enums
+│   ├── exceptions
+│   ├── filters
+│   ├── guards
+│   ├── interceptors
+│   ├── interfaces
+│   ├── repositories
+│   ├── types
+│   └── utils
+│
+├── config
+│
+├── database
+│   ├── migrations
+│   ├── seeders
+│   └── data-source.ts
+│
+├── modules
+│   ├── auth
+│   ├── users
+│   ├── roles
+│   ├── permissions
+│   ├── departments
+│   ├── positions
+│   ├── employees
+│   ├── attendance
+│   ├── leaves
+│   ├── payroll
+│   ├── categories
+│   ├── suppliers
+│   ├── products
+│   ├── customers
+│   ├── orders
+│   ├── invoices
+│   ├── notifications
+│   ├── audit-logs
+│   └── dashboard
+│
+├── app.module.ts
+└── main.ts
+```
 
 ---
 
@@ -278,7 +330,7 @@ The main goal is to practice enterprise backend architecture using NestJS.
 
 ---
 
-## Phase 9 — Testing (Optional)
+## Phase 10 — Testing (Optional)
 
 - [ ] Authentication Testing
 - [ ] Employees Testing
