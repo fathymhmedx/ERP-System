@@ -157,20 +157,19 @@ src
 
 ## Phase 1 — Project Foundation
 
-- [ ] Initialize NestJS Project
-- [ ] Configure ESLint & Prettier
-- [ ] Environment Configuration
-- [ ] PostgreSQL Connection
-- [ ] TypeORM Configuration
-- [ ] Global Validation Pipe
-- [ ] Global Exception Filter
-- [ ] Global Response Interceptor
-- [ ] Husky + lint-staged
+- [x] Initialize NestJS Project
+- [x] Configure ESLint & Prettier
+- [x] Environment Configuration
+- [x] PostgreSQL Connection
+- [x] TypeORM Configuration
+- [x] Global Validation Pipe
+- [x] Global Exception Filter
+- [x] Global Response Interceptor
+- [x] Husky + lint-staged
 - [ ] Logger
-- [ ] Base Entity
-- [ ] Base Repository
-- [ ] CORS Configuration
-- [ ] Global Prefix
+- [x] Base Entity
+- [x] CORS Configuration
+- [x] Global Prefix
 
 ---
 
