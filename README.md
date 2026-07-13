@@ -165,6 +165,7 @@ src
 - [ ] Global Validation Pipe
 - [ ] Global Exception Filter
 - [ ] Global Response Interceptor
+- [ ] Husky + lint-staged
 - [ ] Logger
 - [ ] Base Entity
 - [ ] Base Repository
@@ -367,28 +368,28 @@ src
 
 # Implementation Status
 
-| Module | Status |
-|--------|--------|
+| Module             | Status      |
+| ------------------ | ----------- |
 | Project Foundation | In Progress |
-| Authentication | Not Started |
-| Users | Not Started |
-| Roles | Not Started |
-| Permissions | Not Started |
-| Departments | Not Started |
-| Positions | Not Started |
-| Employees | Not Started |
-| Attendance | Not Started |
-| Leaves | Not Started |
-| Payroll | Not Started |
-| Categories | Not Started |
-| Suppliers | Not Started |
-| Products | Not Started |
-| Customers | Not Started |
-| Orders | Not Started |
-| Invoices | Not Started |
-| Dashboard | Not Started |
-| Documentation | Not Started |
-| Testing | Not Started |
+| Authentication     | Not Started |
+| Users              | Not Started |
+| Roles              | Not Started |
+| Permissions        | Not Started |
+| Departments        | Not Started |
+| Positions          | Not Started |
+| Employees          | Not Started |
+| Attendance         | Not Started |
+| Leaves             | Not Started |
+| Payroll            | Not Started |
+| Categories         | Not Started |
+| Suppliers          | Not Started |
+| Products           | Not Started |
+| Customers          | Not Started |
+| Orders             | Not Started |
+| Invoices           | Not Started |
+| Dashboard          | Not Started |
+| Documentation      | Not Started |
+| Testing            | Not Started |
 
 # License
 
