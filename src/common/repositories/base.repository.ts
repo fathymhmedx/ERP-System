@@ -54,6 +54,14 @@ export abstract class BaseRepository<T extends BaseEntity> {
     await this.repository.update(where, data);
   }
 
+  merge(entity: T, data: DeepPartial<T>): T {
+    return this.repository.merge(entity, data);
+  }
+
+  async preload(data: DeepPartial<T>): Promise<T | undefined> {
+    return this.repository.preload(data);
+  }
+
   async delete(where: FindOptionsWhere<T>): Promise<void> {
     await this.repository.delete(where);
   }
