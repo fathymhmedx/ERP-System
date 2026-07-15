@@ -31,7 +31,7 @@ export class AuthService {
   ) {}
 
   async signup(signupDto: SignupDto): Promise<SignupResponseDto> {
-    const { fullName, email, password } = signupDto;
+    const { email, password } = signupDto;
 
     const emailExists = await this.usersRepository.exists({
       email,
@@ -55,7 +55,6 @@ export class AuthService {
     );
 
     const user = this.usersRepository.create({
-      fullName,
       email,
       password: hashedPassword,
       role: defaultRole,

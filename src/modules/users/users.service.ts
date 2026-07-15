@@ -4,7 +4,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { UsersRepository } from './users.repository';
 
 import { UserMapper } from './mappers/user.mapper';
-import { UpdateProfileDto, UserResponseDto } from './dto';
+import { UserResponseDto } from './dto';
 
 @Injectable()
 export class UsersService {
@@ -25,22 +25,5 @@ export class UsersService {
     }
 
     return UserMapper.toResponseDto(user);
-  }
-  async updateProfile(
-    userId: string,
-    updateProfileDto: UpdateProfileDto,
-  ): Promise<UserResponseDto> {
-    const user = await this.usersRepository.preload({
-      id: userId,
-      ...updateProfileDto,
-    });
-
-    if (!user) {
-      throw new NotFoundException('User not found');
-    }
-
-    const updatedUser = await this.usersRepository.save(user);
-
-    return UserMapper.toResponseDto(updatedUser);
   }
 }

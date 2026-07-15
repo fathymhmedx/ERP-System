@@ -5,7 +5,6 @@ export class UserMapper {
   static toResponseDto(user: User): UserResponseDto {
     return {
       id: user.id,
-      fullName: user.fullName,
       email: user.email,
       isVerified: user.isVerified,
       isActive: user.isActive,

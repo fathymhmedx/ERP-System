@@ -20,7 +20,6 @@ export class UsersRepository extends BaseRepository<User> {
       },
       select: {
         id: true,
-        fullName: true,
         email: true,
         password: true,
         isVerified: true,

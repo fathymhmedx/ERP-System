@@ -7,12 +7,6 @@ import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
 export class User extends BaseEntity {
   @Column({
     type: 'varchar',
-    length: 150,
-  })
-  fullName!: string;
-
-  @Column({
-    type: 'varchar',
     length: 255,
     unique: true,
   })
