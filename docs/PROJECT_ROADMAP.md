@@ -177,8 +177,8 @@ src
 
 ### Authentication
 
-- [ ] Register
-- [ ] Login
+- [x] Register
+- [x] Login
 - [ ] Logout
 - [ ] Refresh Token
 - [ ] Refresh Token Rotation
@@ -186,22 +186,22 @@ src
 
 ### Users
 
-- [ ] Get Profile
-- [ ] Update Profile
+- [x] Get Profile
+- [x] Update Profile
 
 ### Roles
 
-- [ ] CRUD Roles
+- [x] CRUD Roles
 
 ### Permissions
 
-- [ ] CRUD Permissions
+- [x] CRUD Permissions
 
 ### RBAC
 
-- [ ] Roles Guard
-- [ ] Permissions Guard
-- [ ] Custom Decorators
+- [x] Roles Guard
+- [x] Permissions Guard
+- [x] Custom Decorators
 
 ---
 
