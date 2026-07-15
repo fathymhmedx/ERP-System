@@ -27,4 +27,11 @@ export const envValidationSchema = Joi.object({
   JWT_REFRESH_EXPIRES_IN: Joi.string()
     .pattern(/^\d+[smhd]$/)
     .required(),
+
+  // Super Admin
+  SUPER_ADMIN_FULL_NAME: Joi.string().required(),
+
+  SUPER_ADMIN_EMAIL: Joi.string().email().required(),
+
+  SUPER_ADMIN_PASSWORD: Joi.string().min(8).required(),
 });

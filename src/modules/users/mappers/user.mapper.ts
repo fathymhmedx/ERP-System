@@ -1,0 +1,17 @@
+import { User } from '../entities/user.entity';
+import { UserResponseDto } from '../dto/user-response.dto';
+
+export class UserMapper {
+  static toResponseDto(user: User): UserResponseDto {
+    return {
+      id: user.id,
+      fullName: user.fullName,
+      email: user.email,
+      isVerified: user.isVerified,
+      isActive: user.isActive,
+      lastLoginAt: user.lastLoginAt,
+      createdAt: user.createdAt,
+      updatedAt: user.updatedAt,
+    };
+  }
+}

@@ -1,14 +1,15 @@
+import * as bcrypt from 'bcrypt';
 import { BaseEntity } from 'src/common/entities/base.entity';
-import { Column, Entity } from 'typeorm';
+import { Role } from 'src/modules/roles/entities/role.entity';
+import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
 
 @Entity('users')
 export class User extends BaseEntity {
   @Column({
     type: 'varchar',
-    length: 100,
-    unique: true,
+    length: 150,
   })
-  username!: string;
+  fullName!: string;
 
   @Column({
     type: 'varchar',
@@ -40,4 +41,16 @@ export class User extends BaseEntity {
     nullable: true,
   })
   lastLoginAt!: Date | null;
+
+  @ManyToOne(() => Role, (role) => role.users, {
+    nullable: false,
+  })
+  @JoinColumn({
+    name: 'role_id',
+  })
+  role!: Role;
+
+  async comparePassword(candidatePassword: string): Promise<boolean> {
+    return bcrypt.compare(candidatePassword, this.password);
+  }
 }
