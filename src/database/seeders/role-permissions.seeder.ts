@@ -1,10 +1,10 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
-import { Role } from 'src/modules/roles/entities/role.entity';
 import { Permission } from 'src/modules/permissions/entities/permission.entity';
 import { RolePermission } from 'src/modules/role-permissions/entities/role-permission.entity';
+import { Role } from 'src/modules/roles/entities/role.entity';
 
 @Injectable()
 export class RolePermissionsSeeder {
@@ -19,15 +19,21 @@ export class RolePermissionsSeeder {
     private readonly rolePermissionRepository: Repository<RolePermission>,
   ) {}
 
-  async run() {
-    const superAdminRole = await this.roleRepository.findOne({
+  async run(): Promise<void> {
+    await this.assignAllPermissionsToSuperAdmin();
+
+    console.log('Role permissions seeded successfully');
+  }
+
+  private async assignAllPermissionsToSuperAdmin() {
+    const role = await this.roleRepository.findOne({
       where: {
         name: 'super_admin',
       },
     });
 
-    if (!superAdminRole) {
-      throw new Error('Super admin role not found');
+    if (!role) {
+      throw new NotFoundException('Super admin role not found');
     }
 
     const permissions = await this.permissionRepository.find();
@@ -36,7 +42,7 @@ export class RolePermissionsSeeder {
       const exists = await this.rolePermissionRepository.findOne({
         where: {
           role: {
-            id: superAdminRole.id,
+            id: role.id,
           },
           permission: {
             id: permission.id,
@@ -46,13 +52,10 @@ export class RolePermissionsSeeder {
 
       if (!exists) {
         await this.rolePermissionRepository.save({
-          role: superAdminRole,
-
+          role,
           permission,
         });
       }
     }
-
-    console.log('Super admin permissions assigned successfully');
   }
 }

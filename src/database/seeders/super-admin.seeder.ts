@@ -1,10 +1,13 @@
-import { Injectable } from '@nestjs/common';
+import * as bcrypt from 'bcrypt';
+
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import * as bcrypt from 'bcrypt';
 
 import { User } from 'src/modules/users/entities/user.entity';
 import { Role } from 'src/modules/roles/entities/role.entity';
+import { ConfigService } from '@nestjs/config';
+import { ENV } from 'src/config/env.constants';
 
 @Injectable()
 export class SuperAdminSeeder {
@@ -14,56 +17,53 @@ export class SuperAdminSeeder {
 
     @InjectRepository(Role)
     private readonly roleRepository: Repository<Role>,
-  ) {}
+    private readonly configService: ConfigService,
+  ) {
+    console.log(configService);
+  }
 
-  async run() {
-    const roleName = 'super_admin';
-
-    let role = await this.roleRepository.findOne({
-      where: {
-        name: roleName,
-      },
-    });
-
-    if (!role) {
-      role = this.roleRepository.create({
-        name: roleName,
-        description: 'Full system access',
-      });
-
-      await this.roleRepository.save(role);
-    }
-
-    const email = 'admin@example.com';
-
-    const existingUser = await this.userRepository.findOne({
+  async run(): Promise<void> {
+    const email = this.configService.getOrThrow<string>(ENV.SUPER_ADMIN_EMAIL);
+    const password = this.configService.getOrThrow<string>(
+      ENV.SUPER_ADMIN_PASSWORD,
+    );
+    const fullName = this.configService.getOrThrow<string>(
+      ENV.SUPER_ADMIN_FULL_NAME,
+    );
+    console.log(this.configService.get('SUPER_ADMIN_EMAIL'));
+    console.log(this.configService.get('SUPER_ADMIN_PASSWORD'));
+    console.log(this.configService.get('SUPER_ADMIN_FULL_NAME'));
+    const exists = await this.userRepository.findOne({
       where: {
         email,
       },
     });
 
-    if (existingUser) {
+    if (exists) {
       console.log('Super admin already exists');
       return;
     }
 
-    const hashedPassword = await bcrypt.hash('Admin@123456', 12);
-
-    const user = this.userRepository.create({
-      fullName: 'Super Admin',
-
-      email,
-
-      password: hashedPassword,
-
-      isVerified: true,
-
-      isActive: true,
-
-      role,
+    const role = await this.roleRepository.findOne({
+      where: {
+        name: 'super_admin',
+      },
     });
 
-    await this.userRepository.save(user);
+    if (!role) {
+      throw new NotFoundException('Super admin role not found');
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    await this.userRepository.save({
+      fullName,
+      email,
+      password: hashedPassword,
+      isActive: true,
+      isVerified: true,
+      role,
+    });
 
     console.log('Super admin created successfully');
   }

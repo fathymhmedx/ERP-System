@@ -11,19 +11,21 @@ import { RolePermission } from 'src/modules/role-permissions/entities/role-permi
 import { PermissionsSeeder } from './permissions.seeder';
 import { SuperAdminSeeder } from './super-admin.seeder';
 import { RolePermissionsSeeder } from './role-permissions.seeder';
-
+import { RolesSeeder } from './roles.seeder';
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: ['.env.development'],
     }),
-
     TypeOrmModule.forRootAsync(databaseConfig),
-
     TypeOrmModule.forFeature([User, Role, Permission, RolePermission]),
   ],
-
-  providers: [SuperAdminSeeder, PermissionsSeeder, RolePermissionsSeeder],
+  providers: [
+    RolesSeeder,
+    PermissionsSeeder,
+    RolePermissionsSeeder,
+    SuperAdminSeeder,
+  ],
 })
 export class SeederModule {}
