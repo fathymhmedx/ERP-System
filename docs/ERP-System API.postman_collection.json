@@ -1,0 +1,394 @@
+{
+  "info": {
+    "_postman_id": "7e2bb739-0250-42e2-9c78-66b054d37fad",
+    "name": "ERP-System API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "43458025"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Signup",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"fullName\": \"Fathy mohamed\",\r\n    \"email\": \"fathymhmed1@gmail.com\",\r\n    \"password\": \"Fathy@123\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/api/v1/auth/signup",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "v1", "auth", "signup"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.environment.set(\"JWT\", pm.response.json().data.accessToken);"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    // \"email\": \"fathymhmed12@gmail.com\",\r\n    // \"password\": \"Fathy@123\"\r\n\r\n// ADMIN\r\n    \"email\": \"admin@erp.com\",\r\n    \"password\": \"Admin@123456\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/api/v1/auth/login",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "v1", "auth", "login"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Get Me",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/api/v1/users/me",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "v1", "users", "me"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Roles",
+      "item": [
+        {
+          "name": "Create Role",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"super_admin\",\r\n    \"description\": \"Full system access\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/api/v1/roles",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "v1", "roles"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Roles",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/api/v1/roles",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "v1", "roles"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Role",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/api/v1/roles/d9fbd586-360e-4eba-b81f-4b0f262a5dd9",
+              "host": ["{{BASE_URL}}"],
+              "path": [
+                "api",
+                "v1",
+                "roles",
+                "d9fbd586-360e-4eba-b81f-4b0f262a5dd9"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Role",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"description\": \"System administrator\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/api/v1/roles/d9fbd586-360e-4eba-b81f-4b0f262a5dd9",
+              "host": ["{{BASE_URL}}"],
+              "path": [
+                "api",
+                "v1",
+                "roles",
+                "d9fbd586-360e-4eba-b81f-4b0f262a5dd9"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Role",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/api/v1/roles/2529a9d3-3d62-49b0-978d-b321e017d2b8",
+              "host": ["{{BASE_URL}}"],
+              "path": [
+                "api",
+                "v1",
+                "roles",
+                "2529a9d3-3d62-49b0-978d-b321e017d2b8"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Permissions",
+      "item": [
+        {
+          "name": "Create Permission",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"permissions.assign\",\r\n  \"module\": \"permissions\",\r\n  \"description\": \"Assign permissions to roles\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/api/v1/Permissions",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "v1", "Permissions"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Permissions",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/api/v1/Permissions",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "v1", "Permissions"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Permission",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/api/v1/Permissions/dc881264-27dd-45b8-85f8-66a2cd03d22b",
+              "host": ["{{BASE_URL}}"],
+              "path": [
+                "api",
+                "v1",
+                "Permissions",
+                "dc881264-27dd-45b8-85f8-66a2cd03d22b"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Permission",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"description\": \"Create users\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/api/v1/Permissions/dc881264-27dd-45b8-85f8-66a2cd03d22b",
+              "host": ["{{BASE_URL}}"],
+              "path": [
+                "api",
+                "v1",
+                "Permissions",
+                "dc881264-27dd-45b8-85f8-66a2cd03d22b"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Permissions",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/api/v1/Permissions/2529a9d3-3d62-49b0-978d-b321e017d2b8",
+              "host": ["{{BASE_URL}}"],
+              "path": [
+                "api",
+                "v1",
+                "Permissions",
+                "2529a9d3-3d62-49b0-978d-b321e017d2b8"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Role-Permissions",
+      "item": [
+        {
+          "name": "Assign Permission",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"permissionId\": \"a44ebf23-8294-4fa0-85ae-371c67ebc04a\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/api/v1/roles/d9fbd586-360e-4eba-b81f-4b0f262a5dd9/permissions",
+              "host": ["{{BASE_URL}}"],
+              "path": [
+                "api",
+                "v1",
+                "roles",
+                "d9fbd586-360e-4eba-b81f-4b0f262a5dd9",
+                "permissions"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Revoke Permission",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"permissionId\": \"a44ebf23-8294-4fa0-85ae-371c67ebc04a\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/api/v1/roles/d9fbd586-360e-4eba-b81f-4b0f262a5dd9/permissions/a44ebf23-8294-4fa0-85ae-371c67ebc04a",
+              "host": ["{{BASE_URL}}"],
+              "path": [
+                "api",
+                "v1",
+                "roles",
+                "d9fbd586-360e-4eba-b81f-4b0f262a5dd9",
+                "permissions",
+                "a44ebf23-8294-4fa0-85ae-371c67ebc04a"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{JWT}}",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [""]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [""]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "BASE_URI",
+      "value": ""
+    }
+  ]
+}

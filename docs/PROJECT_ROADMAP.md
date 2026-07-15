@@ -187,7 +187,6 @@ src
 ### Users
 
 - [x] Get Profile
-- [x] Update Profile
 
 ### Roles
 
