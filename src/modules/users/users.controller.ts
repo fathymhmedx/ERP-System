@@ -1,9 +1,10 @@
-import { Body, Controller, Get } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { SuccessMessage } from 'src/common/decorators/success-message.decorator';
 import { Permissions } from 'src/common/decorators/permissions.decorator';
 import { CurrentUser } from 'src/common/decorators/current-user.decorator';
 import type { AuthUser } from 'src/common/interfaces/auth-user.interface';
+import { PERMISSIONS } from 'src/common/constants/permissions.constants';
 
 @Controller({
   path: 'users',
@@ -14,7 +15,7 @@ export class UsersControllers {
 
   @SuccessMessage('Users retrieved successfully')
   @Get()
-  @Permissions('users.read')
+  @Permissions(PERMISSIONS.USERS.READ)
   getUsers() {
     return this.usersService.findAll();
   }
