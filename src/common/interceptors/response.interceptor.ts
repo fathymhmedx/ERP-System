@@ -9,7 +9,7 @@ import { Response } from 'express';
 import { Observable, map } from 'rxjs';
 
 import { ApiResponse } from '../interfaces/api-response.interface';
-import { SUCCESS_MESSAGE_KEY } from '../decorators/success-message.decorator';
+import { SUCCESS_MESSAGE_KEY } from '../constants/metadata.constants';
 
 @Injectable()
 export class ResponseInterceptor<T> implements NestInterceptor<

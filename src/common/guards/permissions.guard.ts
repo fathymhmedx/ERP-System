@@ -6,12 +6,14 @@ import {
 } from '@nestjs/common';
 
 import { Reflector } from '@nestjs/core';
-import { AUTH_CONSTANTS } from 'src/modules/auth/constants/auth.constants';
 import { RolePermissionsRepository } from 'src/modules/role-permissions/role-permissions.repository';
 import { SYSTEM_ROLES } from '../constants/system-roles.constants';
 import { RolesRepository } from 'src/modules/roles/roles.repository';
 import { AuthRequest } from '../interfaces/auth-request.interface';
-import { IS_PUBLIC_KEY } from '../decorators/public.decorator';
+import {
+  IS_PUBLIC_KEY,
+  PERMISSIONS_KEY,
+} from '../constants/metadata.constants';
 
 @Injectable()
 export class PermissionsGuard implements CanActivate {
@@ -31,7 +33,7 @@ export class PermissionsGuard implements CanActivate {
       return true;
     }
     const requiredPermissions = this.reflector.getAllAndOverride<string[]>(
-      AUTH_CONSTANTS.PERMISSIONS_KEY,
+      PERMISSIONS_KEY,
       [context.getHandler(), context.getClass()],
     );
 
