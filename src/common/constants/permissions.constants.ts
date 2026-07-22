@@ -144,5 +144,6 @@ export const PERMISSIONS = {
   },
 } as const;
 
-export type Permission =
-  (typeof PERMISSIONS)[keyof typeof PERMISSIONS][keyof (typeof PERMISSIONS)[keyof typeof PERMISSIONS]];
+type PermissionValues<T> = T extends object ? PermissionValues<T[keyof T]> : T;
+
+export type Permission = PermissionValues<typeof PERMISSIONS>;
