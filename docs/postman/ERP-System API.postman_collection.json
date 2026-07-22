@@ -1,7 +1,7 @@
 {
   "info": {
-    "_postman_id": "a767b043-cae2-4823-98e4-06ba54b65851",
-    "name": "Ecommerce Api",
+    "_postman_id": "7e2bb739-0250-42e2-9c78-66b054d37fad",
+    "name": "ERP-System API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "_exporter_id": "43458025"
   },
@@ -11,28 +11,12 @@
       "item": [
         {
           "name": "Signup",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "pm.environment.set(\"JWT\", pm.response.json().data.token);"
-                ],
-                "type": "text/javascript",
-                "packages": {},
-                "requests": {}
-              }
-            }
-          ],
           "request": {
-            "auth": {
-              "type": "noauth"
-            },
             "method": "POST",
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"name\": \"Fathy mohamed\",\r\n    \"email\": \"fathymhmed11@gmail.com\",\r\n    \"password\": \"Pass123456789@\",\r\n    \"confirmPassword\": \"Pass123456789@\"\r\n}",
+              "raw": "{\r\n    \"fullName\": \"Fathy mohamed\",\r\n    \"email\": \"fathymhmed1@gmail.com\",\r\n    \"password\": \"Fathy@123\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -48,7 +32,7 @@
           "response": []
         },
         {
-          "name": "login",
+          "name": "Login",
           "event": [
             {
               "listen": "test",
@@ -63,21 +47,11 @@
             }
           ],
           "request": {
-            "auth": {
-              "type": "noauth"
-            },
             "method": "POST",
-            "header": [
-              {
-                "key": "Authorization",
-                "value": "Bearer ",
-                "type": "text",
-                "disabled": true
-              }
-            ],
+            "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"email\": \"fathymhmed11@gmail.com\",\r\n    \"password\": \"Pass123456789@\"\r\n}\r\n",
+              "raw": "{\r\n// USER\r\n    \"email\": \"fathymhmed1@gmail.com\",\r\n    \"password\": \"Fathy@1234\"\r\n\r\n// ADMIN\r\n    // \"email\": \"admin@erp.com\",\r\n    // \"password\": \"Admin@123456\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -93,105 +67,9 @@
           "response": []
         },
         {
-          "name": "Get refresh token",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "pm.environment.set(\"JWT\", pm.response.json().data.accessToken);\r",
-                  ""
-                ],
-                "type": "text/javascript",
-                "packages": {},
-                "requests": {}
-              }
-            }
-          ],
+          "name": "Change Password",
           "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/auth/refresh-token",
-              "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "auth", "refresh-token"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Forgot password",
-          "request": {
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"email\": \"fathymhme@gmail.com\"\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/auth/password/forgot",
-              "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "auth", "password", "forgot"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Verify reset password  code",
-          "request": {
-            "auth": {
-              "type": "noauth"
-            },
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"resetCode\": \"855317\"\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/auth/password/verify",
-              "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "auth", "password", "verify"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Reset password",
-          "request": {
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"email\": \"fathymhme@gmail.com\",\r\n    \"newPassword\": \"@@Fathy12163233@@@@@\",\r\n    \"confirmPassword\": \"@@Fathy12163233@@@@@\"\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/auth/password/reset",
-              "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "auth", "password", "reset"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Logout",
-          "request": {
-            "method": "POST",
+            "method": "PATCH",
             "header": [
               {
                 "key": "Authorization",
@@ -202,187 +80,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": ""
-            },
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/auth/logout",
-              "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "auth", "logout"]
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "Users (Admin)",
-      "item": [
-        {
-          "name": "Get users",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/users?page=1",
-              "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "users"],
-              "query": [
-                {
-                  "key": "page",
-                  "value": "1"
-                },
-                {
-                  "key": "limit",
-                  "value": "3",
-                  "disabled": true
-                },
-                {
-                  "key": "keyword",
-                  "value": "fathy",
-                  "disabled": true
-                },
-                {
-                  "key": "fields",
-                  "value": "name,email",
-                  "disabled": true
-                },
-                {
-                  "key": "email",
-                  "value": "fathymhmed74@gmail.com",
-                  "disabled": true
-                }
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Create user",
-          "request": {
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "formdata",
-              "formdata": [
-                {
-                  "key": "name",
-                  "value": "mohamed",
-                  "type": "text",
-                  "uuid": "7f388867-08b9-4829-b81b-caeb23744b31"
-                },
-                {
-                  "key": "email",
-                  "value": "ahmed141e1@gmail.com",
-                  "type": "text",
-                  "uuid": "1346601e-f938-4703-a0f8-24ed6288d91c"
-                },
-                {
-                  "key": "password",
-                  "value": "Pass123456@",
-                  "type": "text",
-                  "uuid": "cb4960f0-2876-4d71-9ba7-ed2d7c360b9d"
-                },
-                {
-                  "key": "confirmPassword",
-                  "value": "Pass123456@",
-                  "type": "text",
-                  "uuid": "a9b91b76-bfba-410c-b9c3-3df02c0cdd0b"
-                },
-                {
-                  "key": "phone",
-                  "value": "01033899622",
-                  "type": "text",
-                  "uuid": "949dc77f-e15e-44f2-9024-9514bdb14ef8"
-                },
-                {
-                  "key": "role",
-                  "value": "admin",
-                  "type": "text",
-                  "uuid": "e9175ddf-b0b4-4957-ac95-3bfddec83265"
-                },
-                {
-                  "key": "profileImage",
-                  "type": "file",
-                  "uuid": "21c30585-b27c-4876-be17-11c98c4a656b",
-                  "src": "postman-cloud:///1f07efc5-c954-4470-b236-314adfe79385"
-                }
-              ]
-            },
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/users",
-              "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "users"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Get user",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/users/68c86365ae3f5faf4ccf79fd",
-              "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "users", "68c86365ae3f5faf4ccf79fd"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Update user",
-          "request": {
-            "method": "PUT",
-            "header": [],
-            "body": {
-              "mode": "formdata",
-              "formdata": [
-                {
-                  "key": "profileImage",
-                  "type": "file",
-                  "uuid": "575d67cb-864c-433c-a0e6-991f566c3448",
-                  "src": "postman-cloud:///1f07efc5-c954-4470-b236-314adfe79385",
-                  "disabled": true
-                },
-                {
-                  "key": "role",
-                  "value": "manager",
-                  "type": "text",
-                  "uuid": "0c9d7dfd-37ea-4f01-8e06-30288a1bef20"
-                },
-                {
-                  "key": "name",
-                  "value": "Fathy",
-                  "type": "text",
-                  "uuid": "bfd813ac-6fd7-4e70-8abf-977daa172ad3",
-                  "disabled": true
-                }
-              ]
-            },
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/users/6913fb834c18c6bd955c23a2",
-              "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "users", "6913fb834c18c6bd955c23a2"],
-              "query": [
-                {
-                  "key": "",
-                  "value": null,
-                  "type": "text",
-                  "disabled": true
-                }
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Change password",
-          "request": {
-            "method": "PUT",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"password\": \"@Fathy121632313@@@@@\"\r\n}",
+              "raw": "{\r\n    \"oldPassword\": \"Fathy@123\",\r\n    \"newPassword\": \"Fathy@1234\"\r\n}\r\n",
               "options": {
                 "raw": {
                   "language": "json"
@@ -390,78 +88,9 @@
               }
             },
             "url": {
-              "raw": "{{BASE_URL}}/api/v1/users/68c5ad11006957cbd0c4ccaf/password",
+              "raw": "{{BASE_URL}}/api/v1/auth/change-password",
               "host": ["{{BASE_URL}}"],
-              "path": [
-                "api",
-                "v1",
-                "users",
-                "68c5ad11006957cbd0c4ccaf",
-                "password"
-              ],
-              "query": [
-                {
-                  "key": "",
-                  "value": "",
-                  "type": "text",
-                  "disabled": true
-                }
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Deactivate any user",
-          "request": {
-            "method": "PUT",
-            "header": [],
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/users/68b8739fc4f33a3a519417a8/deactivate",
-              "host": ["{{BASE_URL}}"],
-              "path": [
-                "api",
-                "v1",
-                "users",
-                "68b8739fc4f33a3a519417a8",
-                "deactivate"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Reactivate any user",
-          "request": {
-            "method": "PUT",
-            "header": [],
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/users/68b8739fc4f33a3a519417a8/reactivate",
-              "host": ["{{BASE_URL}}"],
-              "path": [
-                "api",
-                "v1",
-                "users",
-                "68b8739fc4f33a3a519417a8",
-                "reactivate"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Delete user",
-          "request": {
-            "method": "DELETE",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"title\": \"iPhone 14 Pro Max\"\r\n}"
-            },
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/users/68b8723ae45f027166b0297c",
-              "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "users", "68b8723ae45f027166b0297c"]
+              "path": ["api", "v1", "auth", "change-password"]
             }
           },
           "response": []
@@ -469,1014 +98,10 @@
       ]
     },
     {
-      "name": "Categories",
+      "name": "Users",
       "item": [
         {
-          "name": "Get categories",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/categories?page=2",
-              "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "categories"],
-              "query": [
-                {
-                  "key": "page",
-                  "value": "2"
-                },
-                {
-                  "key": "limit",
-                  "value": "2",
-                  "disabled": true
-                },
-                {
-                  "key": "keyword",
-                  "value": "adidas",
-                  "disabled": true
-                },
-                {
-                  "key": "fields",
-                  "value": "name ",
-                  "disabled": true
-                },
-                {
-                  "key": "name",
-                  "value": "Lenovo",
-                  "disabled": true
-                },
-                {
-                  "key": "sort",
-                  "value": "-createdAt",
-                  "disabled": true
-                }
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Create category",
-          "request": {
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{JWT}}",
-                  "type": "string"
-                }
-              ]
-            },
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "formdata",
-              "formdata": [
-                {
-                  "key": "name",
-                  "value": "new categoryyyyy1",
-                  "type": "text",
-                  "uuid": "1996c258-8f39-42a1-8bd4-31088419fe20"
-                },
-                {
-                  "key": "image",
-                  "type": "file",
-                  "uuid": "8a00aac6-70dc-4494-9af5-88db932cf848",
-                  "src": "/D:/Matiearials tech/forever-full-stackK Done/frontend/src/assets/p_img8.png"
-                }
-              ]
-            },
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/categories",
-              "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "categories"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Get category",
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          },
-          "request": {
-            "method": "GET",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"name\": \"Iphon1 labtop\"\r\n}"
-            },
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/categories/68a762884989601dc37171ca",
-              "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "categories", "68a762884989601dc37171ca"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Update category",
-          "request": {
-            "method": "PUT",
-            "header": [],
-            "body": {
-              "mode": "formdata",
-              "formdata": [
-                {
-                  "key": "image",
-                  "type": "file",
-                  "uuid": "9dff9b3a-45bf-4eb3-b2af-a77e551e845c",
-                  "src": "postman-cloud:///1f07efc5-c954-4470-b236-314adfe79385"
-                }
-              ]
-            },
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/categories/68adb0b14bec257c5dec5ed8",
-              "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "categories", "68adb0b14bec257c5dec5ed8"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Delete category",
-          "request": {
-            "method": "DELETE",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"name\": \"Iphon1 labtop\"\r\n}"
-            },
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/categories/68a7d9030348164109659459",
-              "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "categories", "68a7d9030348164109659459"]
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "SubCategories",
-      "item": [
-        {
-          "name": "Get subCategories",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/subcategories",
-              "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "subcategories"],
-              "query": [
-                {
-                  "key": "page",
-                  "value": "2",
-                  "disabled": true
-                },
-                {
-                  "key": "limit",
-                  "value": "2",
-                  "disabled": true
-                },
-                {
-                  "key": "keyword",
-                  "value": "p",
-                  "disabled": true
-                },
-                {
-                  "key": "fields",
-                  "value": "name, category",
-                  "disabled": true
-                },
-                {
-                  "key": "name",
-                  "value": "Lenovo",
-                  "disabled": true
-                },
-                {
-                  "key": "sort",
-                  "value": "-createdAt",
-                  "disabled": true
-                }
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Create subCategory",
-          "request": {
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"name\": \"Dell l l\",\r\n    \"category\": \"684b1aeef028a5b9f8f56b2c\"\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/subcategories",
-              "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "subcategories"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Get subCategory",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/subcategories/6923df071ca047d0d7861319",
-              "host": ["{{BASE_URL}}"],
-              "path": [
-                "api",
-                "v1",
-                "subcategories",
-                "6923df071ca047d0d7861319"
-              ],
-              "query": [
-                {
-                  "key": "",
-                  "value": "",
-                  "type": "text",
-                  "disabled": true
-                },
-                {
-                  "key": "",
-                  "value": "",
-                  "disabled": true
-                }
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Update subCategory",
-          "request": {
-            "method": "PUT",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"title\": \"Hp\",\r\n    \"category\": \"684b1aeef028a5b9f8f56b2c\"\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/subcategories/685f8632c2d1e92043ee7328",
-              "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "subcategories", "685f8632c2d1e92043ee7328"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Delete subCategory",
-          "request": {
-            "method": "DELETE",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"title\": \"Dell\",\r\n    \"category\": \"684b1aeef028a5b9f8f56b2c\"\r\n\r\n}"
-            },
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/subcategories/68a4e14b3bafc979a84cb7a1",
-              "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "subcategories", "68a4e14b3bafc979a84cb7a1"]
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "Categories/subs",
-      "item": [
-        {
-          "name": "Get Subcategories on specific category",
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          },
-          "request": {
-            "method": "GET",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": ""
-            },
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/categories/684b1aeef028a5b9f8f56b2c/subcategories",
-              "host": ["{{BASE_URL}}"],
-              "path": [
-                "api",
-                "v1",
-                "categories",
-                "684b1aeef028a5b9f8f56b2c",
-                "subcategories"
-              ],
-              "query": [
-                {
-                  "key": "limit",
-                  "value": "1",
-                  "type": "text",
-                  "disabled": true
-                },
-                {
-                  "key": "skip",
-                  "value": "",
-                  "type": "text",
-                  "disabled": true
-                }
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Create subCategory on specific category",
-          "request": {
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"name\": \"acss for test ttt\"\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/categories/68a762884989601dc37171ca/subcategories",
-              "host": ["{{BASE_URL}}"],
-              "path": [
-                "api",
-                "v1",
-                "categories",
-                "68a762884989601dc37171ca",
-                "subcategories"
-              ]
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "Brands",
-      "item": [
-        {
-          "name": "Get brands",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/brands?limit=50",
-              "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "brands"],
-              "query": [
-                {
-                  "key": "page",
-                  "value": "2",
-                  "disabled": true
-                },
-                {
-                  "key": "limit",
-                  "value": "50"
-                },
-                {
-                  "key": "keyword",
-                  "value": "adidas",
-                  "disabled": true
-                },
-                {
-                  "key": "fields",
-                  "value": "name ",
-                  "disabled": true
-                },
-                {
-                  "key": "name",
-                  "value": "Lenovo",
-                  "disabled": true
-                },
-                {
-                  "key": "sort",
-                  "value": "-createdAt",
-                  "disabled": true
-                }
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Create brand",
-          "request": {
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "formdata",
-              "formdata": [
-                {
-                  "key": "name",
-                  "value": "new brand11554444",
-                  "type": "text",
-                  "uuid": "200cbcc4-d903-4eaa-a1be-487a7fc5addf"
-                },
-                {
-                  "key": "image",
-                  "type": "file",
-                  "uuid": "ac616ee3-2701-41fc-b85b-78a461b60e10",
-                  "src": "postman-cloud:///1f07ef4a-8ac9-4cd0-bc8b-f684c49896db"
-                }
-              ]
-            },
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/brands",
-              "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "brands"],
-              "query": [
-                {
-                  "key": "page",
-                  "value": "1",
-                  "type": "text",
-                  "disabled": true
-                },
-                {
-                  "key": "limit",
-                  "value": "5",
-                  "type": "text",
-                  "disabled": true
-                },
-                {
-                  "key": "skip",
-                  "value": null,
-                  "type": "text",
-                  "disabled": true
-                }
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Get  brand",
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          },
-          "request": {
-            "method": "GET",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"title\": \"Asus\"\r\n}"
-            },
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/brands/68adb28dad490084b9bc54e1",
-              "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "brands", "68adb28dad490084b9bc54e1"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Update brand",
-          "request": {
-            "method": "PUT",
-            "header": [],
-            "body": {
-              "mode": "formdata",
-              "formdata": [
-                {
-                  "key": "image",
-                  "type": "file",
-                  "uuid": "83a83c78-9e7c-4917-9b5a-d966829ff2d8",
-                  "src": "postman-cloud:///1f07ef4a-8ac9-4cd0-bc8b-f684c49896db"
-                }
-              ]
-            },
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/brands/68ada9e6713198df5952c007",
-              "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "brands", "68ada9e6713198df5952c007"],
-              "query": [
-                {
-                  "key": "page",
-                  "value": "1",
-                  "type": "text",
-                  "disabled": true
-                },
-                {
-                  "key": "limit",
-                  "value": "5",
-                  "type": "text",
-                  "disabled": true
-                },
-                {
-                  "key": "skip",
-                  "value": null,
-                  "type": "text",
-                  "disabled": true
-                }
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Delete brand",
-          "request": {
-            "method": "DELETE",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"name\": \"test\"\r\n}"
-            },
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/brands/6868e5ac19a9675548c21d81",
-              "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "brands", "6868e5ac19a9675548c21d81"],
-              "query": [
-                {
-                  "key": "page",
-                  "value": "1",
-                  "type": "text",
-                  "disabled": true
-                },
-                {
-                  "key": "limit",
-                  "value": "5",
-                  "type": "text",
-                  "disabled": true
-                },
-                {
-                  "key": "skip",
-                  "value": null,
-                  "type": "text",
-                  "disabled": true
-                }
-              ]
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "Reviews",
-      "item": [
-        {
-          "name": "Get reviews",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/reviews",
-              "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "reviews"],
-              "query": [
-                {
-                  "key": "page",
-                  "value": "2",
-                  "disabled": true
-                },
-                {
-                  "key": "limit",
-                  "value": "50",
-                  "disabled": true
-                },
-                {
-                  "key": "keyword",
-                  "value": "adidas",
-                  "disabled": true
-                },
-                {
-                  "key": "fields",
-                  "value": "name ",
-                  "disabled": true
-                },
-                {
-                  "key": "name",
-                  "value": "Lenovo",
-                  "disabled": true
-                },
-                {
-                  "key": "sort",
-                  "value": "-createdAt",
-                  "disabled": true
-                }
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Create review",
-          "request": {
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"title\": \"So Amazing ,Nice product2\",\r\n    \"ratings\": 4,\r\n    \"user\": \"6912f8de3feda6c7ee2ecc6b\",\r\n    \"product\": \"68b07194bb5ac0f1d2cb2f95\"\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/reviews",
-              "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "reviews"],
-              "query": [
-                {
-                  "key": "page",
-                  "value": "1",
-                  "type": "text",
-                  "disabled": true
-                },
-                {
-                  "key": "limit",
-                  "value": "5",
-                  "type": "text",
-                  "disabled": true
-                },
-                {
-                  "key": "skip",
-                  "value": null,
-                  "type": "text",
-                  "disabled": true
-                }
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Get  review",
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          },
-          "request": {
-            "method": "GET",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"title\": \"Asus\"\r\n}"
-            },
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/reviews/68b076d2ff51fe1a3373f61d",
-              "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "reviews", "68b076d2ff51fe1a3373f61d"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Update review",
-          "request": {
-            "method": "PUT",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"title\": \"Nice product test\",\r\n    \"ratings\": 4.5\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/reviews/692406bd5c0388fb6d0ff871",
-              "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "reviews", "692406bd5c0388fb6d0ff871"],
-              "query": [
-                {
-                  "key": "page",
-                  "value": "1",
-                  "type": "text",
-                  "disabled": true
-                },
-                {
-                  "key": "limit",
-                  "value": "5",
-                  "type": "text",
-                  "disabled": true
-                },
-                {
-                  "key": "skip",
-                  "value": null,
-                  "type": "text",
-                  "disabled": true
-                }
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Delete review",
-          "request": {
-            "method": "DELETE",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": ""
-            },
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/reviews/69240b08f9617ca98ea673eb",
-              "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "reviews", "69240b08f9617ca98ea673eb"],
-              "query": [
-                {
-                  "key": "page",
-                  "value": "1",
-                  "type": "text",
-                  "disabled": true
-                },
-                {
-                  "key": "limit",
-                  "value": "5",
-                  "type": "text",
-                  "disabled": true
-                },
-                {
-                  "key": "skip",
-                  "value": null,
-                  "type": "text",
-                  "disabled": true
-                }
-              ]
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "Products",
-      "item": [
-        {
-          "name": "Create product",
-          "request": {
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "formdata",
-              "formdata": [
-                {
-                  "key": "title",
-                  "value": "new product",
-                  "type": "text",
-                  "uuid": "37822959-e18d-41fe-9765-ef27180cc178"
-                },
-                {
-                  "key": "quantity",
-                  "value": "20",
-                  "type": "text",
-                  "uuid": "556e87d8-70b2-4950-9b23-e3c7bbbab234"
-                },
-                {
-                  "key": "price",
-                  "value": "50",
-                  "type": "text",
-                  "uuid": "18b67c76-eff4-4ac9-80ea-0d1c3e129bfb"
-                },
-                {
-                  "key": "description",
-                  "value": "any description test test test",
-                  "type": "text",
-                  "uuid": "eb3b38eb-56f3-4f97-9ca8-d5d9a027b7cd"
-                },
-                {
-                  "key": "category",
-                  "value": "68adb0b14bec257c5dec5ed8",
-                  "type": "text",
-                  "uuid": "e6277f57-fa22-4973-bea5-d20c7861b17c"
-                },
-                {
-                  "key": "imageCover",
-                  "type": "file",
-                  "uuid": "88f0a80f-f8bc-4990-919e-04afd0d31221",
-                  "src": "postman-cloud:///1f07ef4a-8ac9-4cd0-bc8b-f684c49896db"
-                },
-                {
-                  "key": "images",
-                  "type": "file",
-                  "uuid": "a1ef39d3-4864-43b5-bcaf-5423c6e761d5",
-                  "src": "postman-cloud:///1f07efc5-c954-4470-b236-314adfe79385"
-                },
-                {
-                  "key": "images",
-                  "type": "file",
-                  "uuid": "8699ab1c-489b-4dda-9934-44849ccddd58",
-                  "src": "postman-cloud:///1f07ef4a-8ac9-4cd0-bc8b-f684c49896db"
-                },
-                {
-                  "key": "",
-                  "type": "file",
-                  "uuid": "54dfa308-5d37-48ac-8c51-40fad66fbad0",
-                  "value": null,
-                  "disabled": true
-                }
-              ]
-            },
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/products",
-              "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "products"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Get products",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/products/?price=22.3&category=68a751dda6142edf693cc0af",
-              "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "products", ""],
-              "query": [
-                {
-                  "key": "limit",
-                  "value": "3",
-                  "disabled": true
-                },
-                {
-                  "key": "keyword",
-                  "value": "fabric",
-                  "disabled": true
-                },
-                {
-                  "key": "fields",
-                  "value": "price,ratingsAverage,title,slug,imageCover,subCategories",
-                  "disabled": true
-                },
-                {
-                  "key": "title",
-                  "value": "Shirts",
-                  "disabled": true
-                },
-                {
-                  "key": "price",
-                  "value": "22.3"
-                },
-                {
-                  "key": "ratingsAverage[gte]",
-                  "value": "4.4",
-                  "disabled": true
-                },
-                {
-                  "key": "sort",
-                  "value": "-price,sold",
-                  "disabled": true
-                },
-                {
-                  "key": "category",
-                  "value": "68a751dda6142edf693cc0af"
-                },
-                {
-                  "key": "page",
-                  "value": "3",
-                  "disabled": true
-                }
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Get product",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/products/68b0780934a2a31a0bed65d5",
-              "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "products", "68b0780934a2a31a0bed65d5"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Update product",
-          "request": {
-            "method": "PUT",
-            "header": [],
-            "body": {
-              "mode": "formdata",
-              "formdata": [
-                {
-                  "key": "imageCover",
-                  "type": "file",
-                  "uuid": "e33e036c-2ee2-4d8e-84ef-f5a21488e68b",
-                  "src": "postman-cloud:///1f07ef4a-8ac9-4cd0-bc8b-f684c49896db"
-                }
-              ]
-            },
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/products/68b0780934a2a31a0bed65d5",
-              "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "products", "68b0780934a2a31a0bed65d5"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Delete product",
-          "request": {
-            "method": "DELETE",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"title\": \"iPhone 14 Pro Max\"\r\n}"
-            },
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/products/687f1e4d5e98a8d378f416b8",
-              "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "products", "687f1e4d5e98a8d378f416b8"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Get top ten products",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/products/top-ten",
-              "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "products", "top-ten"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Get top rated products",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/products/top-rated",
-              "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "products", "top-rated"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Get latest products",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/products/latest",
-              "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "products", "latest"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Get related products",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/products/688077d450e34a521c33ba2b/related",
-              "host": ["{{BASE_URL}}"],
-              "path": [
-                "api",
-                "v1",
-                "products",
-                "688077d450e34a521c33ba2b",
-                "related"
-              ]
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "Logged users",
-      "item": [
-        {
-          "name": "Get me",
+          "name": "Get Me",
           "request": {
             "method": "GET",
             "header": [],
@@ -1487,15 +112,20 @@
             }
           },
           "response": []
-        },
+        }
+      ]
+    },
+    {
+      "name": "Roles",
+      "item": [
         {
-          "name": "Update my password",
+          "name": "Create Role",
           "request": {
-            "method": "PUT",
+            "method": "POST",
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"currentPassword\": \"@Fathy121632313@@@@@\",\r\n    \"password\": \"Fathy121632313@@@@@\",\r\n    \"confirmPassword\": \"Fathy121632313@@@@@\"\r\n}",
+              "raw": "{\r\n    \"name\": \"super_admin\",\r\n    \"description\": \"Full system access\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -1503,384 +133,52 @@
               }
             },
             "url": {
-              "raw": "{{BASE_URL}}/api/v1/users/me/password",
+              "raw": "{{BASE_URL}}/api/v1/roles",
               "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "users", "me", "password"]
+              "path": ["api", "v1", "roles"]
             }
           },
           "response": []
         },
         {
-          "name": "Update me",
-          "request": {
-            "method": "PUT",
-            "header": [],
-            "body": {
-              "mode": "formdata",
-              "formdata": [
-                {
-                  "key": "name",
-                  "value": "fathy",
-                  "type": "text",
-                  "uuid": "bdc677d7-b4e8-4e8c-a8ab-37bc453ab081"
-                },
-                {
-                  "key": "email",
-                  "value": "fathy11123@gmail.com",
-                  "type": "text",
-                  "uuid": "28a8cf60-88a3-4cfd-a2a0-0c5ae1dc2942"
-                },
-                {
-                  "key": "phone",
-                  "value": "01032356695",
-                  "type": "text",
-                  "uuid": "30f3fe26-4b3f-45ff-8fe7-2fc51a1df1c5"
-                },
-                {
-                  "key": "profileImage",
-                  "type": "file",
-                  "uuid": "f0d6b85e-a8c9-4788-991e-a768cf19bdc1",
-                  "src": "/D:/Matiearials tech/forever-full-stackK Done/frontend/src/assets/hero_img.png"
-                }
-              ]
-            },
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/users/me",
-              "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "users", "me"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Deactivate user",
-          "request": {
-            "method": "PUT",
-            "header": [],
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/users/me/deactivate",
-              "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "users", "me", "deactivate"]
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "Products/Reviews",
-      "item": [
-        {
-          "name": "Get reviews on specific product",
+          "name": "Get Roles",
           "request": {
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{BASE_URL}}/api/v1/products/68b076d2ff51fe1a3373f61d/reviews",
+              "raw": "{{BASE_URL}}/api/v1/roles",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "v1", "roles"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Role",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/api/v1/roles/7c980a50-5894-4ef6-a591-1d4c32a7c287",
               "host": ["{{BASE_URL}}"],
               "path": [
                 "api",
                 "v1",
-                "products",
-                "68b076d2ff51fe1a3373f61d",
-                "reviews"
+                "roles",
+                "7c980a50-5894-4ef6-a591-1d4c32a7c287"
               ]
             }
           },
           "response": []
         },
         {
-          "name": "Create review on specific Product",
-          "request": {
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"title\": \"Second review for test by user1\",\r\n    \"ratings\": 5\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/products/68b07194bb5ac0f1d2cb2f95/reviews",
-              "host": ["{{BASE_URL}}"],
-              "path": [
-                "api",
-                "v1",
-                "products",
-                "68b07194bb5ac0f1d2cb2f95",
-                "reviews"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Get specific review on specific product",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/products/68b0780934a2a31a0bed65d5/reviews/6916e89ec55bfcb8e8c25f0b",
-              "host": ["{{BASE_URL}}"],
-              "path": [
-                "api",
-                "v1",
-                "products",
-                "68b0780934a2a31a0bed65d5",
-                "reviews",
-                "6916e89ec55bfcb8e8c25f0b"
-              ]
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "Wishlist",
-      "item": [
-        {
-          "name": "Add product to wishlist",
-          "request": {
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"productId\": \"688077d450e34a521c33ba2b\"\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/wishlist",
-              "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "wishlist"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Remove product from wishlist",
-          "request": {
-            "method": "DELETE",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/wishlist/688077d450e34a521c33ba2b",
-              "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "wishlist", "688077d450e34a521c33ba2b"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Get logged user wishlist",
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          },
-          "request": {
-            "method": "GET",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/wishlist",
-              "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "wishlist"]
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "User addresses",
-      "item": [
-        {
-          "name": "Add user address",
-          "request": {
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"alias\": \"Home\",\r\n    \"details\": \"123 Main Street, Apartment 4B\",\r\n    \"phone\": \"+201033899622\",\r\n    \"city\": \"Cairo\",\r\n    \"postalCode\": \"12345\"\r\n}\r\n",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/addresses",
-              "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "addresses"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "remove user address from  addresses list",
-          "request": {
-            "method": "DELETE",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/addresses/69246ebabbd8629245c21123",
-              "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "addresses", "69246ebabbd8629245c21123"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Get logged user addresses",
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          },
-          "request": {
-            "method": "GET",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/addresses",
-              "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "addresses"]
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "Coupons",
-      "item": [
-        {
-          "name": "Get Coupons",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/coupons",
-              "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "coupons"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Get Coupon",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/coupons/692dab682849bc4bdaa660d3",
-              "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "coupons", "692dab682849bc4bdaa660d3"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Delete Coupon",
-          "request": {
-            "method": "DELETE",
-            "header": [],
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/coupons/692dab682849bc4bdaa660d3",
-              "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "coupons", "692dab682849bc4bdaa660d3"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Create Coupon",
-          "request": {
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"name\": \"fathy100\",\r\n    \"expire\": \"12/10/2025\",\r\n    \"discount\": 10 \r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/coupons",
-              "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "coupons"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Update Coupon",
-          "request": {
-            "method": "PUT",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"name\": \"fathy101\"\r\n    // ,\r\n    // \"expire\": \"12/10/2025\",\r\n    // \"discount\": 10 \r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/coupons/692dab682849bc4bdaa660d3",
-              "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "coupons", "692dab682849bc4bdaa660d3"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Deactivate coupon",
+          "name": "Update Role",
           "request": {
             "method": "PATCH",
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"name\": \"fathy101\"\r\n    // ,\r\n    // \"expire\": \"12/10/2025\",\r\n    // \"discount\": 10 \r\n}",
+              "raw": "{\r\n    \"description\": \"System administrator\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -1888,42 +186,31 @@
               }
             },
             "url": {
-              "raw": "{{BASE_URL}}/api/v1/coupons/deactivate/692dad2e4124285b61c52a38",
+              "raw": "{{BASE_URL}}/api/v1/roles/d9fbd586-360e-4eba-b81f-4b0f262a5dd9",
               "host": ["{{BASE_URL}}"],
               "path": [
                 "api",
                 "v1",
-                "coupons",
-                "deactivate",
-                "692dad2e4124285b61c52a38"
+                "roles",
+                "d9fbd586-360e-4eba-b81f-4b0f262a5dd9"
               ]
             }
           },
           "response": []
         },
         {
-          "name": "Activate coupon",
+          "name": "Delete Role",
           "request": {
-            "method": "PATCH",
+            "method": "DELETE",
             "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"name\": \"fathy101\"\r\n    // ,\r\n    // \"expire\": \"12/10/2025\",\r\n    // \"discount\": 10 \r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
             "url": {
-              "raw": "{{BASE_URL}}/api/v1/coupons/activate/692dad2e4124285b61c52a38",
+              "raw": "{{BASE_URL}}/api/v1/roles/2529a9d3-3d62-49b0-978d-b321e017d2b8",
               "host": ["{{BASE_URL}}"],
               "path": [
                 "api",
                 "v1",
-                "coupons",
-                "activate",
-                "692dad2e4124285b61c52a38"
+                "roles",
+                "2529a9d3-3d62-49b0-978d-b321e017d2b8"
               ]
             }
           },
@@ -1932,16 +219,59 @@
       ]
     },
     {
-      "name": "Cart",
+      "name": "Permissions",
       "item": [
         {
-          "name": "Add product to cart",
+          "name": "Get Permissions",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/api/v1/Permissions",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "v1", "Permissions"],
+              "query": [
+                {
+                  "key": "module",
+                  "value": "employees",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Permission",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/api/v1/Permissions/29ef904b-747c-4efe-b84e-58081f52b2bb",
+              "host": ["{{BASE_URL}}"],
+              "path": [
+                "api",
+                "v1",
+                "Permissions",
+                "29ef904b-747c-4efe-b84e-58081f52b2bb"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Role-Permissions",
+      "item": [
+        {
+          "name": "Assign Permission",
           "request": {
             "method": "POST",
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"productId\": \"688077d450e34a521c33ba2b\",\r\n    \"color\": \"orange\"\r\n}",
+              "raw": "{\r\n    \"permissionId\": \"a44ebf23-8294-4fa0-85ae-371c67ebc04a\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -1949,308 +279,43 @@
               }
             },
             "url": {
-              "raw": "{{BASE_URL}}/api/v1/cart",
-              "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "cart"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Get Logged user cart",
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          },
-          "request": {
-            "method": "GET",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/cart",
-              "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "cart"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "remove Cart Item for logged user",
-          "request": {
-            "method": "DELETE",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/cart/692f55e134dc54ef844837fb",
-              "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "cart", "692f55e134dc54ef844837fb"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Clear user cart",
-          "request": {
-            "method": "DELETE",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": ""
-            },
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/cart/clear",
-              "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "cart", "clear"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Update cart item quantity",
-          "request": {
-            "method": "PUT",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"quantity\": 20\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/cart/692f55e134dc54ef844837fb",
-              "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "cart", "692f55e134dc54ef844837fb"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Apply coupon to cart",
-          "request": {
-            "method": "PUT",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"couponName\": \"fathy100\"\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/cart/apply-coupon",
-              "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "cart", "apply-coupon"]
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "pricing settings",
-      "item": [
-        {
-          "name": "Get pricing settings",
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          },
-          "request": {
-            "method": "GET",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": ""
-            },
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/settings",
-              "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "settings"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Update pricing settings",
-          "request": {
-            "method": "PUT",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "// اعدل قيمه او الاتنين عادي\r\n{\r\n  \"taxPrice\": 14,\r\n  \"shippingPrice\": 20\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/settings",
-              "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "settings"]
-            }
-          },
-          "response": []
-        }
-      ]
-    },
-    {
-      "name": "Orders",
-      "item": [
-        {
-          "name": "Create cash order",
-          "request": {
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "// Optional\r\n{\r\n//   \"shippingAddress\": {\r\n//     \"details\": \"شارع 10، المعادي\",\r\n//     \"phone\": \"01033899622\",\r\n//     \"city\": \"Cairo\",\r\n//     \"postalCode\": \"11865\"\r\n//   }\r\n}\r\n",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/orders/69325b16514bff6cf0cade5a",
-              "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "orders", "69325b16514bff6cf0cade5a"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Get orders (Admin, manager)",
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          },
-          "request": {
-            "method": "GET",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "// Optional\r\n{\r\n  \"shippingAddress\": {\r\n    \"details\": \"شارع 10، المعادي\",\r\n    \"phone\": \"01033899622\",\r\n    \"city\": \"Cairo\",\r\n    \"postalCode\": \"11865\"\r\n  }\r\n}\r\n"
-            },
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/orders",
-              "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "orders"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Get logged user orders",
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          },
-          "request": {
-            "method": "GET",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "// Optional\r\n{\r\n  \"shippingAddress\": {\r\n    \"details\": \"شارع 10، المعادي\",\r\n    \"phone\": \"01033899622\",\r\n    \"city\": \"Cairo\",\r\n    \"postalCode\": \"11865\"\r\n  }\r\n}\r\n"
-            },
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/orders/me",
-              "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "orders", "me"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Get logged user order by id",
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          },
-          "request": {
-            "method": "GET",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "// Optional\r\n{\r\n  \"shippingAddress\": {\r\n    \"details\": \"شارع 10، المعادي\",\r\n    \"phone\": \"01033899622\",\r\n    \"city\": \"Cairo\",\r\n    \"postalCode\": \"11865\"\r\n  }\r\n}\r\n"
-            },
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/orders/me/6933873e0dd9f1e9f84add0e",
-              "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "orders", "me", "6933873e0dd9f1e9f84add0e"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Get checkout session",
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          },
-          "request": {
-            "method": "GET",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "// Optional\r\n{\r\n  \"shippingAddress\": {\r\n    \"details\": \"شارع 10، المعادي\",\r\n    \"phone\": \"01033899622\",\r\n    \"city\": \"Cairo\",\r\n    \"postalCode\": \"11865\"\r\n  }\r\n}\r\n"
-            },
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/orders/checkout-session/69325b8e514bff6cf0cade82",
+              "raw": "{{BASE_URL}}/api/v1/roles/d9fbd586-360e-4eba-b81f-4b0f262a5dd9/permissions",
               "host": ["{{BASE_URL}}"],
               "path": [
                 "api",
                 "v1",
-                "orders",
-                "checkout-session",
-                "69325b8e514bff6cf0cade82"
+                "roles",
+                "d9fbd586-360e-4eba-b81f-4b0f262a5dd9",
+                "permissions"
               ]
             }
           },
           "response": []
         },
         {
-          "name": "Update order status to paid",
+          "name": "Revoke Permission",
           "request": {
-            "method": "PUT",
+            "method": "DELETE",
             "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"permissionId\": \"a44ebf23-8294-4fa0-85ae-371c67ebc04a\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
             "url": {
-              "raw": "{{BASE_URL}}/api/v1/orders/6931e3188023bd3bea549741/pay",
-              "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "orders", "6931e3188023bd3bea549741", "pay"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Update order status to delivered",
-          "request": {
-            "method": "PUT",
-            "header": [],
-            "url": {
-              "raw": "{{BASE_URL}}/api/v1/orders/693399b90dd9f1e9f84add42/deliver",
+              "raw": "{{BASE_URL}}/api/v1/roles/d9fbd586-360e-4eba-b81f-4b0f262a5dd9/permissions/a44ebf23-8294-4fa0-85ae-371c67ebc04a",
               "host": ["{{BASE_URL}}"],
               "path": [
                 "api",
                 "v1",
-                "orders",
-                "693399b90dd9f1e9f84add42",
-                "deliver"
+                "roles",
+                "d9fbd586-360e-4eba-b81f-4b0f262a5dd9",
+                "permissions",
+                "a44ebf23-8294-4fa0-85ae-371c67ebc04a"
               ]
             }
           },
@@ -2275,6 +340,7 @@
       "script": {
         "type": "text/javascript",
         "packages": {},
+        "requests": {},
         "exec": [""]
       }
     },
@@ -2283,8 +349,15 @@
       "script": {
         "type": "text/javascript",
         "packages": {},
+        "requests": {},
         "exec": [""]
       }
+    }
+  ],
+  "variable": [
+    {
+      "key": "BASE_URI",
+      "value": ""
     }
   ]
 }

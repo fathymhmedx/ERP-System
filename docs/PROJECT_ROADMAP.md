@@ -182,7 +182,7 @@ src
 - [ ] Logout
 - [ ] Refresh Token
 - [ ] Refresh Token Rotation
-- [ ] Change Password
+- [x] Change Password
 
 ### Users
 
