@@ -21,9 +21,11 @@ export class RolePermissionsService {
     roleId: string,
     permissionId: string,
   ): Promise<RolePermissionResponseDto> {
-    await this.rolesRepository.findById(roleId);
+    const role = await this.rolesRepository.findById(roleId);
+    if (!role) throw new NotFoundException('Role not found');
 
-    await this.permissionsRepository.findById(permissionId);
+    const permission = await this.permissionsRepository.findById(permissionId);
+    if (!permission) throw new NotFoundException('Permission not found');
 
     const exists = await this.rolePermissionsRepository.exists({
       role: { id: roleId },
@@ -62,7 +64,7 @@ export class RolePermissionsService {
     if (!role) throw new NotFoundException('Role not found');
 
     const permission = await this.permissionsRepository.findById(permissionId);
-    if (!permission) throw new NotFoundException('permission not found');
+    if (!permission) throw new NotFoundException('Permission not found');
 
     const exists = await this.rolePermissionsRepository.exists({
       role: {

@@ -1,10 +1,12 @@
 import { BaseEntity } from 'src/common/entities/base.entity';
-import { Entity, JoinColumn, ManyToOne, Unique } from 'typeorm';
+import { Entity, Index, JoinColumn, ManyToOne, Unique } from 'typeorm';
 
 import { Role } from 'src/modules/roles/entities/role.entity';
 import { Permission } from 'src/modules/permissions/entities/permission.entity';
 
 @Unique(['role', 'permission'])
+@Index(['role'])
+@Index(['permission'])
 @Entity('role_permissions')
 export class RolePermission extends BaseEntity {
   @ManyToOne(() => Role, (role) => role.rolePermissions, {
