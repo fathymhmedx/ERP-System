@@ -194,10 +194,13 @@ src
 
 ### Permissions
 
-- [x] CRUD Permissions
+- [x] Seed System Permissions
+- [x] Get Permissions
 
 ### RBAC
 
+- [x] Assign Permission to Role
+- [x] Revoke Permission from Role
 - [x] Roles Guard
 - [x] Permissions Guard
 - [x] Custom Decorators
@@ -366,28 +369,33 @@ src
 
 # Implementation Status
 
-| Module             | Status      |
-| ------------------ | ----------- |
-| Project Foundation | In Progress |
-| Authentication     | Not Started |
-| Users              | Not Started |
-| Roles              | Not Started |
-| Permissions        | Not Started |
-| Departments        | Not Started |
-| Positions          | Not Started |
-| Employees          | Not Started |
-| Attendance         | Not Started |
-| Leaves             | Not Started |
-| Payroll            | Not Started |
-| Categories         | Not Started |
-| Suppliers          | Not Started |
-| Products           | Not Started |
-| Customers          | Not Started |
-| Orders             | Not Started |
-| Invoices           | Not Started |
-| Dashboard          | Not Started |
-| Documentation      | Not Started |
-| Testing            | Not Started |
+| Module             | Status         |
+| ------------------ | -------------- |
+| Project Foundation | ✅ Completed   |
+| Authentication     | 🟡 In Progress |
+| Users              | 🟡 In Progress |
+| Roles              | ✅ Completed   |
+| Permissions        | ✅ Completed   |
+| Role Permissions   | ✅ Completed   |
+| RBAC               | ✅ Completed   |
+| Departments        | ⏳ Not Started |
+| Positions          | ⏳ Not Started |
+| Employees          | ⏳ Not Started |
+| Attendance         | ⏳ Not Started |
+| Leaves             | ⏳ Not Started |
+| Payroll            | ⏳ Not Started |
+| Categories         | ⏳ Not Started |
+| Suppliers          | ⏳ Not Started |
+| Products           | ⏳ Not Started |
+| Customers          | ⏳ Not Started |
+| Orders             | ⏳ Not Started |
+| Invoices           | ⏳ Not Started |
+| Notifications      | ⏳ Not Started |
+| Audit Logs         | ⏳ Not Started |
+| Dashboard          | ⏳ Not Started |
+| Documentation      | 🟡 In Progress |
+| Postman Collection | ✅ Completed   |
+| Testing            | ⏳ Not Started |
 
 # License
 
