@@ -18,9 +18,7 @@ export class SuperAdminSeeder {
     @InjectRepository(Role)
     private readonly roleRepository: Repository<Role>,
     private readonly configService: ConfigService,
-  ) {
-    console.log(configService);
-  }
+  ) {}
 
   async run(): Promise<void> {
     const email = this.configService.getOrThrow<string>(ENV.SUPER_ADMIN_EMAIL);
@@ -30,9 +28,7 @@ export class SuperAdminSeeder {
     const fullName = this.configService.getOrThrow<string>(
       ENV.SUPER_ADMIN_FULL_NAME,
     );
-    console.log(this.configService.get('SUPER_ADMIN_EMAIL'));
-    console.log(this.configService.get('SUPER_ADMIN_PASSWORD'));
-    console.log(this.configService.get('SUPER_ADMIN_FULL_NAME'));
+
     const exists = await this.userRepository.findOne({
       where: {
         email,
