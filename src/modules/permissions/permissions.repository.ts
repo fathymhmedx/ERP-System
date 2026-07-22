@@ -12,11 +12,4 @@ export class PermissionsRepository extends BaseRepository<Permission> {
   ) {
     super(repository);
   }
-  findByName(name: string) {
-    return this.findOne({
-      where: {
-        name,
-      },
-    });
-  }
 }
