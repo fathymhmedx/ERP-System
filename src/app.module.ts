@@ -26,16 +26,13 @@ import { APP_GUARD } from '@nestjs/core';
     RolePermissionsModule,
   ],
   providers: [
-    JwtAuthGuard,
-    PermissionsGuard,
-
     {
       provide: APP_GUARD,
-      useExisting: JwtAuthGuard,
+      useClass: JwtAuthGuard,
     },
     {
       provide: APP_GUARD,
-      useExisting: PermissionsGuard,
+      useClass: PermissionsGuard,
     },
   ],
 })
