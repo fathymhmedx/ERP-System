@@ -1,15 +1,32 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
+import { FindManyOptions } from 'typeorm';
 
-import { PermissionResponseDto } from './dto';
+import { GetPermissionsQueryDto, PermissionResponseDto } from './dto';
 import { PermissionsRepository } from './permissions.repository';
 import { PermissionMapper } from './mappers/permission.mapper';
+import { Permission } from './entities/permission.entity';
 
 @Injectable()
 export class PermissionsService {
   constructor(private readonly permissionsRepository: PermissionsRepository) {}
 
-  async findAll(): Promise<PermissionResponseDto[]> {
-    const permissions = await this.permissionsRepository.find();
+  async findAll(
+    query: GetPermissionsQueryDto,
+  ): Promise<PermissionResponseDto[]> {
+    const options: FindManyOptions<Permission> = {
+      order: {
+        module: 'ASC',
+        name: 'ASC',
+      },
+    };
+
+    if (query.module) {
+      options.where = {
+        module: query.module,
+      };
+    }
+
+    const permissions = await this.permissionsRepository.find(options);
 
     return permissions.map((permission) =>
       PermissionMapper.toResponseDto(permission),

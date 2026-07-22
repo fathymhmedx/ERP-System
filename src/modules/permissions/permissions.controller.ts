@@ -1,7 +1,8 @@
-import { Controller, Get, Param, ParseUUIDPipe } from '@nestjs/common';
+import { Controller, Get, Param, ParseUUIDPipe, Query } from '@nestjs/common';
 
 import { PermissionsService } from './permissions.service';
 import { SuccessMessage } from 'src/common/decorators/success-message.decorator';
+import { GetPermissionsQueryDto } from './dto/get-permissions-query.dto';
 
 @Controller({
   path: 'permissions',
@@ -12,8 +13,8 @@ export class PermissionsController {
 
   @Get()
   @SuccessMessage('Permissions retrieved successfully')
-  findAll() {
-    return this.permissionsService.findAll();
+  findAll(@Query() query: GetPermissionsQueryDto) {
+    return this.permissionsService.findAll(query);
   }
 
   @Get(':id')
