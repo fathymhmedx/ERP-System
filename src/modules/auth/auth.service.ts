@@ -1,8 +1,10 @@
 import * as bcrypt from 'bcrypt';
 import {
+  BadRequestException,
   ConflictException,
   Injectable,
   InternalServerErrorException,
+  NotFoundException,
   UnauthorizedException,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
@@ -12,6 +14,7 @@ import { RolesRepository } from '../roles/roles.repository';
 import { UserMapper } from '../users/mappers/user.mapper';
 
 import {
+  ChangePasswordDto,
   LoginDto,
   LoginResponseDto,
   SignupDto,
@@ -102,6 +105,33 @@ export class AuthService {
       accessToken: this.generateAccessToken(payload),
       refreshToken: this.generateRefreshToken(),
     };
+  }
+
+  async changePassword(
+    userId: string,
+    changePasswordDto: ChangePasswordDto,
+  ): Promise<void> {
+    const { newPassword, oldPassword } = changePasswordDto;
+    const user = await this.usersRepository.findByIdWithPassword(userId);
+
+    if (!user) throw new NotFoundException('User not found');
+
+    const matched = await user.comparePassword(oldPassword);
+
+    if (!matched) throw new UnauthorizedException('Old password is incorrect');
+
+    if (oldPassword === newPassword) {
+      throw new BadRequestException(
+        'New password must be different from old password',
+      );
+    }
+
+    const hashedPassword = await bcrypt.hash(
+      newPassword,
+      AUTH_CONSTANTS.BCRYPT_SALT_ROUNDS,
+    );
+
+    await this.usersRepository.updatePassword(userId, hashedPassword);
   }
 
   private generateAccessToken(payload: JwtPayload): string {

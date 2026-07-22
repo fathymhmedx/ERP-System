@@ -33,6 +33,29 @@ export class UsersRepository extends BaseRepository<User> {
       },
     });
   }
+  async findByIdWithPassword(id: string): Promise<User | null> {
+    return this.repository.findOne({
+      where: { id },
+      select: {
+        id: true,
+        email: true,
+        password: true,
+        isVerified: true,
+        isActive: true,
+        createdAt: true,
+        updatedAt: true,
+      },
+    });
+  }
+
+  async updatePassword(id: string, password: string): Promise<void> {
+    await this.update(
+      { id },
+      {
+        password,
+      },
+    );
+  }
 
   async findByEmail(email: string): Promise<User | null> {
     return this.findOneBy({ email });

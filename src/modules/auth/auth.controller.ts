@@ -1,8 +1,10 @@
-import { Body, Controller, Post } from '@nestjs/common';
-import { LoginDto, SignupDto } from './dto';
+import { Body, Controller, Patch, Post } from '@nestjs/common';
+import { ChangePasswordDto, LoginDto, SignupDto } from './dto';
 import { AuthService } from './auth.service';
 import { SuccessMessage } from 'src/common/decorators/success-message.decorator';
 import { Public } from 'src/common/decorators/public.decorator';
+import { CurrentUser } from 'src/common/decorators/current-user.decorator';
+import type { AuthUser } from 'src/common/interfaces/auth-user.interface';
 
 @Controller({
   path: 'auth',
@@ -22,5 +24,14 @@ export class AuthController {
   @SuccessMessage('Logged in successfully')
   login(@Body() loginDto: LoginDto) {
     return this.authService.login(loginDto);
+  }
+
+  @Patch('change-password')
+  @SuccessMessage('Password changed successfully')
+  changePassword(
+    @CurrentUser() user: AuthUser,
+    @Body() changePasswordDto: ChangePasswordDto,
+  ) {
+    return this.authService.changePassword(user.id, changePasswordDto);
   }
 }
