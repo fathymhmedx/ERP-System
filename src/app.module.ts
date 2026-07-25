@@ -11,6 +11,7 @@ import { RolePermissionsModule } from './modules/role-permissions/role-permissio
 import { JwtAuthGuard } from './common/guards/jwt-auth.guard';
 import { PermissionsGuard } from './common/guards/permissions.guard';
 import { APP_GUARD } from '@nestjs/core';
+import { ScheduleModule } from '@nestjs/schedule';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -24,6 +25,7 @@ import { APP_GUARD } from '@nestjs/core';
     RolesModule,
     PermissionsModule,
     RolePermissionsModule,
+    ScheduleModule.forRoot(),
   ],
   providers: [
     {
