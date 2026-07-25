@@ -1,3 +1,5 @@
 export const AUTH_CONSTANTS = {
   BCRYPT_SALT_ROUNDS: 10,
+  REFRESH_TOKEN_BYTES: 64,
+  REFRESH_TOKEN_COOKIE_PATH: '/api/v1/auth',
 } as const;

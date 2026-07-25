@@ -16,7 +16,6 @@ import { UserMapper } from '../users/mappers/user.mapper';
 import {
   ChangePasswordDto,
   LoginDto,
-  LoginResponseDto,
   SignupDto,
   SignupResponseDto,
 } from './dto';
@@ -24,10 +23,13 @@ import {
 import { AUTH_CONSTANTS } from './constants/auth.constants';
 import { JwtPayload } from 'src/common/interfaces/jwt-payload.interface';
 import { SYSTEM_ROLES } from 'src/common/constants/system-roles.constants';
+import { RefreshTokensService } from './refresh-tokens/refresh-tokens.service';
+import { LoginResult } from './interfaces/login-result.interface';
 
 @Injectable()
 export class AuthService {
   constructor(
+    private readonly refreshTokensService: RefreshTokensService,
     private readonly usersRepository: UsersRepository,
     private readonly rolesRepository: RolesRepository,
     private readonly jwtService: JwtService,
@@ -70,7 +72,7 @@ export class AuthService {
     };
   }
 
-  async login(loginDto: LoginDto): Promise<LoginResponseDto> {
+  async login(loginDto: LoginDto): Promise<LoginResult> {
     const { email, password } = loginDto;
 
     const user = await this.usersRepository.findByEmailWithPassword(email);
@@ -100,11 +102,57 @@ export class AuthService {
       roleId: user.role.id,
     };
 
+    const accessToken = this.generateAccessToken(payload);
+
+    const { refreshToken } =
+      await this.refreshTokensService.createSession(user);
+
     return {
       user: UserMapper.toResponseDto(user),
-      accessToken: this.generateAccessToken(payload),
-      refreshToken: this.generateRefreshToken(),
+      accessToken,
+      refreshToken,
     };
+  }
+
+  async refresh(refreshToken: string): Promise<LoginResult> {
+    if (!refreshToken) {
+      throw new UnauthorizedException('Refresh token is required');
+    }
+    const { user, refreshToken: newRefreshToken } =
+      await this.refreshTokensService.rotateSession(refreshToken);
+
+    const payload: JwtPayload = {
+      sub: user.id,
+      roleId: user.role.id,
+    };
+
+    const accessToken = this.generateAccessToken(payload);
+
+    return {
+      user: UserMapper.toResponseDto(user),
+      accessToken,
+      refreshToken: newRefreshToken,
+    };
+  }
+
+  /**
+   * Logout current user session.
+   */
+  async logout(refreshToken: string): Promise<void> {
+    if (!refreshToken) {
+      throw new UnauthorizedException('Refresh token is required');
+    }
+    const session =
+      await this.refreshTokensService.validateSession(refreshToken);
+
+    await this.refreshTokensService.revokeSession(session.id);
+  }
+
+  /**
+   * Logout from all user sessions.
+   */
+  async logoutAll(userId: string): Promise<void> {
+    await this.refreshTokensService.revokeAllByUser(userId);
   }
 
   async changePassword(
@@ -132,13 +180,10 @@ export class AuthService {
     );
 
     await this.usersRepository.updatePassword(userId, hashedPassword);
+    await this.refreshTokensService.revokeAllByUser(userId);
   }
 
   private generateAccessToken(payload: JwtPayload): string {
     return this.jwtService.sign(payload);
-  }
-
-  private generateRefreshToken(): string {
-    return 'sklmdksmfkmdsfkmdskm';
   }
 }

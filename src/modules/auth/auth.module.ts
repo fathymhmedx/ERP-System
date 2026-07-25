@@ -10,12 +10,20 @@ import { JwtStrategy } from './strategies/jwt.strategies';
 import { JwtAuthGuard } from 'src/common/guards/jwt-auth.guard';
 import { RolesModule } from '../roles/roles.module';
 import { ENV } from 'src/config/env.constants';
+import { RefreshToken } from './refresh-tokens/entities/refresh-token.entity';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { RefreshTokensRepository } from './refresh-tokens/refresh-tokens.repository';
+import { RefreshTokensService } from './refresh-tokens/refresh-tokens.service';
+import { CookieService } from 'src/common/services/cookie.service';
+import { RefreshTokenCleanupScheduler } from './refresh-tokens/refresh-token-cleanup.scheduler';
 
 @Module({
   imports: [
     RolesModule,
     ConfigModule,
     UsersModule,
+    TypeOrmModule.forFeature([RefreshToken]),
+
     PassportModule.register({
       defaultStrategy: 'jwt',
     }),
@@ -33,7 +41,15 @@ import { ENV } from 'src/config/env.constants';
     }),
   ],
   controllers: [AuthController],
-  providers: [AuthService, JwtStrategy, JwtAuthGuard],
+  providers: [
+    AuthService,
+    RefreshTokensRepository,
+    RefreshTokensService,
+    CookieService,
+    JwtStrategy,
+    JwtAuthGuard,
+    RefreshTokenCleanupScheduler,
+  ],
   exports: [JwtAuthGuard],
 })
 export class AuthModule {}
