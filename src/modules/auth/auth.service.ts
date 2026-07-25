@@ -81,9 +81,10 @@ export class AuthService {
       throw new UnauthorizedException('Invalid email or password');
     }
 
-    if (!user.isVerified) {
-      throw new UnauthorizedException('Please verify your email first');
-    }
+    // TODO: Re-enable after implementing email verification flow
+    // if (!user.isVerified) {
+    //   throw new UnauthorizedException('Please verify your email first');
+    // }
 
     if (!user.isActive) {
       throw new UnauthorizedException('Your account is inactive');
