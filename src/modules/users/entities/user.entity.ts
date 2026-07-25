@@ -1,7 +1,8 @@
 import * as bcrypt from 'bcrypt';
 import { BaseEntity } from 'src/common/entities/base.entity';
+import { RefreshToken } from 'src/modules/auth/refresh-tokens/entities/refresh-token.entity';
 import { Role } from 'src/modules/roles/entities/role.entity';
-import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
 
 @Entity('users')
 export class User extends BaseEntity {
@@ -43,6 +44,9 @@ export class User extends BaseEntity {
     name: 'role_id',
   })
   role!: Role;
+
+  @OneToMany(() => RefreshToken, (refreshToken) => refreshToken.user)
+  refreshTokens!: RefreshToken[];
 
   async comparePassword(candidatePassword: string): Promise<boolean> {
     return bcrypt.compare(candidatePassword, this.password);
