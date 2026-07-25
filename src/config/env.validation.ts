@@ -17,16 +17,17 @@ export const envValidationSchema = Joi.object({
 
   DATABASE_NAME: Joi.string().required(),
 
-  JWT_SECRET_KEY: Joi.string().min(32).required(),
+  JWT_SECRET_KEY: Joi.string().min(64).required(),
 
   JWT_EXPIRES_IN: Joi.string()
     .pattern(/^\d+[smhd]$/)
     .required(),
-  JWT_REFRESH_SECRET_KEY: Joi.string().min(32).required(),
 
-  JWT_REFRESH_EXPIRES_IN: Joi.string()
-    .pattern(/^\d+[smhd]$/)
-    .required(),
+  REFRESH_TOKEN_TTL_DAYS: Joi.number().integer().min(1).required(),
+
+  COOKIE_NAME: Joi.string().min(3).required(),
+  COOKIE_SECURE: Joi.boolean().required(),
+  COOKIE_SAME_SITE: Joi.string().valid('strict', 'lax', 'none').required(),
 
   // Super Admin
   SUPER_ADMIN_FULL_NAME: Joi.string().required(),
