@@ -175,14 +175,17 @@ src
 
 ## Phase 2 — Authentication & Authorization
 
-### Authentication
-
 - [x] Register
 - [x] Login
-- [ ] Logout
-- [ ] Refresh Token
-- [ ] Refresh Token Rotation
+- [x] Logout
+- [x] Logout All Devices
+- [x] Refresh Token
+- [x] Refresh Token Rotation & Session Management
+- [x] Token Hashing
+- [x] HttpOnly Cookie Storage
 - [x] Change Password
+- [x] Revoke All Sessions After Password Change
+- [x] Expired Sessions Cleanup Scheduler
 
 ### Users
 
@@ -372,7 +375,7 @@ src
 | Module             | Status         |
 | ------------------ | -------------- |
 | Project Foundation | ✅ Completed   |
-| Authentication     | 🟡 In Progress |
+| Authentication     | ✅ Completed   |
 | Users              | 🟡 In Progress |
 | Roles              | ✅ Completed   |
 | Permissions        | ✅ Completed   |
