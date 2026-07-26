@@ -10,19 +10,15 @@ import { JwtStrategy } from './strategies/jwt.strategies';
 import { JwtAuthGuard } from 'src/common/guards/jwt-auth.guard';
 import { RolesModule } from '../roles/roles.module';
 import { ENV } from 'src/config/env.constants';
-import { RefreshToken } from './refresh-tokens/entities/refresh-token.entity';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { RefreshTokensRepository } from './refresh-tokens/refresh-tokens.repository';
-import { RefreshTokensService } from './refresh-tokens/refresh-tokens.service';
 import { CookieService } from 'src/common/services/cookie.service';
-import { RefreshTokenCleanupScheduler } from './refresh-tokens/refresh-token-cleanup.scheduler';
+import { RefreshTokensModule } from './refresh-tokens/refresh-tokens.module';
 
 @Module({
   imports: [
     RolesModule,
     ConfigModule,
     UsersModule,
-    TypeOrmModule.forFeature([RefreshToken]),
+    RefreshTokensModule,
 
     PassportModule.register({
       defaultStrategy: 'jwt',
@@ -41,15 +37,7 @@ import { RefreshTokenCleanupScheduler } from './refresh-tokens/refresh-token-cle
     }),
   ],
   controllers: [AuthController],
-  providers: [
-    AuthService,
-    RefreshTokensRepository,
-    RefreshTokensService,
-    CookieService,
-    JwtStrategy,
-    JwtAuthGuard,
-    RefreshTokenCleanupScheduler,
-  ],
+  providers: [AuthService, CookieService, JwtStrategy, JwtAuthGuard],
   exports: [JwtAuthGuard],
 })
 export class AuthModule {}
