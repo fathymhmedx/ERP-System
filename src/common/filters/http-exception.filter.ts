@@ -6,45 +6,66 @@ import {
   HttpStatus,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
+import { ConfigService } from '@nestjs/config';
 
 @Catch()
 export class HttpExceptionFilter implements ExceptionFilter {
+  constructor(private readonly configService: ConfigService) {}
+
   catch(exception: unknown, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
 
     const response = ctx.getResponse<Response>();
     const request = ctx.getRequest<Request>();
 
-    const status =
-      exception instanceof HttpException
-        ? exception.getStatus()
-        : HttpStatus.INTERNAL_SERVER_ERROR;
+    const statusCode = this.getStatusCode(exception);
 
-    const exceptionResponse =
-      exception instanceof HttpException
-        ? exception.getResponse()
-        : 'Internal server error';
-
-    let message: string | string[];
-
-    if (typeof exceptionResponse === 'string') {
-      message = exceptionResponse;
-    } else if (
-      typeof exceptionResponse === 'object' &&
-      exceptionResponse !== null &&
-      'message' in exceptionResponse
-    ) {
-      message = (exceptionResponse as { message: string | string[] }).message;
-    } else {
-      message = 'Internal server error';
-    }
-
-    response.status(status).json({
+    response.status(statusCode).json({
       success: false,
-      statusCode: status,
-      message,
+      statusCode,
+      message: this.getMessage(exception),
       path: request.url,
       timestamp: new Date().toISOString(),
+      ...(this.isDevelopment() &&
+        exception instanceof Error && {
+          stack: exception.stack,
+        }),
     });
+  }
+
+  private getStatusCode(exception: unknown): number {
+    if (exception instanceof HttpException) {
+      return exception.getStatus();
+    }
+
+    return HttpStatus.INTERNAL_SERVER_ERROR;
+  }
+
+  private getMessage(exception: unknown): string | string[] {
+    if (exception instanceof HttpException) {
+      const exceptionResponse = exception.getResponse();
+
+      if (typeof exceptionResponse === 'string') {
+        return exceptionResponse;
+      }
+
+      if (
+        typeof exceptionResponse === 'object' &&
+        exceptionResponse !== null &&
+        'message' in exceptionResponse
+      ) {
+        return (exceptionResponse as { message: string | string[] }).message;
+      }
+    }
+
+    if (this.isDevelopment() && exception instanceof Error) {
+      return exception.message;
+    }
+
+    return 'Internal server error';
+  }
+
+  private isDevelopment(): boolean {
+    return this.configService.get<string>('NODE_ENV') === 'development';
   }
 }

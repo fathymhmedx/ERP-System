@@ -10,8 +10,9 @@ import { PermissionsModule } from './modules/permissions/permissions.module';
 import { RolePermissionsModule } from './modules/role-permissions/role-permissions.module';
 import { JwtAuthGuard } from './common/guards/jwt-auth.guard';
 import { PermissionsGuard } from './common/guards/permissions.guard';
-import { APP_GUARD } from '@nestjs/core';
+import { APP_FILTER, APP_GUARD } from '@nestjs/core';
 import { ScheduleModule } from '@nestjs/schedule';
+import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -28,6 +29,10 @@ import { ScheduleModule } from '@nestjs/schedule';
     ScheduleModule.forRoot(),
   ],
   providers: [
+    {
+      provide: APP_FILTER,
+      useClass: HttpExceptionFilter,
+    },
     {
       provide: APP_GUARD,
       useClass: JwtAuthGuard,
