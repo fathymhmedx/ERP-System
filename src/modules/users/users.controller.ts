@@ -1,28 +1,60 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Query } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { SuccessMessage } from 'src/common/decorators/success-message.decorator';
 import { Permissions } from 'src/common/decorators/permissions.decorator';
 import { CurrentUser } from 'src/common/decorators/current-user.decorator';
-import type { AuthUser } from 'src/common/interfaces/auth-user.interface';
+import type { AuthUser } from 'src/common/interfaces/auth/auth-user.interface';
 import { PERMISSIONS } from 'src/common/constants/permissions.constants';
+import { GetUsersQueryDto, ResetPasswordDto } from './dto';
 
 @Controller({
   path: 'users',
   version: '1',
 })
-export class UsersControllers {
+export class UsersController {
   constructor(private readonly usersService: UsersService) {}
-
-  @SuccessMessage('Users retrieved successfully')
-  @Get()
-  @Permissions(PERMISSIONS.USERS.READ)
-  getUsers() {
-    return this.usersService.findAll();
-  }
 
   @SuccessMessage('Profile retrieved successfully')
   @Get('me')
   getProfile(@CurrentUser() user: AuthUser) {
     return this.usersService.getProfile(user.id);
+  }
+
+  @SuccessMessage('Users retrieved successfully')
+  @Get()
+  @Permissions(PERMISSIONS.USERS.READ)
+  getUsers(@Query() query: GetUsersQueryDto) {
+    return this.usersService.getUsers(query);
+  }
+
+  @SuccessMessage('User retrieved successfully')
+  @Get(':id')
+  @Permissions(PERMISSIONS.USERS.READ)
+  getUser(@Param('id') id: string) {
+    return this.usersService.getUser(id);
+  }
+
+  @SuccessMessage('User activated successfully')
+  @Patch(':id/activate')
+  @Permissions(PERMISSIONS.USERS.ACTIVATE)
+  activateUser(@Param('id') id: string) {
+    return this.usersService.activateUser(id);
+  }
+
+  @SuccessMessage('User deactivated successfully')
+  @Patch(':id/deactivate')
+  @Permissions(PERMISSIONS.USERS.DEACTIVATE)
+  deactivateUser(@Param('id') id: string) {
+    return this.usersService.deactivateUser(id);
+  }
+
+  @SuccessMessage('Password reset successfully')
+  @Patch(':id/reset-password')
+  @Permissions(PERMISSIONS.USERS.RESET_PASSWORD)
+  resetPassword(
+    @Param('id') id: string,
+    @Body() resetPasswordDto: ResetPasswordDto,
+  ) {
+    return this.usersService.resetPassword(id, resetPasswordDto);
   }
 }
