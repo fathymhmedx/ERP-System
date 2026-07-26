@@ -114,8 +114,8 @@ export class RefreshTokensService {
   /**
    * Remove expired refresh token sessions.
    */
-  async deleteExpiredTokens(): Promise<void> {
-    await this.refreshTokensRepository.deleteExpiredTokens();
+  async deleteExpiredTokens(): Promise<number> {
+    return this.refreshTokensRepository.deleteExpiredTokens();
   }
 
   /**

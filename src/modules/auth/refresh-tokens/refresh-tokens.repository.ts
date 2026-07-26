@@ -56,7 +56,7 @@ export class RefreshTokensRepository extends BaseRepository<RefreshToken> {
   }
 
   async revokeAllByUser(userId: string): Promise<void> {
-    await this.repository.update(
+    await this.update(
       {
         user: {
           id: userId,
@@ -69,10 +69,12 @@ export class RefreshTokensRepository extends BaseRepository<RefreshToken> {
     );
   }
 
-  async deleteExpiredTokens(): Promise<void> {
-    await this.repository.delete({
+  async deleteExpiredTokens(): Promise<number> {
+    const result = await this.repository.delete({
       expiresAt: LessThan(new Date()),
     });
+
+    return result.affected ?? 0;
   }
 
   async createWithManager(

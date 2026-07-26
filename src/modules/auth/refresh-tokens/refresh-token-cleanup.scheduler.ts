@@ -14,8 +14,14 @@ export class RefreshTokenCleanupScheduler {
    */
   @Cron(CronExpression.EVERY_DAY_AT_MIDNIGHT)
   async handleCleanup(): Promise<void> {
-    await this.refreshTokensService.deleteExpiredTokens();
-
-    this.logger.log('Expired refresh tokens deleted successfully.');
+    try {
+      const deleted = await this.refreshTokensService.deleteExpiredTokens();
+      this.logger.log(`Deleted ${deleted} expired refresh token sessions.`);
+    } catch (error) {
+      this.logger.error(
+        'Failed to delete expired refresh token sessions.',
+        error instanceof Error ? error.stack : undefined,
+      );
+    }
   }
 }
