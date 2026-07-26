@@ -51,7 +51,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n// USER\r\n    \"email\": \"fathymhmed21@gmail.com\",\r\n    \"password\": \"Fathy@123\"\r\n\r\n// ADMIN\r\n    // \"email\": \"admin@erp.com\",\r\n    // \"password\": \"Admin@123456\"\r\n}",
+              "raw": "{\r\n// USER\r\n    // \"email\": \"fathymhmed21@gmail.com\",\r\n    // \"password\": \"Fathy@123\"\r\n\r\n// ADMIN\r\n    \"email\": \"admin@erp.com\",\r\n    \"password\": \"Admin@123456\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -72,7 +72,9 @@
             {
               "listen": "test",
               "script": {
-                "exec": [""],
+                "exec": [
+                  "pm.environment.set(\"JWT\", pm.response.json().data.accessToken);"
+                ],
                 "type": "text/javascript",
                 "packages": {},
                 "requests": {}
@@ -81,8 +83,10 @@
             {
               "listen": "prerequest",
               "script": {
+                "exec": [""],
+                "type": "text/javascript",
                 "packages": {},
-                "type": "text/javascript"
+                "requests": {}
               }
             }
           ],
@@ -177,7 +181,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"oldPassword\": \"Fathy@123\",\r\n    \"newPassword\": \"Fathy@1234\"\r\n}\r\n",
+              "raw": "{\r\n    \"oldPassword\": \"Admin@12345\",\r\n    \"newPassword\": \"Admin@123456\"\r\n}\r\n",
               "options": {
                 "raw": {
                   "language": "json"
@@ -198,7 +202,7 @@
       "name": "Users",
       "item": [
         {
-          "name": "Get Me",
+          "name": "Get My Profile",
           "request": {
             "method": "GET",
             "header": [],
@@ -206,6 +210,130 @@
               "raw": "{{BASE_URL}}/api/v1/users/me",
               "host": ["{{BASE_URL}}"],
               "path": ["api", "v1", "users", "me"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Users (Management)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/api/v1/users",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "v1", "users"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1",
+                  "disabled": true
+                },
+                {
+                  "key": "limit",
+                  "value": "5",
+                  "disabled": true
+                },
+                {
+                  "key": "search",
+                  "value": "fa",
+                  "disabled": true
+                },
+                {
+                  "key": "role",
+                  "value": "super_admin",
+                  "disabled": true
+                },
+                {
+                  "key": "isActive",
+                  "value": "false",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get User By ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/api/v1/users/2dc8e0c9-5b67-492e-b587-142670450542",
+              "host": ["{{BASE_URL}}"],
+              "path": [
+                "api",
+                "v1",
+                "users",
+                "2dc8e0c9-5b67-492e-b587-142670450542"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Activate User",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/api/v1/users/2dc8e0c9-5b67-492e-b587-142670450542/activate",
+              "host": ["{{BASE_URL}}"],
+              "path": [
+                "api",
+                "v1",
+                "users",
+                "2dc8e0c9-5b67-492e-b587-142670450542",
+                "activate"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Deactivate User",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/api/v1/users/2dc8e0c9-5b67-492e-b587-142670450542/deactivate",
+              "host": ["{{BASE_URL}}"],
+              "path": [
+                "api",
+                "v1",
+                "users",
+                "2dc8e0c9-5b67-492e-b587-142670450542",
+                "deactivate"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Reset Password",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"newPassword\": \"Fathy@1234\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/api/v1/users/2dc8e0c9-5b67-492e-b587-142670450542/reset-password",
+              "host": ["{{BASE_URL}}"],
+              "path": [
+                "api",
+                "v1",
+                "users",
+                "2dc8e0c9-5b67-492e-b587-142670450542",
+                "reset-password"
+              ]
             }
           },
           "response": []

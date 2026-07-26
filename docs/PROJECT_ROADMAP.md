@@ -189,7 +189,19 @@ src
 
 ### Users
 
+### Users
+
 - [x] Get Profile
+- [x] Get Users
+- [x] Get User
+- [x] Search Users
+- [x] Filter Users
+- [x] Pagination
+- [x] Activate User
+- [x] Deactivate User
+- [x] Reset Password
+- [x] Revoke All Sessions After Deactivation
+- [x] Revoke All Sessions After Password Reset
 
 ### Roles
 
@@ -376,7 +388,7 @@ src
 | ------------------ | -------------- |
 | Project Foundation | ✅ Completed   |
 | Authentication     | ✅ Completed   |
-| Users              | 🟡 In Progress |
+| Users              | ✅ Completed   |
 | Roles              | ✅ Completed   |
 | Permissions        | ✅ Completed   |
 | Role Permissions   | ✅ Completed   |
