@@ -112,13 +112,6 @@ export class RefreshTokensService {
   }
 
   /**
-   * Update last usage timestamp.
-   */
-  async updateLastUsedAt(id: string): Promise<void> {
-    await this.refreshTokensRepository.updateLastUsed(id);
-  }
-
-  /**
    * Remove expired refresh token sessions.
    */
   async deleteExpiredTokens(): Promise<void> {

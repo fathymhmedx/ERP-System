@@ -19,7 +19,6 @@ export class RefreshTokensRepository extends BaseRepository<RefreshToken> {
     tokenHash: true,
     expiresAt: true,
     revokedAt: true,
-    lastUsedAt: true,
     createdAt: true,
     updatedAt: true,
     deletedAt: true,
@@ -66,15 +65,6 @@ export class RefreshTokensRepository extends BaseRepository<RefreshToken> {
       },
       {
         revokedAt: new Date(),
-      },
-    );
-  }
-
-  async updateLastUsed(id: string): Promise<void> {
-    await this.update(
-      { id },
-      {
-        lastUsedAt: new Date(),
       },
     );
   }

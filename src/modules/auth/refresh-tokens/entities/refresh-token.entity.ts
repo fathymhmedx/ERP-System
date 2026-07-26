@@ -26,12 +26,6 @@ export class RefreshToken extends BaseEntity {
   })
   revokedAt!: Date | null;
 
-  @Column({
-    type: 'timestamptz',
-    nullable: true,
-  })
-  lastUsedAt!: Date | null;
-
   @ManyToOne(() => User, (user) => user.refreshTokens, {
     nullable: false,
     onDelete: 'CASCADE',
