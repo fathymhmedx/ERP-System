@@ -3,8 +3,8 @@ import {
   ExecutionContext,
   UnauthorizedException,
 } from '@nestjs/common';
-import { AuthRequest } from '../interfaces/auth-request.interface';
-import { AuthUser } from '../interfaces/auth-user.interface';
+import { AuthRequest } from '../interfaces/auth/auth-request.interface';
+import { AuthUser } from '../interfaces/auth/auth-user.interface';
 
 export const CurrentUser = createParamDecorator(
   (data: unknown, ctx: ExecutionContext): AuthUser => {

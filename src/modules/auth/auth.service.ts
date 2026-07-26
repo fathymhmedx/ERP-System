@@ -21,7 +21,7 @@ import {
 } from './dto';
 
 import { AUTH_CONSTANTS } from './constants/auth.constants';
-import { JwtPayload } from 'src/common/interfaces/jwt-payload.interface';
+import { JwtPayload } from 'src/common/interfaces/auth/jwt-payload.interface';
 import { SYSTEM_ROLES } from 'src/common/constants/system-roles.constants';
 import { RefreshTokensService } from './refresh-tokens/refresh-tokens.service';
 import { LoginResult } from './interfaces/login-result.interface';

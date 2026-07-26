@@ -9,7 +9,7 @@ import { Reflector } from '@nestjs/core';
 import { RolePermissionsRepository } from 'src/modules/role-permissions/role-permissions.repository';
 import { SYSTEM_ROLES } from '../constants/system-roles.constants';
 import { RolesRepository } from 'src/modules/roles/roles.repository';
-import { AuthRequest } from '../interfaces/auth-request.interface';
+import { AuthRequest } from '../interfaces/auth/auth-request.interface';
 import {
   IS_PUBLIC_KEY,
   PERMISSIONS_KEY,

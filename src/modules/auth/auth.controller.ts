@@ -11,7 +11,7 @@ import { AuthService } from './auth.service';
 import { SuccessMessage } from 'src/common/decorators/success-message.decorator';
 import { Public } from 'src/common/decorators/public.decorator';
 import { CurrentUser } from 'src/common/decorators/current-user.decorator';
-import type { AuthUser } from 'src/common/interfaces/auth-user.interface';
+import type { AuthUser } from 'src/common/interfaces/auth/auth-user.interface';
 import { CookieService } from 'src/common/services/cookie.service';
 import { RefreshToken } from 'src/common/decorators/refresh-token.decorator';
 
