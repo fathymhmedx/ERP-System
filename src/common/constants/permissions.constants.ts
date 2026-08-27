@@ -1,6 +1,7 @@
 export const PERMISSIONS = {
   // USERS
   USERS: {
+    CREATE: 'users.create',
     READ: 'users.read',
     UPDATE: 'users.update',
     ACTIVATE: 'users.activate',
@@ -49,6 +50,7 @@ export const PERMISSIONS = {
     ASSIGN_DEPARTMENT: 'employees.assign-department',
     ASSIGN_POSITION: 'employees.assign-position',
     ASSIGN_MANAGER: 'employees.assign-manager',
+    ASSIGN_USER: 'employees.assign-user',
   },
 
   // ATTENDANCE
