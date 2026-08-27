@@ -1,6 +1,7 @@
 import * as bcrypt from 'bcrypt';
 import {
   BadRequestException,
+  ConflictException,
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
@@ -14,13 +15,16 @@ import {
   UserManagementResponseDto,
   UserResponseDto,
   GetUsersQueryDto,
+  CreateUserDto,
 } from './dto';
 import { AUTH_CONSTANTS } from '../auth/constants/auth.constants';
 import { PaginatedResponse } from 'src/common/interfaces/pagination/paginated-response.interface';
+import { RolesRepository } from '../roles/roles.repository';
 
 @Injectable()
 export class UsersService {
   constructor(
+    private readonly rolesRepository: RolesRepository,
     private readonly usersRepository: UsersRepository,
     private readonly refreshTokensService: RefreshTokensService,
   ) {}
@@ -108,6 +112,45 @@ export class UsersService {
     await this.usersRepository.updatePassword(id, hashedPassword);
 
     await this.refreshTokensService.revokeAllByUser(id);
+  }
+
+  async create(createUserDto: CreateUserDto): Promise<UserResponseDto> {
+    const { email, password, roleId } = createUserDto;
+
+    const existingUser = await this.usersRepository.findByEmail(email);
+
+    if (existingUser) {
+      throw new ConflictException('Email already exists');
+    }
+
+    const role = await this.rolesRepository.findById(roleId);
+
+    if (!role) {
+      throw new NotFoundException('Role not found');
+    }
+
+    const hashedPassword = await bcrypt.hash(
+      password,
+      AUTH_CONSTANTS.BCRYPT_SALT_ROUNDS,
+    );
+
+    const user = this.usersRepository.create({
+      email,
+      password: hashedPassword,
+      role,
+    });
+
+    const savedUser = await this.usersRepository.save(user);
+
+    const userWithRole = await this.usersRepository.findByIdWithRole(
+      savedUser.id,
+    );
+
+    if (!userWithRole) {
+      throw new NotFoundException('User not found');
+    }
+
+    return UserMapper.toResponseDto(userWithRole);
   }
 
   private async findUserWithRoleOrFail(id: string): Promise<User> {

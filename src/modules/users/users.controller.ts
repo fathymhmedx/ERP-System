@@ -1,11 +1,24 @@
-import { Body, Controller, Get, Param, Patch, Query } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Query,
+} from '@nestjs/common';
 import { UsersService } from './users.service';
 import { SuccessMessage } from 'src/common/decorators/success-message.decorator';
 import { Permissions } from 'src/common/decorators/permissions.decorator';
 import { CurrentUser } from 'src/common/decorators/current-user.decorator';
 import type { AuthUser } from 'src/common/interfaces/auth/auth-user.interface';
 import { PERMISSIONS } from 'src/common/constants/permissions.constants';
-import { GetUsersQueryDto, ResetPasswordDto } from './dto';
+import {
+  CreateUserDto,
+  GetUsersQueryDto,
+  ResetPasswordDto,
+  UserResponseDto,
+} from './dto';
 
 @Controller({
   path: 'users',
@@ -56,5 +69,12 @@ export class UsersController {
     @Body() resetPasswordDto: ResetPasswordDto,
   ) {
     return this.usersService.resetPassword(id, resetPasswordDto);
+  }
+
+  @Post()
+  @Permissions(PERMISSIONS.USERS.CREATE)
+  @SuccessMessage('User created successfully')
+  async create(@Body() createUserDto: CreateUserDto): Promise<UserResponseDto> {
+    return this.usersService.create(createUserDto);
   }
 }
