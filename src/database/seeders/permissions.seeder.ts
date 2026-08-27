@@ -25,6 +25,11 @@ export class PermissionsSeeder {
       },
       {
         module: 'users',
+        name: 'users.create',
+        description: 'Create user accounts',
+      },
+      {
+        module: 'users',
         name: 'users.update',
         description: 'Update user accounts',
       },
@@ -162,6 +167,11 @@ export class PermissionsSeeder {
         module: 'employees',
         name: 'employees.assign-manager',
         description: 'Assign manager',
+      },
+      {
+        module: 'employees',
+        name: 'employees.assign-user',
+        description: 'Assign user',
       },
 
       // ATTENDANCE

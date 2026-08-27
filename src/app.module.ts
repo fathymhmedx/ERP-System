@@ -13,6 +13,7 @@ import { PermissionsGuard } from './common/guards/permissions.guard';
 import { APP_FILTER, APP_GUARD } from '@nestjs/core';
 import { ScheduleModule } from '@nestjs/schedule';
 import { HttpExceptionFilter } from './common/filters/http-exception.filter';
+import { HrModule } from './modules/hr/hr.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -27,6 +28,7 @@ import { HttpExceptionFilter } from './common/filters/http-exception.filter';
     PermissionsModule,
     RolePermissionsModule,
     ScheduleModule.forRoot(),
+    HrModule,
   ],
   providers: [
     {
