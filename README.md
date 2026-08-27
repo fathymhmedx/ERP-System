@@ -196,6 +196,7 @@ src
 - [x] Get Profile
 - [x] Get Users
 - [x] Get User
+- [x] Create User
 - [x] Search Users
 - [x] Filter Users
 - [x] Pagination
@@ -228,30 +229,32 @@ src
 
 ### Departments
 
-- [ ] Create Department
-- [ ] Update Department
-- [ ] Delete Department
-- [ ] Get Departments
+- [x] Create Department
+- [x] Update Department
+- [x] Delete Department
+- [x] Get Departments
 
 ### Positions
 
-- [ ] Create Position
-- [ ] Update Position
-- [ ] Delete Position
-- [ ] Get Positions
+- [x] Create Position
+- [x] Update Position
+- [x] Delete Position
+- [x] Get Positions
 
 ### Employees
 
-- [ ] Create Employee
-- [ ] Update Employee
-- [ ] Delete Employee
-- [ ] Get Employee
-- [ ] Get Employees
-- [ ] Search Employees
-- [ ] Filter Employees
-- [ ] Assign Department
-- [ ] Assign Position
-- [ ] Assign Manager
+- [x] Create Employee
+- [x] Update Employee
+- [x] Soft Delete Employee
+- [x] Get Employee
+- [x] Get Employees
+- [x] Search Employees
+- [x] Filter Employees
+- [x] Pagination
+- [x] Assign Department
+- [x] Assign Position
+- [x] Assign Manager
+- [x] Assign User Account
 
 ---
 
@@ -395,9 +398,9 @@ src
 | Permissions        | ✅ Completed   |
 | Role Permissions   | ✅ Completed   |
 | RBAC               | ✅ Completed   |
-| Departments        | ⏳ Not Started |
-| Positions          | ⏳ Not Started |
-| Employees          | ⏳ Not Started |
+| Departments        | ✅ Completed   |
+| Positions          | ✅ Completed   |
+| Employees          | ✅ Completed   |
 | Attendance         | ⏳ Not Started |
 | Leaves             | ⏳ Not Started |
 | Payroll            | ⏳ Not Started |

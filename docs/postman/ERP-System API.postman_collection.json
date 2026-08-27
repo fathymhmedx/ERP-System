@@ -51,7 +51,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n// USER\r\n    // \"email\": \"fathymhmed21@gmail.com\",\r\n    // \"password\": \"Fathy@123\"\r\n\r\n// ADMIN\r\n    \"email\": \"admin@erp.com\",\r\n    \"password\": \"Admin@123456\"\r\n}",
+              "raw": "{\r\n// USER\r\n    // \"email\": \"fathymhmed21@gmail.com\",\r\n    // \"password\": \"Fathy@1234\"\r\n\r\n// ADMIN\r\n    \"email\": \"admin@erp.com\",\r\n    \"password\": \"Admin@123456\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -260,13 +260,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{BASE_URL}}/api/v1/users/2dc8e0c9-5b67-492e-b587-142670450542",
+              "raw": "{{BASE_URL}}/api/v1/users/d9fbd586-360e-4eba-b81f-4b0f262a5dd9",
               "host": ["{{BASE_URL}}"],
               "path": [
                 "api",
                 "v1",
                 "users",
-                "2dc8e0c9-5b67-492e-b587-142670450542"
+                "d9fbd586-360e-4eba-b81f-4b0f262a5dd9"
               ]
             }
           },
@@ -334,6 +334,28 @@
                 "2dc8e0c9-5b67-492e-b587-142670450542",
                 "reset-password"
               ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create User",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\": \"ahmed@company.com\",\r\n  \"password\": \"Password123\",\r\n  \"roleId\": \"7c980a50-5894-4ef6-a591-1d4c32a7c287\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/api/v1/users",
+              "host": ["{{BASE_URL}}"],
+              "path": ["api", "v1", "users"]
             }
           },
           "response": []
@@ -452,14 +474,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{BASE_URL}}/api/v1/Permissions",
+              "raw": "{{BASE_URL}}/api/v1/Permissions?module=departments",
               "host": ["{{BASE_URL}}"],
               "path": ["api", "v1", "Permissions"],
               "query": [
                 {
                   "key": "module",
-                  "value": "employees",
-                  "disabled": true
+                  "value": "departments"
                 }
               ]
             }
@@ -496,7 +517,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"permissionId\": \"a44ebf23-8294-4fa0-85ae-371c67ebc04a\"\r\n}",
+              "raw": "{\r\n    \"permissionId\": \"252d0b5a-c2eb-4874-ace8-454ae98a2bca\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -504,13 +525,13 @@
               }
             },
             "url": {
-              "raw": "{{BASE_URL}}/api/v1/roles/d9fbd586-360e-4eba-b81f-4b0f262a5dd9/permissions",
+              "raw": "{{BASE_URL}}/api/v1/roles/7c980a50-5894-4ef6-a591-1d4c32a7c287/permissions",
               "host": ["{{BASE_URL}}"],
               "path": [
                 "api",
                 "v1",
                 "roles",
-                "d9fbd586-360e-4eba-b81f-4b0f262a5dd9",
+                "7c980a50-5894-4ef6-a591-1d4c32a7c287",
                 "permissions"
               ]
             }
@@ -545,6 +566,439 @@
             }
           },
           "response": []
+        }
+      ]
+    },
+    {
+      "name": "Hr",
+      "item": [
+        {
+          "name": "Departments",
+          "item": [
+            {
+              "name": "Create Department",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"IT\",\r\n  \"description\": \"Information technology department\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{BASE_URL}}/api/v1/departments",
+                  "host": ["{{BASE_URL}}"],
+                  "path": ["api", "v1", "departments"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get Departments",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{BASE_URL}}/api/v1/departments",
+                  "host": ["{{BASE_URL}}"],
+                  "path": ["api", "v1", "departments"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get Department",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{BASE_URL}}/api/v1/departments/c68492f0-00bb-43af-8a63-904d78de836e",
+                  "host": ["{{BASE_URL}}"],
+                  "path": [
+                    "api",
+                    "v1",
+                    "departments",
+                    "c68492f0-00bb-43af-8a63-904d78de836e"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Update Department",
+              "request": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"name\": \"Software Engineering\",\r\n  \"description\": \"Updated department description\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{BASE_URL}}/api/v1/departments/c68492f0-00bb-43af-8a63-904d78de836e",
+                  "host": ["{{BASE_URL}}"],
+                  "path": [
+                    "api",
+                    "v1",
+                    "departments",
+                    "c68492f0-00bb-43af-8a63-904d78de836e"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Delete Department",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{BASE_URL}}/api/v1/departments/c68492f0-00bb-43af-8a63-904d78de836e",
+                  "host": ["{{BASE_URL}}"],
+                  "path": [
+                    "api",
+                    "v1",
+                    "departments",
+                    "c68492f0-00bb-43af-8a63-904d78de836e"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Positions",
+          "item": [
+            {
+              "name": "Create Position",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"title\": \"Backend Developer\",\r\n  \"description\": \"Develops and maintains backend services\",\r\n  \"departmentId\": \"9fca5bc2-ef8c-42ff-9572-ef8e97a16235\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{BASE_URL}}/api/v1/positions",
+                  "host": ["{{BASE_URL}}"],
+                  "path": ["api", "v1", "positions"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get Positions",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{BASE_URL}}/api/v1/positions",
+                  "host": ["{{BASE_URL}}"],
+                  "path": ["api", "v1", "positions"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get Position",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{BASE_URL}}/api/v1/positions/61784b65-b94c-4f3d-9fe6-b90dd7a1103e",
+                  "host": ["{{BASE_URL}}"],
+                  "path": [
+                    "api",
+                    "v1",
+                    "positions",
+                    "61784b65-b94c-4f3d-9fe6-b90dd7a1103e"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Update Position",
+              "request": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"title\": \"Senior Backend Developer\",\r\n  \"description\": \"Updated position description\",\r\n   \"departmentId\": \"9fca5bc2-ef8c-42ff-9572-ef8e97a16235\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{BASE_URL}}/api/v1/positions/b69d8999-092a-4ec0-88f0-c7fecbb2b9b9",
+                  "host": ["{{BASE_URL}}"],
+                  "path": [
+                    "api",
+                    "v1",
+                    "positions",
+                    "b69d8999-092a-4ec0-88f0-c7fecbb2b9b9"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Delete Position",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{BASE_URL}}/api/v1/positions/61784b65-b94c-4f3d-9fe6-b90dd7a1103e",
+                  "host": ["{{BASE_URL}}"],
+                  "path": [
+                    "api",
+                    "v1",
+                    "positions",
+                    "61784b65-b94c-4f3d-9fe6-b90dd7a1103e"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Employees",
+          "item": [
+            {
+              "name": "Create Employee",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"employeeNumber\": \"EMP-0004\",\r\n  \"firstName\": \"Ahmed\",\r\n  \"lastName\": \"fathy\",\r\n  \"phone\": \"+201000000000\",\r\n  \"address\": \"Mansoura\",\r\n  \"dateOfBirth\": \"2003-01-15\",\r\n  \"hireDate\": \"2026-08-27\"\r\n//   \"departmentId\": \"9fca5bc2-ef8c-42ff-9572-ef8e97a16235\",\r\n//   \"positionId\": \"b69d8999-092a-4ec0-88f0-c7fecbb2b9b9\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{BASE_URL}}/api/v1/employees",
+                  "host": ["{{BASE_URL}}"],
+                  "path": ["api", "v1", "employees"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get Employees",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{BASE_URL}}/api/v1/employees?page=1&limit=10",
+                  "host": ["{{BASE_URL}}"],
+                  "path": ["api", "v1", "employees"],
+                  "query": [
+                    {
+                      "key": "departmentId",
+                      "value": "9fca5bc2-ef8c-42ff-9572-ef8e97a16235",
+                      "disabled": true
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "positionId",
+                      "value": "b69d8999-092a-4ec0-88f0-c7fecbb2b9b9",
+                      "disabled": true
+                    },
+                    {
+                      "key": "employmentStatus",
+                      "value": "active",
+                      "disabled": true
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get Employee",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{BASE_URL}}/api/v1/employees/e01b4fc7-aca7-416d-b208-0d0de6d6efad",
+                  "host": ["{{BASE_URL}}"],
+                  "path": [
+                    "api",
+                    "v1",
+                    "employees",
+                    "e01b4fc7-aca7-416d-b208-0d0de6d6efad"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Update Employee",
+              "request": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"firstName\": \"Ahmed test\",\r\n  \"lastName\": \"Ali\",\r\n  \"phone\": \"+201111111111\",\r\n  \"address\": \"Mansoura\",\r\n  \"dateOfBirth\": \"2003-01-15\",\r\n  \"hireDate\": \"2026-08-27\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{BASE_URL}}/api/v1/employees/7b3ae240-aa6e-4870-822d-7b3c31e1e1c7",
+                  "host": ["{{BASE_URL}}"],
+                  "path": [
+                    "api",
+                    "v1",
+                    "employees",
+                    "7b3ae240-aa6e-4870-822d-7b3c31e1e1c7"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Assign Department",
+              "request": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"departmentId\": \"9fca5bc2-ef8c-42ff-9572-ef8e97a16235\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{BASE_URL}}/api/v1/employees/e01b4fc7-aca7-416d-b208-0d0de6d6efad/department",
+                  "host": ["{{BASE_URL}}"],
+                  "path": [
+                    "api",
+                    "v1",
+                    "employees",
+                    "e01b4fc7-aca7-416d-b208-0d0de6d6efad",
+                    "department"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Assign Position",
+              "request": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"positionId\": \"b69d8999-092a-4ec0-88f0-c7fecbb2b9b9\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{BASE_URL}}/api/v1/employees/e01b4fc7-aca7-416d-b208-0d0de6d6efad/position",
+                  "host": ["{{BASE_URL}}"],
+                  "path": [
+                    "api",
+                    "v1",
+                    "employees",
+                    "e01b4fc7-aca7-416d-b208-0d0de6d6efad",
+                    "position"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Assign Manager",
+              "request": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"managerId\": \"5a082c98-9870-4dba-b868-4e93102b613c\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{BASE_URL}}/api/v1/employees/83d7fbbe-317b-4d95-a224-fb864947e88c/manager",
+                  "host": ["{{BASE_URL}}"],
+                  "path": [
+                    "api",
+                    "v1",
+                    "employees",
+                    "83d7fbbe-317b-4d95-a224-fb864947e88c",
+                    "manager"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Link Employee With User",
+              "request": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"userId\": \"d9421699-c7a7-4d03-a2ac-6ede06288787\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{BASE_URL}}/api/v1/employees/e01b4fc7-aca7-416d-b208-0d0de6d6efad/user",
+                  "host": ["{{BASE_URL}}"],
+                  "path": [
+                    "api",
+                    "v1",
+                    "employees",
+                    "e01b4fc7-aca7-416d-b208-0d0de6d6efad",
+                    "user"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
         }
       ]
     }
