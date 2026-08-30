@@ -46,6 +46,7 @@ export class PayrollController {
 
   @Get()
   @Permissions(PERMISSIONS.PAYROLL.READ)
+  @SuccessMessage('Payrolls retrieved successfully')
   findAll(
     @Query() query: PayrollQueryDto,
   ): Promise<PaginatedResponse<PayrollResponseDto>> {
@@ -56,6 +57,7 @@ export class PayrollController {
 
   @Get('bonuses')
   @Permissions(PERMISSIONS.PAYROLL.BONUS_READ)
+  @SuccessMessage('Bonuses retrieved successfully')
   findBonuses(
     @Query() query: BonusQueryDto,
   ): Promise<PaginatedResponse<BonusResponseDto>> {
@@ -81,6 +83,7 @@ export class PayrollController {
   // --- Deductions ---
   @Get('deductions')
   @Permissions(PERMISSIONS.PAYROLL.DEDUCTION_READ)
+  @SuccessMessage('Deductions retrieved successfully')
   findDeductions(
     @Query() query: DeductionQueryDto,
   ): Promise<PaginatedResponse<DeductionResponseDto>> {
@@ -107,6 +110,7 @@ export class PayrollController {
 
   @Get(':id')
   @Permissions(PERMISSIONS.PAYROLL.READ)
+  @SuccessMessage('Payroll retrieved successfully')
   findOne(@Param('id', ParseUUIDPipe) id: string): Promise<PayrollResponseDto> {
     return this.payrollService.findOne(id);
   }
