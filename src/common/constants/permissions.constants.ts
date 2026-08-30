@@ -71,10 +71,16 @@ export const PERMISSIONS = {
 
   // PAYROLL
   PAYROLL: {
-    GENERATE: 'payroll.generate',
     READ: 'payroll.read',
-    BONUS: 'payroll.bonus',
-    DEDUCTION: 'payroll.deduction',
+    GENERATE: 'payroll.generate',
+
+    BONUS_CREATE: 'payroll.bonus.create',
+    BONUS_READ: 'payroll.bonus.read',
+    BONUS_DELETE: 'payroll.bonus.delete',
+
+    DEDUCTION_CREATE: 'payroll.deduction.create',
+    DEDUCTION_READ: 'payroll.deduction.read',
+    DEDUCTION_DELETE: 'payroll.deduction.delete',
   },
 
   // CATEGORIES
