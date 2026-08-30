@@ -20,6 +20,7 @@ export const databaseConfig: TypeOrmModuleAsyncOptions = {
       password: configService.getOrThrow<string>('DATABASE_PASSWORD'),
       database: configService.getOrThrow<string>('DATABASE_NAME'),
       namingStrategy: new SnakeNamingStrategy(),
+      entities: [__dirname + '/../**/*.entity{.ts,.js}'],
       autoLoadEntities: true,
       synchronize: !isProduction,
       logging: !isProduction,

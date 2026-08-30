@@ -221,23 +221,47 @@ export class PermissionsSeeder {
       // PAYROLL
       {
         module: 'payroll',
-        name: 'payroll.generate',
-        description: 'Generate payroll',
-      },
-      {
-        module: 'payroll',
         name: 'payroll.read',
         description: 'View payroll',
       },
       {
         module: 'payroll',
-        name: 'payroll.bonus',
-        description: 'Manage bonuses',
+        name: 'payroll.generate',
+        description: 'Generate payroll',
+      },
+
+      // PAYROLL - BONUSES
+      {
+        module: 'payroll',
+        name: 'payroll.bonus.create',
+        description: 'Create payroll bonus',
       },
       {
         module: 'payroll',
-        name: 'payroll.deduction',
-        description: 'Manage deductions',
+        name: 'payroll.bonus.read',
+        description: 'View payroll bonuses',
+      },
+      {
+        module: 'payroll',
+        name: 'payroll.bonus.delete',
+        description: 'Delete payroll bonus',
+      },
+
+      // PAYROLL - DEDUCTIONS
+      {
+        module: 'payroll',
+        name: 'payroll.deduction.create',
+        description: 'Create payroll deduction',
+      },
+      {
+        module: 'payroll',
+        name: 'payroll.deduction.read',
+        description: 'View payroll deductions',
+      },
+      {
+        module: 'payroll',
+        name: 'payroll.deduction.delete',
+        description: 'Delete payroll deduction',
       },
 
       // CATEGORIES
