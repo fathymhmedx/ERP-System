@@ -241,6 +241,7 @@ src
 
 ### Employees
 
+- [x] Get Me
 - [x] Create Employee
 - [x] Update Employee
 - [x] Soft Delete Employee
@@ -260,24 +261,25 @@ src
 
 ### Attendance
 
-- [ ] Check In
-- [ ] Check Out
-- [ ] Attendance History
-- [ ] Monthly Attendance Report
+- [x] Check In
+- [x] Check Out
+- [x] Attendance History
+- [x] Monthly Attendance Report
 
 ### Leaves
 
-- [ ] Request Leave
-- [ ] Approve Leave
-- [ ] Reject Leave
-- [ ] Cancel Leave
+- [x] Request Leave
+- [x] Approve Leave
+- [x] Reject Leave
+- [x] Cancel Leave
+- [x] Leave History
 
 ### Payroll
 
-- [ ] Generate Payroll
-- [ ] Payroll History
-- [ ] Bonus
-- [ ] Deduction
+- [x] Generate Payroll
+- [x] Payroll History
+- [x] Bonus (Create, Get, Delete)
+- [x] Deduction (Create, Get, Delete)
 
 ---
 
