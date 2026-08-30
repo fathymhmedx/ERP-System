@@ -73,7 +73,7 @@ export class AttendanceRepository extends BaseRepository<Attendance> {
 
     queryBuilder
       .orderBy('attendance.date', 'DESC')
-      .addOrderBy('attendance.checkIn', 'DESC')
+      .addOrderBy('attendance.check_in', 'DESC')
       .skip((page - 1) * limit)
       .take(limit);
 
@@ -125,12 +125,12 @@ export class AttendanceRepository extends BaseRepository<Attendance> {
       SUM(
         EXTRACT(
           EPOCH FROM (
-            attendance."checkOut" - attendance."checkIn"
+              attendance.check_out - attendance.check_in
           )
         ) / 3600
       ) FILTER (
-        WHERE attendance."checkIn" IS NOT NULL
-          AND attendance."checkOut" IS NOT NULL
+        WHERE attendance.check_in  IS NOT NULL
+          AND attendance.check_out IS NOT NULL
       ),
       0
     )`,
