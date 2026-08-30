@@ -34,6 +34,20 @@ export class EmployeesService {
   ) {}
 
   /**
+   * Retrieve the current authenticated employee.
+   */
+  async getMe(userId: string): Promise<EmployeeResponseDto> {
+    const employee =
+      await this.employeesRepository.findByUserIdWithRelations(userId);
+
+    if (!employee) {
+      throw new NotFoundException('Employee not found');
+    }
+
+    return EmployeeMapper.toResponseDto(employee);
+  }
+
+  /**
    * Create a new employee.
    */
   async create(

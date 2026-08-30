@@ -27,6 +27,8 @@ import {
   UpdateEmployeeDto,
 } from './dto';
 import { PaginatedResponse } from 'src/common/interfaces/pagination/paginated-response.interface';
+import { CurrentUser } from 'src/common/decorators/current-user.decorator';
+import type { AuthUser } from 'src/common/interfaces/auth/auth-user.interface';
 
 @Controller({
   path: 'employees',
@@ -34,6 +36,12 @@ import { PaginatedResponse } from 'src/common/interfaces/pagination/paginated-re
 })
 export class EmployeesController {
   constructor(private readonly employeesService: EmployeesService) {}
+
+  @Get('me')
+  @SuccessMessage('Profile retrieved successfully')
+  getMe(@CurrentUser() user: AuthUser): Promise<EmployeeResponseDto> {
+    return this.employeesService.getMe(user.id);
+  }
 
   /**
    * Create a new employee.

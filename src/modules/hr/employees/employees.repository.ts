@@ -109,4 +109,23 @@ export class EmployeesRepository extends BaseRepository<Employee> {
 
     return queryBuilder.getManyAndCount();
   }
+
+  /**
+   * Find employee by user id with all required relations.
+   */
+  async findByUserIdWithRelations(userId: string): Promise<Employee | null> {
+    return this.findOne({
+      where: {
+        user: {
+          id: userId,
+        },
+      },
+      relations: {
+        user: true,
+        department: true,
+        position: true,
+        manager: true,
+      },
+    });
+  }
 }
