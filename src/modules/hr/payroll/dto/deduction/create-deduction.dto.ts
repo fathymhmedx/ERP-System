@@ -11,8 +11,8 @@ export class CreateDeductionDto {
   @IsUUID()
   employeeId!: string;
 
-  @Matches(/^\d+(\.\d{1,2})?$/, {
-    message: 'amount must be a positive decimal with up to 2 decimal places',
+  @Matches(/^(?!0+(?:\.0{1,2})?$)\d+(?:\.\d{1,2})?$/, {
+    message: 'amount must be greater than 0 with up to 2 decimal places',
   })
   amount!: string;
 
