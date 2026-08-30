@@ -45,6 +45,7 @@ export class DepartmentsController {
    */
   @Get()
   @Permissions(PERMISSIONS.DEPARTMENTS.READ)
+  @SuccessMessage('Departments retrieved successfully')
   findAll(): Promise<DepartmentResponseDto[]> {
     return this.departmentsService.findAll();
   }
@@ -54,6 +55,7 @@ export class DepartmentsController {
    */
   @Get(':id')
   @Permissions(PERMISSIONS.DEPARTMENTS.READ)
+  @SuccessMessage('Department retrieved successfully')
   findOne(
     @Param('id', ParseUUIDPipe) id: string,
   ): Promise<DepartmentResponseDto> {

@@ -41,6 +41,7 @@ export class LeavesController {
 
   @Get()
   @Permissions(PERMISSIONS.LEAVES.READ)
+  @SuccessMessage('Leave requests retrieved successfully')
   findAll(
     @Query() query: LeaveQueryDto,
   ): Promise<PaginatedResponse<LeaveResponseDto>> {

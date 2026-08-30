@@ -44,6 +44,7 @@ export class AttendanceController {
 
   @Get()
   @Permissions(PERMISSIONS.ATTENDANCE.READ)
+  @SuccessMessage('Attendance records retrieved successfully')
   findAll(
     @Query() query: AttendanceQueryDto,
   ): Promise<PaginatedResponse<AttendanceResponseDto>> {
@@ -52,6 +53,7 @@ export class AttendanceController {
 
   @Get('employee/:employeeId')
   @Permissions(PERMISSIONS.ATTENDANCE.READ)
+  @SuccessMessage('Attendance records for employee retrieved successfully')
   findByEmployee(
     @Param('employeeId', ParseUUIDPipe) employeeId: string,
     @Query() query: AttendanceQueryDto,
@@ -61,6 +63,7 @@ export class AttendanceController {
 
   @Get('reports/monthly')
   @Permissions(PERMISSIONS.ATTENDANCE.READ)
+  @SuccessMessage('Monthly attendance report retrieved successfully')
   getMonthlyReport(
     @Query() query: MonthlyReportQueryDto,
   ): Promise<MonthlyReportResponseDto> {

@@ -45,6 +45,7 @@ export class PositionsController {
    */
   @Get()
   @Permissions(PERMISSIONS.POSITIONS.READ)
+  @SuccessMessage('Positions retrieved successfully')
   findAll(): Promise<PositionResponseDto[]> {
     return this.positionsService.findAll();
   }
@@ -54,6 +55,7 @@ export class PositionsController {
    */
   @Get(':id')
   @Permissions(PERMISSIONS.POSITIONS.READ)
+  @SuccessMessage('Position retrieved successfully')
   findOne(
     @Param('id', ParseUUIDPipe) id: string,
   ): Promise<PositionResponseDto> {
