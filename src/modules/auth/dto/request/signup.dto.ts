@@ -2,18 +2,12 @@ import {
   IsEmail,
   IsNotEmpty,
   IsString,
-  Length,
   Matches,
   MaxLength,
   MinLength,
 } from 'class-validator';
 
 export class SignupDto {
-  @IsNotEmpty()
-  @IsString()
-  @Length(2, 150)
-  fullName!: string;
-
   @IsNotEmpty()
   @IsEmail({}, { message: 'Invalid email address' })
   @MaxLength(255)
