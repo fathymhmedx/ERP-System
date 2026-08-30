@@ -14,6 +14,11 @@ import {
 } from 'typeorm';
 import { EmploymentStatus } from '../enums/employment-status.enum';
 import { User } from 'src/modules/users/entities/user.entity';
+import { Attendance } from '../../attendance/entities/attendance.entity';
+import { Leave } from '../../leaves/entities/leave.entity';
+import { Payroll } from '../../payroll/entities/payroll.entity';
+import { Bonus } from '../../payroll/entities/bonus.entity';
+import { Deduction } from '../../payroll/entities/deduction.entity';
 
 @Entity('employees')
 export class Employee extends BaseEntity {
@@ -62,6 +67,14 @@ export class Employee extends BaseEntity {
   hireDate!: Date;
 
   @Column({
+    type: 'numeric',
+    precision: 12,
+    scale: 2,
+    default: 0,
+  })
+  baseSalary!: string;
+
+  @Column({
     type: 'enum',
     enum: EmploymentStatus,
     default: EmploymentStatus.ACTIVE,
@@ -107,4 +120,19 @@ export class Employee extends BaseEntity {
 
   @OneToMany(() => Employee, (employee) => employee.manager)
   subordinates!: Employee[];
+
+  @OneToMany(() => Attendance, (attendance) => attendance.employee)
+  attendances!: Attendance[];
+
+  @OneToMany(() => Leave, (leave) => leave.employee)
+  leaves!: Leave[];
+
+  @OneToMany(() => Payroll, (payroll) => payroll.employee)
+  payrolls!: Payroll[];
+
+  @OneToMany(() => Bonus, (bonus) => bonus.employee)
+  bonuses!: Bonus[];
+
+  @OneToMany(() => Deduction, (deduction) => deduction.employee)
+  deductions!: Deduction[];
 }

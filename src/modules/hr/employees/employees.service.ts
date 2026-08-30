@@ -47,6 +47,7 @@ export class EmployeesService {
       address,
       dateOfBirth,
       hireDate,
+      baseSalary,
     } = createEmployeeDto;
 
     const existingEmployee =
@@ -64,6 +65,7 @@ export class EmployeesService {
       address: address ?? null,
       dateOfBirth: dateOfBirth ?? null,
       hireDate,
+      baseSalary: baseSalary !== undefined ? baseSalary.toString() : '0',
     });
 
     const savedEmployee = await this.employeesRepository.save(employee);

@@ -52,6 +52,7 @@ export class EmployeesController {
    */
   @Get()
   @Permissions(PERMISSIONS.EMPLOYEES.READ)
+  @SuccessMessage('Employees retrieved successfully')
   findAll(
     @Query() query: GetEmployeesQueryDto,
   ): Promise<PaginatedResponse<EmployeeResponseDto>> {
@@ -63,6 +64,7 @@ export class EmployeesController {
    */
   @Get(':id')
   @Permissions(PERMISSIONS.EMPLOYEES.READ)
+  @SuccessMessage('Employee retrieved successfully')
   findOne(
     @Param('id', ParseUUIDPipe) id: string,
   ): Promise<EmployeeResponseDto> {

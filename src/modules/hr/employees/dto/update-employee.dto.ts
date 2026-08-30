@@ -1,4 +1,11 @@
-import { IsDateString, IsOptional, IsString, MaxLength } from 'class-validator';
+import {
+  IsDate,
+  IsDecimal,
+  IsOptional,
+  IsString,
+  MaxLength,
+} from 'class-validator';
+import { Type } from 'class-transformer';
 
 export class UpdateEmployeeDto {
   @IsOptional()
@@ -22,10 +29,18 @@ export class UpdateEmployeeDto {
   address?: string;
 
   @IsOptional()
-  @IsDateString()
-  dateOfBirth?: string;
+  @Type(() => Date)
+  @IsDate()
+  dateOfBirth?: Date;
 
   @IsOptional()
-  @IsDateString()
-  hireDate?: string;
+  @Type(() => Date)
+  @IsDate()
+  hireDate?: Date;
+
+  @IsOptional()
+  @IsDecimal({
+    decimal_digits: '0,2',
+  })
+  baseSalary?: string;
 }

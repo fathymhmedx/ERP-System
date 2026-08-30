@@ -13,6 +13,7 @@ export class EmployeeMapper {
       address: employee.address,
       dateOfBirth: employee.dateOfBirth,
       hireDate: employee.hireDate,
+      baseSalary: employee.baseSalary,
       employmentStatus: employee.employmentStatus,
 
       user: employee.user

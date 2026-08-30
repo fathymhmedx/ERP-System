@@ -2,6 +2,7 @@ import { SimpleDepartmentDto } from 'src/common/dto/simple-department.dto';
 import { SimplePositionDto } from 'src/common/dto/simple-position.dto';
 import { SimpleEmployeeDto } from 'src/common/dto/simple-employee.dto';
 import { SimpleUserDto } from 'src/common/dto/simple-user.dto';
+import { EmploymentStatus } from '../enums/employment-status.enum';
 
 export class EmployeeResponseDto {
   id!: string;
@@ -20,7 +21,9 @@ export class EmployeeResponseDto {
 
   hireDate!: Date;
 
-  employmentStatus!: string;
+  baseSalary!: string;
+
+  employmentStatus!: EmploymentStatus;
 
   user!: SimpleUserDto | null;
 
