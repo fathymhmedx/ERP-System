@@ -16,7 +16,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"fullName\": \"Fathy mohamed\",\r\n    \"email\": \"fathymhmed21@gmail.com\",\r\n    \"password\": \"Fathy@123\"\r\n}",
+              "raw": "{\r\n    \"fullName\": \"payroll test\",\r\n    \"email\": \"payroll1@gmail.com\",\r\n    \"password\": \"Payroll@123\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -24,9 +24,9 @@
               }
             },
             "url": {
-              "raw": "{{BASE_URL}}/api/v1/auth/signup",
+              "raw": "{{BASE_URL}}/auth/signup",
               "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "auth", "signup"]
+              "path": ["auth", "signup"]
             }
           },
           "response": []
@@ -51,7 +51,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n// USER\r\n    // \"email\": \"fathymhmed21@gmail.com\",\r\n    // \"password\": \"Fathy@1234\"\r\n\r\n// ADMIN\r\n    \"email\": \"admin@erp.com\",\r\n    \"password\": \"Admin@123456\"\r\n}",
+              "raw": "{\r\n// test Hr module\r\n    // \"email\": \"payroll1@gmail.com\",\r\n    // \"password\": \"Payroll@123\"\r\n// USER\r\n    // \"email\": \"fathymhmed21@gmail.com\",\r\n    // \"password\": \"Fathy@1234\"\r\n\r\n// ADMIN\r\n    \"email\": \"admin@erp.com\",\r\n    \"password\": \"Admin@123456\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -59,9 +59,9 @@
               }
             },
             "url": {
-              "raw": "{{BASE_URL}}/api/v1/auth/login",
+              "raw": "{{BASE_URL}}/auth/login",
               "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "auth", "login"]
+              "path": ["auth", "login"]
             }
           },
           "response": []
@@ -94,9 +94,9 @@
             "method": "POST",
             "header": [],
             "url": {
-              "raw": "{{BASE_URL}}/api/v1/auth/refresh",
+              "raw": "{{BASE_URL}}/auth/refresh",
               "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "auth", "refresh"]
+              "path": ["auth", "refresh"]
             }
           },
           "response": []
@@ -127,9 +127,9 @@
             "method": "POST",
             "header": [],
             "url": {
-              "raw": "{{BASE_URL}}/api/v1/auth/logout",
+              "raw": "{{BASE_URL}}/auth/logout",
               "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "auth", "logout"]
+              "path": ["auth", "logout"]
             }
           },
           "response": []
@@ -160,9 +160,9 @@
             "method": "POST",
             "header": [],
             "url": {
-              "raw": "{{BASE_URL}}/api/v1/auth/logout-all",
+              "raw": "{{BASE_URL}}/auth/logout-all",
               "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "auth", "logout-all"]
+              "path": ["auth", "logout-all"]
             }
           },
           "response": []
@@ -189,9 +189,9 @@
               }
             },
             "url": {
-              "raw": "{{BASE_URL}}/api/v1/auth/change-password",
+              "raw": "{{BASE_URL}}/auth/change-password",
               "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "auth", "change-password"]
+              "path": ["auth", "change-password"]
             }
           },
           "response": []
@@ -207,9 +207,9 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{BASE_URL}}/api/v1/users/me",
+              "raw": "{{BASE_URL}}/users/me",
               "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "users", "me"]
+              "path": ["users", "me"]
             }
           },
           "response": []
@@ -220,9 +220,9 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{BASE_URL}}/api/v1/users",
+              "raw": "{{BASE_URL}}/users",
               "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "users"],
+              "path": ["users"],
               "query": [
                 {
                   "key": "page",
@@ -260,14 +260,9 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{BASE_URL}}/api/v1/users/d9fbd586-360e-4eba-b81f-4b0f262a5dd9",
+              "raw": "{{BASE_URL}}/users/d9fbd586-360e-4eba-b81f-4b0f262a5dd9",
               "host": ["{{BASE_URL}}"],
-              "path": [
-                "api",
-                "v1",
-                "users",
-                "d9fbd586-360e-4eba-b81f-4b0f262a5dd9"
-              ]
+              "path": ["users", "d9fbd586-360e-4eba-b81f-4b0f262a5dd9"]
             }
           },
           "response": []
@@ -278,11 +273,9 @@
             "method": "PATCH",
             "header": [],
             "url": {
-              "raw": "{{BASE_URL}}/api/v1/users/2dc8e0c9-5b67-492e-b587-142670450542/activate",
+              "raw": "{{BASE_URL}}/users/2dc8e0c9-5b67-492e-b587-142670450542/activate",
               "host": ["{{BASE_URL}}"],
               "path": [
-                "api",
-                "v1",
                 "users",
                 "2dc8e0c9-5b67-492e-b587-142670450542",
                 "activate"
@@ -297,11 +290,9 @@
             "method": "PATCH",
             "header": [],
             "url": {
-              "raw": "{{BASE_URL}}/api/v1/users/2dc8e0c9-5b67-492e-b587-142670450542/deactivate",
+              "raw": "{{BASE_URL}}/users/2dc8e0c9-5b67-492e-b587-142670450542/deactivate",
               "host": ["{{BASE_URL}}"],
               "path": [
-                "api",
-                "v1",
                 "users",
                 "2dc8e0c9-5b67-492e-b587-142670450542",
                 "deactivate"
@@ -325,11 +316,9 @@
               }
             },
             "url": {
-              "raw": "{{BASE_URL}}/api/v1/users/2dc8e0c9-5b67-492e-b587-142670450542/reset-password",
+              "raw": "{{BASE_URL}}/users/2dc8e0c9-5b67-492e-b587-142670450542/reset-password",
               "host": ["{{BASE_URL}}"],
               "path": [
-                "api",
-                "v1",
                 "users",
                 "2dc8e0c9-5b67-492e-b587-142670450542",
                 "reset-password"
@@ -353,9 +342,9 @@
               }
             },
             "url": {
-              "raw": "{{BASE_URL}}/api/v1/users",
+              "raw": "{{BASE_URL}}/users",
               "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "users"]
+              "path": ["users"]
             }
           },
           "response": []
@@ -380,9 +369,9 @@
               }
             },
             "url": {
-              "raw": "{{BASE_URL}}/api/v1/roles",
+              "raw": "{{BASE_URL}}/roles",
               "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "roles"]
+              "path": ["roles"]
             }
           },
           "response": []
@@ -393,9 +382,9 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{BASE_URL}}/api/v1/roles",
+              "raw": "{{BASE_URL}}/roles",
               "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "roles"]
+              "path": ["roles"]
             }
           },
           "response": []
@@ -406,14 +395,9 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{BASE_URL}}/api/v1/roles/7c980a50-5894-4ef6-a591-1d4c32a7c287",
+              "raw": "{{BASE_URL}}/roles/7c980a50-5894-4ef6-a591-1d4c32a7c287",
               "host": ["{{BASE_URL}}"],
-              "path": [
-                "api",
-                "v1",
-                "roles",
-                "7c980a50-5894-4ef6-a591-1d4c32a7c287"
-              ]
+              "path": ["roles", "7c980a50-5894-4ef6-a591-1d4c32a7c287"]
             }
           },
           "response": []
@@ -433,14 +417,9 @@
               }
             },
             "url": {
-              "raw": "{{BASE_URL}}/api/v1/roles/d9fbd586-360e-4eba-b81f-4b0f262a5dd9",
+              "raw": "{{BASE_URL}}/roles/d9fbd586-360e-4eba-b81f-4b0f262a5dd9",
               "host": ["{{BASE_URL}}"],
-              "path": [
-                "api",
-                "v1",
-                "roles",
-                "d9fbd586-360e-4eba-b81f-4b0f262a5dd9"
-              ]
+              "path": ["roles", "d9fbd586-360e-4eba-b81f-4b0f262a5dd9"]
             }
           },
           "response": []
@@ -451,14 +430,9 @@
             "method": "DELETE",
             "header": [],
             "url": {
-              "raw": "{{BASE_URL}}/api/v1/roles/2529a9d3-3d62-49b0-978d-b321e017d2b8",
+              "raw": "{{BASE_URL}}/roles/2529a9d3-3d62-49b0-978d-b321e017d2b8",
               "host": ["{{BASE_URL}}"],
-              "path": [
-                "api",
-                "v1",
-                "roles",
-                "2529a9d3-3d62-49b0-978d-b321e017d2b8"
-              ]
+              "path": ["roles", "2529a9d3-3d62-49b0-978d-b321e017d2b8"]
             }
           },
           "response": []
@@ -474,13 +448,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{BASE_URL}}/api/v1/Permissions?module=departments",
+              "raw": "{{BASE_URL}}/Permissions?module=attendance",
               "host": ["{{BASE_URL}}"],
-              "path": ["api", "v1", "Permissions"],
+              "path": ["Permissions"],
               "query": [
                 {
                   "key": "module",
-                  "value": "departments"
+                  "value": "attendance"
                 }
               ]
             }
@@ -493,14 +467,9 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{BASE_URL}}/api/v1/Permissions/29ef904b-747c-4efe-b84e-58081f52b2bb",
+              "raw": "{{BASE_URL}}/Permissions/29ef904b-747c-4efe-b84e-58081f52b2bb",
               "host": ["{{BASE_URL}}"],
-              "path": [
-                "api",
-                "v1",
-                "Permissions",
-                "29ef904b-747c-4efe-b84e-58081f52b2bb"
-              ]
+              "path": ["Permissions", "29ef904b-747c-4efe-b84e-58081f52b2bb"]
             }
           },
           "response": []
@@ -517,7 +486,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"permissionId\": \"252d0b5a-c2eb-4874-ace8-454ae98a2bca\"\r\n}",
+              "raw": "{\r\n    \"permissionId\": \"379556d7-e080-4248-ba0d-7b0bfda1e103\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -525,11 +494,9 @@
               }
             },
             "url": {
-              "raw": "{{BASE_URL}}/api/v1/roles/7c980a50-5894-4ef6-a591-1d4c32a7c287/permissions",
+              "raw": "{{BASE_URL}}/roles/7c980a50-5894-4ef6-a591-1d4c32a7c287/permissions",
               "host": ["{{BASE_URL}}"],
               "path": [
-                "api",
-                "v1",
                 "roles",
                 "7c980a50-5894-4ef6-a591-1d4c32a7c287",
                 "permissions"
@@ -553,11 +520,9 @@
               }
             },
             "url": {
-              "raw": "{{BASE_URL}}/api/v1/roles/d9fbd586-360e-4eba-b81f-4b0f262a5dd9/permissions/a44ebf23-8294-4fa0-85ae-371c67ebc04a",
+              "raw": "{{BASE_URL}}/roles/d9fbd586-360e-4eba-b81f-4b0f262a5dd9/permissions/a44ebf23-8294-4fa0-85ae-371c67ebc04a",
               "host": ["{{BASE_URL}}"],
               "path": [
-                "api",
-                "v1",
                 "roles",
                 "d9fbd586-360e-4eba-b81f-4b0f262a5dd9",
                 "permissions",
@@ -590,9 +555,9 @@
                   }
                 },
                 "url": {
-                  "raw": "{{BASE_URL}}/api/v1/departments",
+                  "raw": "{{BASE_URL}}/departments",
                   "host": ["{{BASE_URL}}"],
-                  "path": ["api", "v1", "departments"]
+                  "path": ["departments"]
                 }
               },
               "response": []
@@ -603,9 +568,9 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{BASE_URL}}/api/v1/departments",
+                  "raw": "{{BASE_URL}}/departments",
                   "host": ["{{BASE_URL}}"],
-                  "path": ["api", "v1", "departments"]
+                  "path": ["departments"]
                 }
               },
               "response": []
@@ -616,11 +581,9 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{BASE_URL}}/api/v1/departments/c68492f0-00bb-43af-8a63-904d78de836e",
+                  "raw": "{{BASE_URL}}/departments/c68492f0-00bb-43af-8a63-904d78de836e",
                   "host": ["{{BASE_URL}}"],
                   "path": [
-                    "api",
-                    "v1",
                     "departments",
                     "c68492f0-00bb-43af-8a63-904d78de836e"
                   ]
@@ -643,11 +606,9 @@
                   }
                 },
                 "url": {
-                  "raw": "{{BASE_URL}}/api/v1/departments/c68492f0-00bb-43af-8a63-904d78de836e",
+                  "raw": "{{BASE_URL}}/departments/c68492f0-00bb-43af-8a63-904d78de836e",
                   "host": ["{{BASE_URL}}"],
                   "path": [
-                    "api",
-                    "v1",
                     "departments",
                     "c68492f0-00bb-43af-8a63-904d78de836e"
                   ]
@@ -661,11 +622,9 @@
                 "method": "DELETE",
                 "header": [],
                 "url": {
-                  "raw": "{{BASE_URL}}/api/v1/departments/c68492f0-00bb-43af-8a63-904d78de836e",
+                  "raw": "{{BASE_URL}}/departments/c68492f0-00bb-43af-8a63-904d78de836e",
                   "host": ["{{BASE_URL}}"],
                   "path": [
-                    "api",
-                    "v1",
                     "departments",
                     "c68492f0-00bb-43af-8a63-904d78de836e"
                   ]
@@ -693,9 +652,9 @@
                   }
                 },
                 "url": {
-                  "raw": "{{BASE_URL}}/api/v1/positions",
+                  "raw": "{{BASE_URL}}/positions",
                   "host": ["{{BASE_URL}}"],
-                  "path": ["api", "v1", "positions"]
+                  "path": ["positions"]
                 }
               },
               "response": []
@@ -706,9 +665,9 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{BASE_URL}}/api/v1/positions",
+                  "raw": "{{BASE_URL}}/positions",
                   "host": ["{{BASE_URL}}"],
-                  "path": ["api", "v1", "positions"]
+                  "path": ["positions"]
                 }
               },
               "response": []
@@ -719,14 +678,9 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{BASE_URL}}/api/v1/positions/61784b65-b94c-4f3d-9fe6-b90dd7a1103e",
+                  "raw": "{{BASE_URL}}/positions/61784b65-b94c-4f3d-9fe6-b90dd7a1103e",
                   "host": ["{{BASE_URL}}"],
-                  "path": [
-                    "api",
-                    "v1",
-                    "positions",
-                    "61784b65-b94c-4f3d-9fe6-b90dd7a1103e"
-                  ]
+                  "path": ["positions", "61784b65-b94c-4f3d-9fe6-b90dd7a1103e"]
                 }
               },
               "response": []
@@ -746,14 +700,9 @@
                   }
                 },
                 "url": {
-                  "raw": "{{BASE_URL}}/api/v1/positions/b69d8999-092a-4ec0-88f0-c7fecbb2b9b9",
+                  "raw": "{{BASE_URL}}/positions/b69d8999-092a-4ec0-88f0-c7fecbb2b9b9",
                   "host": ["{{BASE_URL}}"],
-                  "path": [
-                    "api",
-                    "v1",
-                    "positions",
-                    "b69d8999-092a-4ec0-88f0-c7fecbb2b9b9"
-                  ]
+                  "path": ["positions", "b69d8999-092a-4ec0-88f0-c7fecbb2b9b9"]
                 }
               },
               "response": []
@@ -764,14 +713,9 @@
                 "method": "DELETE",
                 "header": [],
                 "url": {
-                  "raw": "{{BASE_URL}}/api/v1/positions/61784b65-b94c-4f3d-9fe6-b90dd7a1103e",
+                  "raw": "{{BASE_URL}}/positions/61784b65-b94c-4f3d-9fe6-b90dd7a1103e",
                   "host": ["{{BASE_URL}}"],
-                  "path": [
-                    "api",
-                    "v1",
-                    "positions",
-                    "61784b65-b94c-4f3d-9fe6-b90dd7a1103e"
-                  ]
+                  "path": ["positions", "61784b65-b94c-4f3d-9fe6-b90dd7a1103e"]
                 }
               },
               "response": []
@@ -788,7 +732,7 @@
                 "header": [],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n  \"employeeNumber\": \"EMP-0004\",\r\n  \"firstName\": \"Ahmed\",\r\n  \"lastName\": \"fathy\",\r\n  \"phone\": \"+201000000000\",\r\n  \"address\": \"Mansoura\",\r\n  \"dateOfBirth\": \"2003-01-15\",\r\n  \"hireDate\": \"2026-08-27\"\r\n//   \"departmentId\": \"9fca5bc2-ef8c-42ff-9572-ef8e97a16235\",\r\n//   \"positionId\": \"b69d8999-092a-4ec0-88f0-c7fecbb2b9b9\"\r\n}",
+                  "raw": "{\r\n  \"employeeNumber\": \"EMP-0005\",\r\n  \"firstName\": \"Payroll\",\r\n  \"lastName\": \"test\",\r\n  \"phone\": \"+201000000000\",\r\n  \"address\": \"Mansoura\",\r\n  \"dateOfBirth\": \"2003-01-15\",\r\n  \"hireDate\": \"2026-08-27\",\r\n  \"baseSalary\": \"5000\"\r\n//   \"departmentId\": \"9fca5bc2-ef8c-42ff-9572-ef8e97a16235\",\r\n//   \"positionId\": \"b69d8999-092a-4ec0-88f0-c7fecbb2b9b9\"\r\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -796,9 +740,9 @@
                   }
                 },
                 "url": {
-                  "raw": "{{BASE_URL}}/api/v1/employees",
+                  "raw": "{{BASE_URL}}/employees",
                   "host": ["{{BASE_URL}}"],
-                  "path": ["api", "v1", "employees"]
+                  "path": ["employees"]
                 }
               },
               "response": []
@@ -809,9 +753,9 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{BASE_URL}}/api/v1/employees?page=1&limit=10",
+                  "raw": "{{BASE_URL}}/employees",
                   "host": ["{{BASE_URL}}"],
-                  "path": ["api", "v1", "employees"],
+                  "path": ["employees"],
                   "query": [
                     {
                       "key": "departmentId",
@@ -820,11 +764,13 @@
                     },
                     {
                       "key": "page",
-                      "value": "1"
+                      "value": "1",
+                      "disabled": true
                     },
                     {
                       "key": "limit",
-                      "value": "10"
+                      "value": "10",
+                      "disabled": true
                     },
                     {
                       "key": "positionId",
@@ -834,6 +780,11 @@
                     {
                       "key": "employmentStatus",
                       "value": "active",
+                      "disabled": true
+                    },
+                    {
+                      "key": "search",
+                      "value": "EMP-0005",
                       "disabled": true
                     }
                   ]
@@ -847,14 +798,9 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{BASE_URL}}/api/v1/employees/e01b4fc7-aca7-416d-b208-0d0de6d6efad",
+                  "raw": "{{BASE_URL}}/employees/e01b4fc7-aca7-416d-b208-0d0de6d6efad",
                   "host": ["{{BASE_URL}}"],
-                  "path": [
-                    "api",
-                    "v1",
-                    "employees",
-                    "e01b4fc7-aca7-416d-b208-0d0de6d6efad"
-                  ]
+                  "path": ["employees", "e01b4fc7-aca7-416d-b208-0d0de6d6efad"]
                 }
               },
               "response": []
@@ -866,7 +812,7 @@
                 "header": [],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n  \"firstName\": \"Ahmed test\",\r\n  \"lastName\": \"Ali\",\r\n  \"phone\": \"+201111111111\",\r\n  \"address\": \"Mansoura\",\r\n  \"dateOfBirth\": \"2003-01-15\",\r\n  \"hireDate\": \"2026-08-27\"\r\n}",
+                  "raw": "{\r\n  \"firstName\": \"Payroll\",\r\n  \"lastName\": \"test\",\r\n  \"phone\": \"+201111111111\",\r\n  \"address\": \"Mansoura\",\r\n  \"dateOfBirth\": \"2003-01-15\",\r\n  \"hireDate\": \"2026-08-27\",\r\n  \"baseSalary\": \"10000\"\r\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -874,14 +820,9 @@
                   }
                 },
                 "url": {
-                  "raw": "{{BASE_URL}}/api/v1/employees/7b3ae240-aa6e-4870-822d-7b3c31e1e1c7",
+                  "raw": "{{BASE_URL}}/employees/a34b8e2f-f3fc-4e82-b6bf-f14119e7f307",
                   "host": ["{{BASE_URL}}"],
-                  "path": [
-                    "api",
-                    "v1",
-                    "employees",
-                    "7b3ae240-aa6e-4870-822d-7b3c31e1e1c7"
-                  ]
+                  "path": ["employees", "a34b8e2f-f3fc-4e82-b6bf-f14119e7f307"]
                 }
               },
               "response": []
@@ -901,13 +842,11 @@
                   }
                 },
                 "url": {
-                  "raw": "{{BASE_URL}}/api/v1/employees/e01b4fc7-aca7-416d-b208-0d0de6d6efad/department",
+                  "raw": "{{BASE_URL}}/employees/a34b8e2f-f3fc-4e82-b6bf-f14119e7f307/department",
                   "host": ["{{BASE_URL}}"],
                   "path": [
-                    "api",
-                    "v1",
                     "employees",
-                    "e01b4fc7-aca7-416d-b208-0d0de6d6efad",
+                    "a34b8e2f-f3fc-4e82-b6bf-f14119e7f307",
                     "department"
                   ]
                 }
@@ -921,7 +860,7 @@
                 "header": [],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n  \"positionId\": \"b69d8999-092a-4ec0-88f0-c7fecbb2b9b9\"\r\n}",
+                  "raw": "{\r\n  \"positionId\": \"311ad76d-62c2-4ec2-9b79-18092c4b5d89\"\r\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -929,13 +868,11 @@
                   }
                 },
                 "url": {
-                  "raw": "{{BASE_URL}}/api/v1/employees/e01b4fc7-aca7-416d-b208-0d0de6d6efad/position",
+                  "raw": "{{BASE_URL}}/employees/a34b8e2f-f3fc-4e82-b6bf-f14119e7f307/position",
                   "host": ["{{BASE_URL}}"],
                   "path": [
-                    "api",
-                    "v1",
                     "employees",
-                    "e01b4fc7-aca7-416d-b208-0d0de6d6efad",
+                    "a34b8e2f-f3fc-4e82-b6bf-f14119e7f307",
                     "position"
                   ]
                 }
@@ -957,11 +894,9 @@
                   }
                 },
                 "url": {
-                  "raw": "{{BASE_URL}}/api/v1/employees/83d7fbbe-317b-4d95-a224-fb864947e88c/manager",
+                  "raw": "{{BASE_URL}}/employees/83d7fbbe-317b-4d95-a224-fb864947e88c/manager",
                   "host": ["{{BASE_URL}}"],
                   "path": [
-                    "api",
-                    "v1",
                     "employees",
                     "83d7fbbe-317b-4d95-a224-fb864947e88c",
                     "manager"
@@ -977,7 +912,7 @@
                 "header": [],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n  \"userId\": \"d9421699-c7a7-4d03-a2ac-6ede06288787\"\r\n}",
+                  "raw": "{\r\n  \"userId\": \"2dc8e0c9-5b67-492e-b587-142670450542\"\r\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -985,15 +920,498 @@
                   }
                 },
                 "url": {
-                  "raw": "{{BASE_URL}}/api/v1/employees/e01b4fc7-aca7-416d-b208-0d0de6d6efad/user",
+                  "raw": "{{BASE_URL}}/employees/7b3ae240-aa6e-4870-822d-7b3c31e1e1c7/user",
                   "host": ["{{BASE_URL}}"],
                   "path": [
-                    "api",
-                    "v1",
                     "employees",
-                    "e01b4fc7-aca7-416d-b208-0d0de6d6efad",
+                    "7b3ae240-aa6e-4870-822d-7b3c31e1e1c7",
                     "user"
                   ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get Me",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{BASE_URL}}/employees/me",
+                  "host": ["{{BASE_URL}}"],
+                  "path": ["employees", "me"]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Attendance",
+          "item": [
+            {
+              "name": "Check In",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{BASE_URL}}/attendance/check-in",
+                  "host": ["{{BASE_URL}}"],
+                  "path": ["attendance", "check-in"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Check Out",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "{{BASE_URL}}/attendance/check-out",
+                  "host": ["{{BASE_URL}}"],
+                  "path": ["attendance", "check-out"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get Attendance",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{BASE_URL}}/attendance?page=1&limit=5&employeeId={{employeeId}}&status=late&startDate=2026-08-01&endDate=2026-08-30",
+                  "host": ["{{BASE_URL}}"],
+                  "path": ["attendance"],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "5"
+                    },
+                    {
+                      "key": "employeeId",
+                      "value": "{{employeeId}}"
+                    },
+                    {
+                      "key": "status",
+                      "value": "late"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "2026-08-01"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "2026-08-30"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get Monthly Report",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{BASE_URL}}/attendance/reports/monthly",
+                  "host": ["{{BASE_URL}}"],
+                  "path": ["attendance", "reports", "monthly"],
+                  "query": [
+                    {
+                      "key": "employeeId",
+                      "value": "{{employeeId}}",
+                      "disabled": true
+                    },
+                    {
+                      "key": "year",
+                      "value": "2026",
+                      "disabled": true
+                    },
+                    {
+                      "key": "month",
+                      "value": "8",
+                      "disabled": true
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get Attendance By Employee",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{BASE_URL}}/attendance/employee/7b3ae240-aa6e-4870-822d-7b3c31e1e1c7",
+                  "host": ["{{BASE_URL}}"],
+                  "path": [
+                    "attendance",
+                    "employee",
+                    "7b3ae240-aa6e-4870-822d-7b3c31e1e1c7"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Leaves",
+          "item": [
+            {
+              "name": "Request Leave",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"startDate\": \"2026-09-01\",\n  \"endDate\": \"2026-09-05\",\n  \"reason\": \"Annual Vacation\"\n}"
+                },
+                "url": {
+                  "raw": "{{BASE_URL}}/leaves",
+                  "host": ["{{BASE_URL}}"],
+                  "path": ["leaves"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get All Leaves",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{BASE_URL}}/leaves?page=1&limit=10",
+                  "host": ["{{BASE_URL}}"],
+                  "path": ["leaves"],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Approve Leave",
+              "request": {
+                "method": "PATCH",
+                "header": [],
+                "url": {
+                  "raw": "{{BASE_URL}}/leaves/{{leaveId}}/approve",
+                  "host": ["{{BASE_URL}}"],
+                  "path": ["leaves", "{{leaveId}}", "approve"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Reject Leave",
+              "request": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"rejectionReason\": \"Project deadline approaching\"\n}"
+                },
+                "url": {
+                  "raw": "{{BASE_URL}}/leaves/{{leaveId}}/reject",
+                  "host": ["{{BASE_URL}}"],
+                  "path": ["leaves", "{{leaveId}}", "reject"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Cancel Leave",
+              "request": {
+                "method": "PATCH",
+                "header": [],
+                "url": {
+                  "raw": "{{BASE_URL}}/leaves/{{leaveId}}/cancel",
+                  "host": ["{{BASE_URL}}"],
+                  "path": ["leaves", "{{leaveId}}", "cancel"]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Payroll",
+          "item": [
+            {
+              "name": "Bounses",
+              "item": [
+                {
+                  "name": "Get Bounses",
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{BASE_URL}}/payroll/bonuses?employeeId=a34b8e2f-f3fc-4e82-b6bf-f14119e7f307&year=2026",
+                      "host": ["{{BASE_URL}}"],
+                      "path": ["payroll", "bonuses"],
+                      "query": [
+                        {
+                          "key": "page",
+                          "value": "1",
+                          "disabled": true
+                        },
+                        {
+                          "key": "limit",
+                          "value": "2",
+                          "disabled": true
+                        },
+                        {
+                          "key": "employeeId",
+                          "value": "a34b8e2f-f3fc-4e82-b6bf-f14119e7f307"
+                        },
+                        {
+                          "key": "year",
+                          "value": "2026"
+                        },
+                        {
+                          "key": "month",
+                          "value": "9",
+                          "disabled": true
+                        }
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Create Bonus",
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"employeeId\": \"a34b8e2f-f3fc-4e82-b6bf-f14119e7f307\",\n  \"amount\": \"500.00\",\n  \"reason\": \"Transportation allowance\",\n  \"date\": \"2026-08-31\"\n}"
+                    },
+                    "url": {
+                      "raw": "{{BASE_URL}}/payroll/bonuses",
+                      "host": ["{{BASE_URL}}"],
+                      "path": ["payroll", "bonuses"]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Delete Bonus",
+                  "request": {
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{BASE_URL}}/payroll/bonuses/1e87a8a9-e698-41d1-9aa2-d21cfd37c1fa",
+                      "host": ["{{BASE_URL}}"],
+                      "path": [
+                        "payroll",
+                        "bonuses",
+                        "1e87a8a9-e698-41d1-9aa2-d21cfd37c1fa"
+                      ]
+                    }
+                  },
+                  "response": []
+                }
+              ]
+            },
+            {
+              "name": "Deductions",
+              "item": [
+                {
+                  "name": "Create Deduction",
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"employeeId\": \"a34b8e2f-f3fc-4e82-b6bf-f14119e7f307\",\n  \"amount\": \"1000.00\",\n  \"reason\": \"Previous month deduction\",\n  \"date\": \"2026-07-10\"\n}"
+                    },
+                    "url": {
+                      "raw": "{{BASE_URL}}/payroll/deductions",
+                      "host": ["{{BASE_URL}}"],
+                      "path": ["payroll", "deductions"]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Get Deductions",
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{BASE_URL}}/payroll/deductions?employeeId=a34b8e2f-f3fc-4e82-b6bf-f14119e7f307",
+                      "host": ["{{BASE_URL}}"],
+                      "path": ["payroll", "deductions"],
+                      "query": [
+                        {
+                          "key": "page",
+                          "value": "1",
+                          "disabled": true
+                        },
+                        {
+                          "key": "limit",
+                          "value": "2",
+                          "disabled": true
+                        },
+                        {
+                          "key": "employeeId",
+                          "value": "a34b8e2f-f3fc-4e82-b6bf-f14119e7f307"
+                        },
+                        {
+                          "key": "year",
+                          "value": "2026",
+                          "disabled": true
+                        },
+                        {
+                          "key": "month",
+                          "value": "9",
+                          "disabled": true
+                        }
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Delete Deduction",
+                  "request": {
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{BASE_URL}}/payroll/deductions/7db552d1-c53a-4ff0-969a-6034d9b42b46",
+                      "host": ["{{BASE_URL}}"],
+                      "path": [
+                        "payroll",
+                        "deductions",
+                        "7db552d1-c53a-4ff0-969a-6034d9b42b46"
+                      ]
+                    }
+                  },
+                  "response": []
+                }
+              ]
+            },
+            {
+              "name": "Generate Payroll",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"employeeId\": \"a34b8e2f-f3fc-4e82-b6bf-f14119e7f307\",\n  \"year\": 2026,\n  \"month\": 9\n}"
+                },
+                "url": {
+                  "raw": "{{BASE_URL}}/payroll/generate",
+                  "host": ["{{BASE_URL}}"],
+                  "path": ["payroll", "generate"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get Payrolls",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{BASE_URL}}/payroll?page=1&limit=10&search=test&employeeId=a34b8e2f-f3fc-4e82-b6bf-f14119e7f307&year=2026&month=9&status=generated",
+                  "host": ["{{BASE_URL}}"],
+                  "path": ["payroll"],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "search",
+                      "value": "test"
+                    },
+                    {
+                      "key": "employeeId",
+                      "value": "a34b8e2f-f3fc-4e82-b6bf-f14119e7f307"
+                    },
+                    {
+                      "key": "year",
+                      "value": "2026"
+                    },
+                    {
+                      "key": "month",
+                      "value": "9"
+                    },
+                    {
+                      "key": "status",
+                      "value": "generated"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get Payroll By ID",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{BASE_URL}}/payroll/93766d4d-c124-480e-ab52-e058670f1bbd",
+                  "host": ["{{BASE_URL}}"],
+                  "path": ["payroll", "93766d4d-c124-480e-ab52-e058670f1bbd"]
                 }
               },
               "response": []
