@@ -14,6 +14,8 @@ import { APP_FILTER, APP_GUARD } from '@nestjs/core';
 import { ScheduleModule } from '@nestjs/schedule';
 import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 import { HrModule } from './modules/hr/hr.module';
+import { RedisModule } from './common/redis/redis.module';
+import { RbacCacheModule } from './common/cache/rbac-cache.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -21,6 +23,8 @@ import { HrModule } from './modules/hr/hr.module';
       isGlobal: true,
       validationSchema: envValidationSchema,
     }),
+    RedisModule,
+    RbacCacheModule,
     TypeOrmModule.forRootAsync(databaseConfig),
     AuthModule,
     UsersModule,

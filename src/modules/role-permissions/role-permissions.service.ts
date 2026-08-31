@@ -8,6 +8,7 @@ import { RolesRepository } from '../roles/roles.repository';
 import { PermissionsRepository } from '../permissions/permissions.repository';
 import { RolePermissionMapper } from './mapper/RolePermission.mapper';
 import { RolePermissionResponseDto } from './dto';
+import { RbacCacheService } from 'src/common/cache/rbac-cache.service';
 
 @Injectable()
 export class RolePermissionsService {
@@ -15,6 +16,7 @@ export class RolePermissionsService {
     private readonly rolePermissionsRepository: RolePermissionsRepository,
     private readonly rolesRepository: RolesRepository,
     private readonly permissionsRepository: PermissionsRepository,
+    private readonly rbacCacheService: RbacCacheService,
   ) {}
 
   async assignPermission(
@@ -46,6 +48,9 @@ export class RolePermissionsService {
 
     const savedRolePermission =
       await this.rolePermissionsRepository.save(rolePermission);
+
+    // Invalidate permission cache safely
+    await this.rbacCacheService.invalidateRolePermissionsSafely(roleId);
 
     const result = await this.rolePermissionsRepository.findById(
       savedRolePermission.id,
@@ -87,5 +92,8 @@ export class RolePermissionsService {
         id: permissionId,
       },
     });
+
+    // Invalidate permission cache safely
+    await this.rbacCacheService.invalidateRolePermissionsSafely(roleId);
   }
 }

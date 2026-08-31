@@ -9,10 +9,14 @@ import { RolesRepository } from './roles.repository';
 import { CreateRoleDto, UpdateRoleDto, RoleResponseDto } from './dto';
 import { RoleMapper } from './mappers/role.mapper';
 import { SYSTEM_ROLES } from 'src/common/constants/system-roles.constants';
+import { RbacCacheService } from 'src/common/cache/rbac-cache.service';
 
 @Injectable()
 export class RolesService {
-  constructor(private readonly rolesRepository: RolesRepository) {}
+  constructor(
+    private readonly rolesRepository: RolesRepository,
+    private readonly rbacCacheService: RbacCacheService,
+  ) {}
 
   async create(createRoleDto: CreateRoleDto): Promise<RoleResponseDto> {
     const { name } = createRoleDto;
@@ -56,8 +60,8 @@ export class RolesService {
     await this.findOne(id);
 
     await this.rolesRepository.update({ id }, updateRoleDto);
-
-    const updatedRole = this.findOne(id);
+    await this.rbacCacheService.invalidateRoleSafely(id);
+    const updatedRole = await this.findOne(id);
     return updatedRole;
   }
 
@@ -67,5 +71,6 @@ export class RolesService {
     await this.rolesRepository.delete({
       id,
     });
+    await this.rbacCacheService.invalidateRoleRbacSafely(id);
   }
 }

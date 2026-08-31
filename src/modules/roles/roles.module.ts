@@ -4,9 +4,10 @@ import { RolesController } from './roles.controller';
 import { RolesService } from './roles.service';
 import { RolesRepository } from './roles.repository';
 import { Role } from './entities/role.entity';
+import { RbacCacheModule } from 'src/common/cache/rbac-cache.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Role])],
+  imports: [TypeOrmModule.forFeature([Role]), RbacCacheModule],
   controllers: [RolesController],
   providers: [RolesService, RolesRepository],
   exports: [RolesRepository],

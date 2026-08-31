@@ -6,12 +6,14 @@ import { RolePermissionsService } from './role-permissions.service';
 import { PermissionsModule } from '../permissions/permissions.module';
 import { RolesModule } from '../roles/roles.module';
 import { RolePermissionsController } from './role-permissions.controller';
+import { RbacCacheModule } from 'src/common/cache/rbac-cache.module';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([RolePermission]),
     RolesModule,
     PermissionsModule,
+    RbacCacheModule,
   ],
   controllers: [RolePermissionsController],
   providers: [RolePermissionsService, RolePermissionsRepository],
