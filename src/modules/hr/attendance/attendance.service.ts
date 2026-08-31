@@ -123,6 +123,11 @@ export class AttendanceService {
     employeeId: string,
     query: AttendanceQueryDto,
   ): Promise<PaginatedResponse<AttendanceResponseDto>> {
+    const employee = await this.employeesRepository.findById(employeeId);
+
+    if (!employee) {
+      throw new NotFoundException('Employee not found');
+    }
     return this.findAll({
       ...query,
       employeeId,
