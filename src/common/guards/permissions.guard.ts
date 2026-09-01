@@ -18,7 +18,8 @@ import {
 } from '../constants/metadata.constants';
 import { AuthRequest } from '../interfaces/auth/auth-request.interface';
 
-import { CachedRole, RbacCacheService } from '../cache/rbac-cache.service';
+import { RbacCacheService } from '../cache/rbac-cache.service';
+import { CachedRole } from '../cache/interfaces/cached-role.interface';
 
 @Injectable()
 export class PermissionsGuard implements CanActivate {
