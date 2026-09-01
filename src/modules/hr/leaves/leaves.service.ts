@@ -70,35 +70,16 @@ export class LeavesService {
       status: LeaveStatus.PENDING,
     });
 
-    try {
-      const savedLeave = await this.leavesRepository.save(leave);
+    const savedLeave = await this.leavesRepository.save(leave);
 
-      const leaveWithRelations =
-        await this.leavesRepository.findByIdWithRelations(savedLeave.id);
+    const leaveWithRelations =
+      await this.leavesRepository.findByIdWithRelations(savedLeave.id);
 
-      if (!leaveWithRelations) {
-        throw new NotFoundException('Leave request not found');
-      }
-
-      return LeaveMapper.toResponseDto(leaveWithRelations);
-    } catch (error) {
-      /**
-       * The application-level overlap check above is NOT enough
-       * because two requests can pass it at the same time.
-       *
-       * PostgreSQL exclusion constraint is the final protection.
-       */
-      if (
-        error instanceof Error &&
-        error.message.includes('leaves_no_overlapping_active_leave')
-      ) {
-        throw new ConflictException(
-          'Leave dates overlap with an existing request',
-        );
-      }
-
-      throw error;
+    if (!leaveWithRelations) {
+      throw new NotFoundException('Leave request not found');
     }
+
+    return LeaveMapper.toResponseDto(leaveWithRelations);
   }
 
   /**

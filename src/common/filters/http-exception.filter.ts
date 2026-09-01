@@ -5,8 +5,12 @@ import {
   HttpException,
   HttpStatus,
 } from '@nestjs/common';
-import { Request, Response } from 'express';
 import { ConfigService } from '@nestjs/config';
+import { Request, Response } from 'express';
+
+interface PostgresError extends Error {
+  code?: string;
+}
 
 @Catch()
 export class HttpExceptionFilter implements ExceptionFilter {
@@ -38,6 +42,10 @@ export class HttpExceptionFilter implements ExceptionFilter {
       return exception.getStatus();
     }
 
+    if (this.isPostgresConflict(exception)) {
+      return HttpStatus.CONFLICT;
+    }
+
     return HttpStatus.INTERNAL_SERVER_ERROR;
   }
 
@@ -58,11 +66,33 @@ export class HttpExceptionFilter implements ExceptionFilter {
       }
     }
 
+    if (this.isPostgresConflict(exception)) {
+      if (exception.code === '23505') {
+        return 'A record with the same unique value already exists';
+      }
+
+      if (exception.code === '23P01') {
+        return 'The requested operation conflicts with existing data';
+      }
+    }
+
     if (this.isDevelopment() && exception instanceof Error) {
       return exception.message;
     }
 
     return 'Internal server error';
+  }
+
+  private isPostgresConflict(exception: unknown): exception is PostgresError {
+    if (!(exception instanceof Error)) {
+      return false;
+    }
+
+    if (!('code' in exception)) {
+      return false;
+    }
+
+    return exception.code === '23505' || exception.code === '23P01';
   }
 
   private isDevelopment(): boolean {
