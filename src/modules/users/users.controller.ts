@@ -3,6 +3,7 @@ import {
   Controller,
   Get,
   Param,
+  ParseUUIDPipe,
   Patch,
   Post,
   Query,
@@ -43,21 +44,21 @@ export class UsersController {
   @SuccessMessage('User retrieved successfully')
   @Get(':id')
   @Permissions(PERMISSIONS.USERS.READ)
-  getUser(@Param('id') id: string) {
+  getUser(@Param('id', ParseUUIDPipe) id: string) {
     return this.usersService.getUser(id);
   }
 
   @SuccessMessage('User activated successfully')
   @Patch(':id/activate')
   @Permissions(PERMISSIONS.USERS.ACTIVATE)
-  activateUser(@Param('id') id: string) {
+  activateUser(@Param('id', ParseUUIDPipe) id: string) {
     return this.usersService.activateUser(id);
   }
 
   @SuccessMessage('User deactivated successfully')
   @Patch(':id/deactivate')
   @Permissions(PERMISSIONS.USERS.DEACTIVATE)
-  deactivateUser(@Param('id') id: string) {
+  deactivateUser(@Param('id', ParseUUIDPipe) id: string) {
     return this.usersService.deactivateUser(id);
   }
 
@@ -65,7 +66,7 @@ export class UsersController {
   @Patch(':id/reset-password')
   @Permissions(PERMISSIONS.USERS.RESET_PASSWORD)
   resetPassword(
-    @Param('id') id: string,
+    @Param('id', ParseUUIDPipe) id: string,
     @Body() resetPasswordDto: ResetPasswordDto,
   ) {
     return this.usersService.resetPassword(id, resetPasswordDto);
