@@ -4,6 +4,7 @@ import {
   Delete,
   Get,
   Param,
+  ParseUUIDPipe,
   Patch,
   Post,
   Query,
@@ -41,7 +42,7 @@ export class CategoriesController {
   @Get(':id')
   @Permissions(PERMISSIONS.CATEGORIES.READ)
   @SuccessMessage('Category retrieved successfully')
-  findOne(@Param('id') id: string) {
+  findOne(@Param('id', ParseUUIDPipe) id: string) {
     return this.categoriesService.findOne(id);
   }
 
@@ -49,7 +50,7 @@ export class CategoriesController {
   @Permissions(PERMISSIONS.CATEGORIES.UPDATE)
   @SuccessMessage('Category updated successfully')
   update(
-    @Param('id') id: string,
+    @Param('id', ParseUUIDPipe) id: string,
     @Body() updateCategoryDto: UpdateCategoryDto,
   ) {
     return this.categoriesService.update(id, updateCategoryDto);
@@ -58,7 +59,7 @@ export class CategoriesController {
   @Delete(':id')
   @Permissions(PERMISSIONS.CATEGORIES.DELETE)
   @SuccessMessage('Category deleted successfully')
-  remove(@Param('id') id: string) {
+  remove(@Param('id', ParseUUIDPipe) id: string) {
     return this.categoriesService.remove(id);
   }
 }
