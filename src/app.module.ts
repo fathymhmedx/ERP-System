@@ -16,6 +16,7 @@ import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 import { HrModule } from './modules/hr/hr.module';
 import { RedisModule } from './common/redis/redis.module';
 import { RbacCacheModule } from './common/cache/rbac-cache.module';
+import { InventoryModule } from './modules/inventory/inventory.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -33,6 +34,7 @@ import { RbacCacheModule } from './common/cache/rbac-cache.module';
     RolePermissionsModule,
     ScheduleModule.forRoot(),
     HrModule,
+    InventoryModule,
   ],
   providers: [
     {
