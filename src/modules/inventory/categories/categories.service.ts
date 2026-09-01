@@ -90,9 +90,5 @@ export class CategoriesService {
     }
 
     await this.categoriesRepository.softDelete({ id });
-
-    return {
-      message: 'Category deleted successfully',
-    };
   }
 }
