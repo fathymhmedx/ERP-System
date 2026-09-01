@@ -58,6 +58,7 @@ The main goal is to practice enterprise backend architecture using NestJS.
 - TypeScript
 - PostgreSQL
 - TypeORM
+- Redis
 - JWT Authentication
 - Refresh Tokens
 - RBAC
@@ -65,6 +66,7 @@ The main goal is to practice enterprise backend architecture using NestJS.
 - Class Transformer
 - Passport.js
 - bcrypt
+- Docker
 - pnpm
 
 ---
@@ -98,6 +100,19 @@ The main goal is to practice enterprise backend architecture using NestJS.
 - Filtering
 - Searching
 - Sorting
+
+## Performance & Concurrency
+
+- Redis Caching
+- Cache-Aside Pattern
+- Cache Invalidation
+- Cache Stampede Protection
+- Distributed Locking
+- Double-Check Locking
+- Lock TTL
+- Lock Ownership
+- Atomic Lua-based Lock Release
+- Concurrency Control
 
 ---
 
@@ -189,7 +204,21 @@ src
 - [x] Revoke All Sessions After Password Change
 - [x] Expired Sessions Cleanup Scheduler
 
-### Users
+### RBAC Caching & Distributed Locking
+
+- [x] Redis Integration
+- [x] Role Caching using Cache-Aside Pattern
+- [x] Permission Caching using Cache-Aside Pattern
+- [x] Cache Invalidation on Role & Permission Changes
+- [x] Cache Stampede Protection
+- [x] Distributed Locking
+- [x] Double-Check Locking
+- [x] Lock Ownership using Unique Lock Tokens
+- [x] Lock TTL for Failure Protection
+- [x] Atomic Lock Release using Lua Script
+- [x] Safe Cache Invalidation with Distributed Locking
+- [x] Redis-based RBAC Permission Checks
+- [x] Super Admin Permission Bypass
 
 ### Users
 
@@ -377,8 +406,6 @@ src
 
 # Future Improvements
 
-- Redis
-- Docker
 - CI/CD
 - Background Jobs
 - Event Driven Architecture
@@ -386,38 +413,41 @@ src
 - Unit Testing
 - E2E Testing
 - Multi Tenancy
+- Advanced Monitoring & Observability
 
 ---
 
 # Implementation Status
 
-| Module             | Status         |
-| ------------------ | -------------- |
-| Project Foundation | ✅ Completed   |
-| Authentication     | ✅ Completed   |
-| Users              | ✅ Completed   |
-| Roles              | ✅ Completed   |
-| Permissions        | ✅ Completed   |
-| Role Permissions   | ✅ Completed   |
-| RBAC               | ✅ Completed   |
-| Departments        | ✅ Completed   |
-| Positions          | ✅ Completed   |
-| Employees          | ✅ Completed   |
-| Attendance         | ✅ Completed   |
-| Leaves             | ✅ Completed   |
-| Payroll            | ✅ Completed   |
-| Categories         | ⏳ Not Started |
-| Suppliers          | ⏳ Not Started |
-| Products           | ⏳ Not Started |
-| Customers          | ⏳ Not Started |
-| Orders             | ⏳ Not Started |
-| Invoices           | ⏳ Not Started |
-| Notifications      | ⏳ Not Started |
-| Audit Logs         | ⏳ Not Started |
-| Dashboard          | ⏳ Not Started |
-| Documentation      | 🟡 In Progress |
-| Postman Collection | ✅ Completed   |
-| Testing            | ⏳ Not Started |
+| Module              | Status         |
+| ------------------- | -------------- |
+| Project Foundation  | ✅ Completed   |
+| Authentication      | ✅ Completed   |
+| Users               | ✅ Completed   |
+| Roles               | ✅ Completed   |
+| Permissions         | ✅ Completed   |
+| Role Permissions    | ✅ Completed   |
+| RBAC                | ✅ Completed   |
+| RBAC Caching        | ✅ Completed   |
+| Distributed Locking | ✅ Completed   |
+| Departments         | ✅ Completed   |
+| Positions           | ✅ Completed   |
+| Employees           | ✅ Completed   |
+| Attendance          | ✅ Completed   |
+| Leaves              | ✅ Completed   |
+| Payroll             | ✅ Completed   |
+| Categories          | ⏳ Not Started |
+| Suppliers           | ⏳ Not Started |
+| Products            | ⏳ Not Started |
+| Customers           | ⏳ Not Started |
+| Orders              | ⏳ Not Started |
+| Invoices            | ⏳ Not Started |
+| Notifications       | ⏳ Not Started |
+| Audit Logs          | ⏳ Not Started |
+| Dashboard           | ⏳ Not Started |
+| Documentation       | 🟡 In Progress |
+| Postman Collection  | ✅ Completed   |
+| Testing             | ⏳ Not Started |
 
 # License
 
