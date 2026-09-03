@@ -24,7 +24,7 @@ export const databaseConfig: TypeOrmModuleAsyncOptions = {
       autoLoadEntities: true,
       migrations: [__dirname + '/../database/migrations/*{.ts,.js}'],
       migrationsRun: !isProduction,
-      synchronize: isProduction,
+      synchronize: false,
       logging: !isProduction,
     };
   },
