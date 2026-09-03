@@ -11,6 +11,6 @@ import { SuppliersRepository } from './suppliers.repository';
   imports: [TypeOrmModule.forFeature([Supplier])],
   controllers: [SuppliersController],
   providers: [SuppliersService, SuppliersRepository],
-  exports: [SuppliersService],
+  exports: [SuppliersService, SuppliersRepository],
 })
 export class SuppliersModule {}
