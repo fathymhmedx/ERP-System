@@ -318,20 +318,39 @@ src
 
 ### Categories
 
-- [ ] CRUD Categories
+- [x] CRUD Categories
+- [x] Search Categories
+- [x] Pagination Categories
+- [x] Soft Delete Categories
 
 ### Suppliers
 
-- [ ] CRUD Suppliers
+- [x] CRUD Suppliers
+- [x] Search Suppliers
+- [x] Pagination Suppliers
+- [x] Soft Delete Suppliers
 
 ### Products
 
-- [ ] Create Product
-- [ ] Update Product
-- [ ] Delete Product
-- [ ] Search Products
-- [ ] Filter Products
-- [ ] Update Stock
+- [x] Create Product
+- [x] Update Product
+- [x] Delete Product
+- [x] Search Products
+- [x] Filter Products
+- [x] Pagination Products
+- [x] Manage Current Stock
+- [x] Product-Categories Relationship
+- [x] Product-Suppliers Relationship
+- [x] SKU Uniqueness Validation
+
+### Stock Movements
+
+- [ ] Create Stock Movement
+- [ ] Stock In
+- [ ] Stock Out
+- [ ] Stock Adjustment
+- [ ] Stock Movement History
+- [ ] Stock Movement Filtering
 
 ---
 
@@ -436,9 +455,10 @@ src
 | Attendance          | ✅ Completed   |
 | Leaves              | ✅ Completed   |
 | Payroll             | ✅ Completed   |
-| Categories          | ⏳ Not Started |
-| Suppliers           | ⏳ Not Started |
-| Products            | ⏳ Not Started |
+| Categories          | ✅ Completed   |
+| Suppliers           | ✅ Completed   |
+| Products            | ✅ Completed   |
+| Stock Movements     | ⏳ Not Started |
 | Customers           | ⏳ Not Started |
 | Orders              | ⏳ Not Started |
 | Invoices            | ⏳ Not Started |

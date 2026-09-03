@@ -37,12 +37,10 @@
             {
               "listen": "test",
               "script": {
+                "type": "text/javascript",
                 "exec": [
                   "pm.environment.set(\"JWT\", pm.response.json().data.accessToken);"
-                ],
-                "type": "text/javascript",
-                "packages": {},
-                "requests": {}
+                ]
               }
             }
           ],
@@ -51,7 +49,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n// test Hr module\r\n    // \"email\": \"payroll1@gmail.com\",\r\n    // \"password\": \"Payroll@123\"\r\n// USER\r\n    // \"email\": \"fathymhmed21@gmail.com\",\r\n    // \"password\": \"Fathy@1234\"\r\n\r\n// ADMIN\r\n    \"email\": \"admin@erp.com\",\r\n    \"password\": \"Admin@123456\"\r\n}",
+              "raw": "{\r\n// test Hr module\r\n    // \"email\": \"payroll1@gmail.com\",\r\n    // \"password\": \"Payroll@123\"\r\n// USER\r\n    // \"email\": \"fathymhmed21@gmail.com\",\r\n    // \"password\": \"Fathy@1234\"\r\n\r\n// Caching\r\n//   \"email\": \"mahmoudtestCache@company.com\",\r\n//   \"password\": \"Password123\"\r\n// ADMIN\r\n    \"email\": \"admin@erp.com\",\r\n    \"password\": \"Admin@123456\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -334,7 +332,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"email\": \"ahmed@company.com\",\r\n  \"password\": \"Password123\",\r\n  \"roleId\": \"7c980a50-5894-4ef6-a591-1d4c32a7c287\"\r\n}",
+              "raw": "{\r\n  \"email\": \"mahmoudtestCache@company.com\",\r\n  \"password\": \"Password123\",\r\n  \"roleId\": \"fde82506-b6bd-496d-ae99-c5cbe2c8e79b\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -409,7 +407,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"description\": \"System administrator\"\r\n}",
+              "raw": "{\r\n    // \"description\": \"System administrator\"\r\n    \"name\": \"manager1\" \r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -417,9 +415,9 @@
               }
             },
             "url": {
-              "raw": "{{BASE_URL}}/roles/d9fbd586-360e-4eba-b81f-4b0f262a5dd9",
+              "raw": "{{BASE_URL}}/roles/fde82506-b6bd-496d-ae99-c5cbe2c8e79b",
               "host": ["{{BASE_URL}}"],
-              "path": ["roles", "d9fbd586-360e-4eba-b81f-4b0f262a5dd9"]
+              "path": ["roles", "fde82506-b6bd-496d-ae99-c5cbe2c8e79b"]
             }
           },
           "response": []
@@ -448,13 +446,13 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{BASE_URL}}/Permissions?module=attendance",
+              "raw": "{{BASE_URL}}/Permissions?module=employees",
               "host": ["{{BASE_URL}}"],
               "path": ["Permissions"],
               "query": [
                 {
                   "key": "module",
-                  "value": "attendance"
+                  "value": "employees"
                 }
               ]
             }
@@ -486,7 +484,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"permissionId\": \"379556d7-e080-4248-ba0d-7b0bfda1e103\"\r\n}",
+              "raw": "{\r\n    \"permissionId\": \"286508c9-11a9-4b0d-a683-7536b6681598\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -494,11 +492,11 @@
               }
             },
             "url": {
-              "raw": "{{BASE_URL}}/roles/7c980a50-5894-4ef6-a591-1d4c32a7c287/permissions",
+              "raw": "{{BASE_URL}}/roles/fde82506-b6bd-496d-ae99-c5cbe2c8e79b/permissions",
               "host": ["{{BASE_URL}}"],
               "path": [
                 "roles",
-                "7c980a50-5894-4ef6-a591-1d4c32a7c287",
+                "fde82506-b6bd-496d-ae99-c5cbe2c8e79b",
                 "permissions"
               ]
             }
@@ -510,23 +508,14 @@
           "request": {
             "method": "DELETE",
             "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"permissionId\": \"a44ebf23-8294-4fa0-85ae-371c67ebc04a\"\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
             "url": {
-              "raw": "{{BASE_URL}}/roles/d9fbd586-360e-4eba-b81f-4b0f262a5dd9/permissions/a44ebf23-8294-4fa0-85ae-371c67ebc04a",
+              "raw": "{{BASE_URL}}/roles/fde82506-b6bd-496d-ae99-c5cbe2c8e79b/permissions/286508c9-11a9-4b0d-a683-7536b6681598",
               "host": ["{{BASE_URL}}"],
               "path": [
                 "roles",
-                "d9fbd586-360e-4eba-b81f-4b0f262a5dd9",
+                "fde82506-b6bd-496d-ae99-c5cbe2c8e79b",
                 "permissions",
-                "a44ebf23-8294-4fa0-85ae-371c67ebc04a"
+                "286508c9-11a9-4b0d-a683-7536b6681598"
               ]
             }
           },
@@ -732,7 +721,7 @@
                 "header": [],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n  \"employeeNumber\": \"EMP-0005\",\r\n  \"firstName\": \"Payroll\",\r\n  \"lastName\": \"test\",\r\n  \"phone\": \"+201000000000\",\r\n  \"address\": \"Mansoura\",\r\n  \"dateOfBirth\": \"2003-01-15\",\r\n  \"hireDate\": \"2026-08-27\",\r\n  \"baseSalary\": \"5000\"\r\n//   \"departmentId\": \"9fca5bc2-ef8c-42ff-9572-ef8e97a16235\",\r\n//   \"positionId\": \"b69d8999-092a-4ec0-88f0-c7fecbb2b9b9\"\r\n}",
+                  "raw": "{\r\n  \"employeeNumber\": \"EMP-0006\",\r\n  \"firstName\": \"Mahmoud cache\",\r\n  \"lastName\": \"test\",\r\n  \"phone\": \"+201000000000\",\r\n  \"address\": \"Mansoura\",\r\n  \"dateOfBirth\": \"2003-01-15\",\r\n  \"hireDate\": \"2026-08-27\",\r\n  \"baseSalary\": \"5000\"\r\n//   \"departmentId\": \"9fca5bc2-ef8c-42ff-9572-ef8e97a16235\",\r\n//   \"positionId\": \"b69d8999-092a-4ec0-88f0-c7fecbb2b9b9\"\r\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -912,7 +901,7 @@
                 "header": [],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n  \"userId\": \"2dc8e0c9-5b67-492e-b587-142670450542\"\r\n}",
+                  "raw": "{\r\n  \"userId\": \"b38d7e2f-1aff-4c81-807a-61e6cb91e150\"\r\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -920,11 +909,11 @@
                   }
                 },
                 "url": {
-                  "raw": "{{BASE_URL}}/employees/7b3ae240-aa6e-4870-822d-7b3c31e1e1c7/user",
+                  "raw": "{{BASE_URL}}/employees/bb5098ae-a7d2-470b-9e16-2b2b1fb0a086/user",
                   "host": ["{{BASE_URL}}"],
                   "path": [
                     "employees",
-                    "7b3ae240-aa6e-4870-822d-7b3c31e1e1c7",
+                    "bb5098ae-a7d2-470b-9e16-2b2b1fb0a086",
                     "user"
                   ]
                 }
@@ -1029,24 +1018,21 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{BASE_URL}}/attendance/reports/monthly",
+                  "raw": "{{BASE_URL}}/attendance/reports/monthly?employeeId={{employeeId}}&year=2026&month=8",
                   "host": ["{{BASE_URL}}"],
                   "path": ["attendance", "reports", "monthly"],
                   "query": [
                     {
                       "key": "employeeId",
-                      "value": "{{employeeId}}",
-                      "disabled": true
+                      "value": "{{employeeId}}"
                     },
                     {
                       "key": "year",
-                      "value": "2026",
-                      "disabled": true
+                      "value": "2026"
                     },
                     {
                       "key": "month",
-                      "value": "8",
-                      "disabled": true
+                      "value": "8"
                     }
                   ]
                 }
@@ -1412,6 +1398,365 @@
                   "raw": "{{BASE_URL}}/payroll/93766d4d-c124-480e-ab52-e058670f1bbd",
                   "host": ["{{BASE_URL}}"],
                   "path": ["payroll", "93766d4d-c124-480e-ab52-e058670f1bbd"]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Inventory",
+      "item": [
+        {
+          "name": "Categories",
+          "item": [
+            {
+              "name": "Create Category",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"  Electronics  \",\n  \"description\": \"Electronic devices and accessories\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/categories",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["categories"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get Categories",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/categories?page=1&limit=10",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["categories"],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "search",
+                      "value": "",
+                      "disabled": true
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get Category By ID",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/categories/af728ea9-486e-43e4-aafb-f83ad5b53a6e",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["categories", "af728ea9-486e-43e4-aafb-f83ad5b53a6e"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Update Category",
+              "request": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"  Electronics\",\n  \"description\": \"Updated Electronic devices and accessories\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/categories/af728ea9-486e-43e4-aafb-f83ad5b53a6e",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["categories", "af728ea9-486e-43e4-aafb-f83ad5b53a6e"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Delete Category",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/categories/af728ea9-486e-43e4-aafb-f83ad5b53a6e",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["categories", "af728ea9-486e-43e4-aafb-f83ad5b53a6e"]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Products",
+          "item": [
+            {
+              "name": "Create Product",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Case Test Product\",\n    \"sku\": \"DELL-INSP-003\",\n    \"description\": \"Dell laptop for office use\",\n    \"categoryId\": \"f454d3b7-c08e-4000-af84-239c8c96e54b\",\n    \"supplierId\": \"fa17acea-ed46-4986-a586-f033ba54eb8e\",\n    \"costPrice\": \"25000.00\",\n    \"sellingPrice\": \"30000.00\",\n    \"currentStock\": 10,\n    \"reorderLevel\": 3\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/products",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["products"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get Products",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/products?page=1&limit=10",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["products"],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "search",
+                      "value": "Laptop",
+                      "disabled": true
+                    },
+                    {
+                      "key": "search",
+                      "value": "DELL-INSP-001",
+                      "disabled": true
+                    },
+                    {
+                      "key": "categoryId",
+                      "value": "f454d3b7-c08e-4000-af84-239c8c96e54b",
+                      "disabled": true
+                    },
+                    {
+                      "key": "supplierId",
+                      "value": "",
+                      "disabled": true
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get Product By ID",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/products/7f045caa-ee36-47ec-9434-22ddb6585e57",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["products", "7f045caa-ee36-47ec-9434-22ddb6585e57"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Update Product",
+              "request": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"sku\": \"DELL-INSP-002\",\n    \"name\": \"Updated Dell Laptop\",\n    \"costPrice\": \"27000.00\",\n    \"sellingPrice\": \"32000.00\"\n    // \"categoryId\": \"\",\n    // \"supplierId\": \"\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/products/ccd0d757-70bc-4b1a-8d8f-f6cf98e9e72a",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["products", "ccd0d757-70bc-4b1a-8d8f-f6cf98e9e72a"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Delete Product",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/products/d165e6bf-00bb-4a79-84e3-c55300d7d47f",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["products", "d165e6bf-00bb-4a79-84e3-c55300d7d47f"]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Suppliers",
+          "item": [
+            {
+              "name": "Create Supplier",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"ttech supplies co.\",\n  \"email\": \"not-an-email\",\n    \"phone\": \"01012345678\"\n//   \"address\": \"Cairo, Egypt\",\n//   \"contactPerson\": \"Ahmed Ali\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/suppliers",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["suppliers"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get Suppliers",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/suppliers?page=1&limit=10",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["suppliers"],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "search",
+                      "value": "Tech",
+                      "disabled": true
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get Supplier By ID",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/suppliers/2753db11-19ce-498c-a7ef-8cdb5b269295",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["suppliers", "2753db11-19ce-498c-a7ef-8cdb5b269295"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Update Supplier",
+              "request": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Tech Supplies Co.\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/suppliers/2753db11-19ce-498c-a7ef-8cdb5b269295",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["suppliers", "2753db11-19ce-498c-a7ef-8cdb5b269295"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Delete Supplier",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/suppliers/2753db11-19ce-498c-a7ef-8cdb5b269295",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["suppliers", "2753db11-19ce-498c-a7ef-8cdb5b269295"]
                 }
               },
               "response": []
