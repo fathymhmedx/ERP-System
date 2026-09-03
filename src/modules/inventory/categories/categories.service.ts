@@ -39,13 +39,13 @@ export class CategoriesService {
     );
 
     return {
-      data: CategoryMapper.toResponseDtoList(categories),
       meta: {
         page,
         limit,
         total,
         totalPages: Math.ceil(total / limit),
       },
+      data: CategoryMapper.toResponseDtoList(categories),
     };
   }
 
