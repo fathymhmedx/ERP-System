@@ -46,6 +46,10 @@ export class HttpExceptionFilter implements ExceptionFilter {
       return HttpStatus.CONFLICT;
     }
 
+    if (this.isPostgresCheckViolation(exception)) {
+      return HttpStatus.BAD_REQUEST;
+    }
+
     return HttpStatus.INTERNAL_SERVER_ERROR;
   }
 
@@ -76,6 +80,10 @@ export class HttpExceptionFilter implements ExceptionFilter {
       }
     }
 
+    if (this.isPostgresCheckViolation(exception)) {
+      return 'The provided value violates a database constraint';
+    }
+
     if (this.isDevelopment() && exception instanceof Error) {
       return exception.message;
     }
@@ -97,5 +105,18 @@ export class HttpExceptionFilter implements ExceptionFilter {
 
   private isDevelopment(): boolean {
     return this.configService.get<string>('NODE_ENV') === 'development';
+  }
+  private isPostgresCheckViolation(
+    exception: unknown,
+  ): exception is PostgresError {
+    if (!(exception instanceof Error)) {
+      return false;
+    }
+
+    if (!('code' in exception)) {
+      return false;
+    }
+
+    return exception.code === '23514';
   }
 }

@@ -5,6 +5,7 @@ import {
   IsOptional,
   IsString,
   IsUUID,
+  Matches,
   MaxLength,
   Min,
 } from 'class-validator';
@@ -31,6 +32,10 @@ export class CreateProductDto {
   @IsUUID()
   supplierId!: string;
 
+  @Matches(/^\d+(\.\d{1,2})?$/, {
+    message:
+      'Cost price must be a non-negative decimal with up to 2 decimal places',
+  })
   @IsDecimal(
     {
       decimal_digits: '0,2',
@@ -42,6 +47,10 @@ export class CreateProductDto {
   )
   costPrice!: string;
 
+  @Matches(/^\d+(\.\d{1,2})?$/, {
+    message:
+      'Selling price must be a non-negative decimal with up to 2 decimal places',
+  })
   @IsDecimal(
     {
       decimal_digits: '0,2',
