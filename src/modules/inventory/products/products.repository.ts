@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { ILike, Repository } from 'typeorm';
+import { EntityManager, ILike, Repository } from 'typeorm';
 
 import { BaseRepository } from 'src/common/repositories/base.repository';
 
@@ -72,5 +72,17 @@ export class ProductsRepository extends BaseRepository<Product> {
     }
 
     return queryBuilder.getManyAndCount();
+  }
+
+  async findByIdForUpdate(
+    id: string,
+    manager: EntityManager,
+  ): Promise<Product | null> {
+    return manager
+      .getRepository(Product)
+      .createQueryBuilder('product')
+      .setLock('pessimistic_write')
+      .where('product.id = :id', { id })
+      .getOne();
   }
 }

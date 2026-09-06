@@ -123,6 +123,7 @@ export const PERMISSIONS = {
     READ: 'orders.read',
     UPDATE: 'orders.update',
     CANCEL: 'orders.cancel',
+    CONFIRM: 'orders.confirm',
 
     ADD_ITEM: 'orders.add-item',
     REMOVE_ITEM: 'orders.remove-item',
