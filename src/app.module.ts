@@ -17,6 +17,7 @@ import { HrModule } from './modules/hr/hr.module';
 import { RedisModule } from './common/redis/redis.module';
 import { RbacCacheModule } from './common/cache/rbac-cache.module';
 import { InventoryModule } from './modules/inventory/inventory.module';
+import { SalesModule } from './modules/sales/sales.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -35,6 +36,7 @@ import { InventoryModule } from './modules/inventory/inventory.module';
     ScheduleModule.forRoot(),
     HrModule,
     InventoryModule,
+    SalesModule,
   ],
   providers: [
     {
