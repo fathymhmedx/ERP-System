@@ -477,10 +477,8 @@ export class OrdersService {
 
   async confirm(id: string) {
     return this.dataSource.transaction(async (manager) => {
-      const order = await this.ordersRepository.findByIdForUpdateWithItems(
-        id,
-        manager,
-      );
+      // 1. Lock the order only
+      const order = await this.ordersRepository.findByIdForUpdate(id, manager);
 
       if (!order) {
         throw new NotFoundException('Order not found');
@@ -490,14 +488,21 @@ export class OrdersService {
         throw new ConflictException('Only pending orders can be confirmed');
       }
 
-      if (!order.items.length) {
+      // 2. Load order items without FOR UPDATE
+      const items = await manager.getRepository(OrderItem).find({
+        where: {
+          orderId: id,
+        },
+        order: {
+          productId: 'ASC',
+        },
+      });
+
+      if (!items.length) {
         throw new BadRequestException('Cannot confirm an order without items');
       }
 
-      const items = [...order.items].sort((a, b) =>
-        a.productId.localeCompare(b.productId),
-      );
-
+      // 3. Lock products in deterministic order
       for (const item of items) {
         const product = await this.productsRepository.findByIdForUpdate(
           item.productId,
@@ -519,11 +524,20 @@ export class OrdersService {
         await manager.getRepository(Product).save(product);
       }
 
+      // 4. Confirm order
       order.status = OrderStatus.CONFIRMED;
 
       await manager.getRepository(Order).save(order);
 
-      return OrderMapper.toResponseDto(order);
+      // 5. Load relations for response AFTER locking is finished
+      const confirmedOrder =
+        await this.ordersRepository.findByIdWithCustomerAndItems(id, manager);
+
+      if (!confirmedOrder) {
+        throw new NotFoundException('Order not found');
+      }
+
+      return OrderMapper.toResponseDto(confirmedOrder);
     });
   }
 }
