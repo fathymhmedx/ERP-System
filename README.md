@@ -358,20 +358,47 @@ src
 
 ### Customers
 
-- [ ] CRUD Customers
+- [x] CRUD Customers
 
 ### Orders
 
-- [ ] Create Order
-- [ ] Update Order
-- [ ] Cancel Order
-- [ ] Order History
+- [x] Create Order
+- [x] Update Order
+- [x] Cancel Order
+- [x] Order History
+- [x] Order Status Management
+- [x] Stock Validation
+- [x] Stock Deduction
+- [x] Stock Restoration on Cancellation
+- [x] Transactional Order Processing
+- [x] Pessimistic Locking
+- [x] Concurrency Control
 
 ### Order Items
 
-- [ ] Add Product
-- [ ] Remove Product
-- [ ] Update Quantity
+- [x] Add Product
+- [x] Remove Product
+- [x] Update Quantity
+- [x] Product Price Calculation
+- [x] Quantity Validation
+
+### Payments
+
+- [x] Payment Entity & Database Design
+- [x] Payment Creation
+- [x] Idempotency-Key Support
+- [x] Idempotency Race-Condition Handling
+- [x] Paymob Integration
+- [x] Payment Intent Creation
+- [x] Paymob Webhook
+- [x] HMAC-SHA512 Verification
+- [x] Paymob Integration Validation
+- [x] Transaction Amount & Currency Validation
+- [x] Duplicate Webhook Handling
+- [x] Payment State Management
+- [x] Order Completion After Successful Payment
+- [x] Payment Failure Handling
+- [x] Pessimistic Locking for Payment Processing
 
 ### Invoices
 
@@ -409,8 +436,8 @@ src
 ## Phase 9 — Documentation
 
 - [ ] Swagger Documentation
-- [ ] README
-- [ ] API Examples
+- [x] README
+- [x] API Examples
 - [ ] Database Diagram
 
 ---
@@ -459,8 +486,9 @@ src
 | Suppliers           | ✅ Completed   |
 | Products            | ✅ Completed   |
 | Stock Movements     | ⏳ Not Started |
-| Customers           | ⏳ Not Started |
-| Orders              | ⏳ Not Started |
+| Customers           | ✅ Completed   |
+| Orders              | ✅ Completed   |
+| Payments            | ✅ Completed   |
 | Invoices            | ⏳ Not Started |
 | Notifications       | ⏳ Not Started |
 | Audit Logs          | ⏳ Not Started |

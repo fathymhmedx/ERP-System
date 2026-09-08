@@ -1764,6 +1764,434 @@
           ]
         }
       ]
+    },
+    {
+      "name": "Sales",
+      "item": [
+        {
+          "name": "Customers",
+          "item": [
+            {
+              "name": "Create Customer",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"firstName\": \"fathy\",\r\n  \"lastName\": \"Mohamed\",\r\n  \"email\": \"fathymhmed11@gmail.com\",\r\n  \"phone\": \"01033899622\",\r\n  \"address\": \"Mansoura, Egypt\"\r\n}\r\n",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{BASE_URL}}/customers",
+                  "host": ["{{BASE_URL}}"],
+                  "path": ["customers"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get Customers",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{BASE_URL}}/customers?search=&page=1&limit=10",
+                  "host": ["{{BASE_URL}}"],
+                  "path": ["customers"],
+                  "query": [
+                    {
+                      "key": "search",
+                      "value": ""
+                    },
+                    {
+                      "key": "phone",
+                      "value": "01012345678",
+                      "disabled": true
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get Customer",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{BASE_URL}}/customers/0f22acfb-c769-4cba-bc38-1887377d429c",
+                  "host": ["{{BASE_URL}}"],
+                  "path": ["customers", "0f22acfb-c769-4cba-bc38-1887377d429c"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Update Customer",
+              "request": {
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"email\": \"fathymhmed11@gmail.com\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{BASE_URL}}/customers/1bafce85-867c-4c32-8267-3df46c0e6300",
+                  "host": ["{{BASE_URL}}"],
+                  "path": ["customers", "1bafce85-867c-4c32-8267-3df46c0e6300"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Delete Customers",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{BASE_URL}}/customers/e74c1052-c685-4d4f-aa14-e58e09c7cc55",
+                  "host": ["{{BASE_URL}}"],
+                  "path": ["customers", "e74c1052-c685-4d4f-aa14-e58e09c7cc55"]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Orders",
+          "item": [
+            {
+              "name": "Create Order",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customerId\": \"0f22acfb-c769-4cba-bc38-1887377d429c\",\n  \"items\": [\n    {\n      \"productId\": \"7f045caa-ee36-47ec-9434-22ddb6585e57\",\n      \"quantity\": 1\n    }\n  ],\n  \"discount\": \"1000.00\",\n  \"notes\": \"Test order\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/orders",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["orders"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get All Orders",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/orders?page=1&limit=10",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["orders"],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "status",
+                      "value": "pending",
+                      "disabled": true
+                    },
+                    {
+                      "key": "cutomerId",
+                      "value": "",
+                      "disabled": true
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Update Item Quantity",
+              "request": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"quantity\": 5\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/orders/012daaf2-b0f0-46af-a064-62cea3e589d7/items/6892a0d8-bd8f-4038-b341-ea7e6c626273",
+                  "host": ["{{baseUrl}}"],
+                  "path": [
+                    "orders",
+                    "012daaf2-b0f0-46af-a064-62cea3e589d7",
+                    "items",
+                    "6892a0d8-bd8f-4038-b341-ea7e6c626273"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get Order By ID",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/orders/75221256-c00a-471d-bd1f-3fd60ee2d8af",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["orders", "75221256-c00a-471d-bd1f-3fd60ee2d8af"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Cancel Order",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [""]
+                  }
+                }
+              ],
+              "request": {
+                "method": "PATCH",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/orders/56c6e696-896f-4b3e-a080-0a8044d506c7/cancel",
+                  "host": ["{{baseUrl}}"],
+                  "path": [
+                    "orders",
+                    "56c6e696-896f-4b3e-a080-0a8044d506c7",
+                    "cancel"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Update Order",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test('Status code is 200', function () {\n    pm.response.to.have.status(200);\n});\n\nconst json = pm.response.json();\n\npm.test('Order remains pending', function () {\n    pm.expect(json.status).to.eql('pending');\n});\n\npm.test('Discount updated', function () {\n    pm.expect(json.discount).to.eql('20.00');\n});"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"discount\": \"20.00\",\n  \"notes\": \"Updated order notes\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/orders/56c6e696-896f-4b3e-a080-0a8044d506c7",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["orders", "56c6e696-896f-4b3e-a080-0a8044d506c7"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Remove Item",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test('Status code is 200', function () {\n    pm.response.to.have.status(200);\n});\n\nconst json = pm.response.json();\n\npm.test('Removed item is no longer present', function () {\n    pm.expect(json.items.some(item => item.id === pm.collectionVariables.get('itemId'))).to.eql(false);\n});"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/orders/56c6e696-896f-4b3e-a080-0a8044d506c7/items/dcc152ae-a9e0-489f-bbff-4a6082656132",
+                  "host": ["{{baseUrl}}"],
+                  "path": [
+                    "orders",
+                    "56c6e696-896f-4b3e-a080-0a8044d506c7",
+                    "items",
+                    "dcc152ae-a9e0-489f-bbff-4a6082656132"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Add Item",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"productId\": \"ccd0d757-70bc-4b1a-8d8f-f6cf98e9e72a\",\n  \"quantity\": 3\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/orders/56c6e696-896f-4b3e-a080-0a8044d506c7/items",
+                  "host": ["{{baseUrl}}"],
+                  "path": [
+                    "orders",
+                    "56c6e696-896f-4b3e-a080-0a8044d506c7",
+                    "items"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Confirm Order",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/orders/56c6e696-896f-4b3e-a080-0a8044d506c7/confirm",
+                  "host": ["{{baseUrl}}"],
+                  "path": [
+                    "orders",
+                    "56c6e696-896f-4b3e-a080-0a8044d506c7",
+                    "confirm"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Payments",
+          "item": [
+            {
+              "name": "Create Payment",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Idempotency-Key",
+                    "value": "payment-test-013"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"orderId\": \"60538027-605c-4f3d-9bcc-11f063bc431a\",\r\n  \"method\": \"card\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{BASE_URL}}/payments",
+                  "host": ["{{BASE_URL}}"],
+                  "path": ["payments"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Webhook manual",
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "const hmacSecret = '2CEEEBF83767EF1807FADA60A0A98E8D';\r\n\r\nconst body = JSON.parse(pm.request.body.raw);\r\nconst t = body.obj;\r\n\r\nconst values = [\r\n  t.amount_cents,\r\n  t.created_at,\r\n  t.currency,\r\n  t.error_occured,\r\n  t.has_parent_transaction,\r\n  t.id,\r\n  t.integration_id,\r\n  t.is_3d_secure,\r\n  t.is_auth,\r\n  t.is_capture,\r\n  t.is_refunded,\r\n  t.is_standalone_payment,\r\n  t.is_voided,\r\n  t.order.id,\r\n  t.owner,\r\n  t.pending,\r\n  t.source_data.pan,\r\n  t.source_data.sub_type,\r\n  t.source_data.type,\r\n  t.success\r\n];\r\n\r\nconst payload = values.map(String).join('');\r\nconst hmac = CryptoJS.HmacSHA512(payload, hmacSecret).toString(CryptoJS.enc.Hex);\r\n\r\npm.request.url.query.upsert({\r\n  key: 'hmac',\r\n  value: hmac\r\n});"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"type\": \"TRANSACTION\",\r\n  \"obj\": {\r\n    \"id\": 9876443,\r\n    \"success\": true,\r\n    \"pending\": false,\r\n    \"amount_cents\": 6300000,\r\n    \"currency\": \"EGP\",\r\n    \"integration_id\": 5898925,\r\n    \"owner\": 1,\r\n    \"is_auth\": false,\r\n    \"is_capture\": false,\r\n    \"is_standalone_payment\": true,\r\n    \"is_voided\": false,\r\n    \"is_refunded\": false,\r\n    \"is_3d_secure\": true,\r\n    \"error_occured\": false,\r\n    \"has_parent_transaction\": false,\r\n    \"created_at\": \"2026-09-08T12:00:00.000Z\",\r\n    \"paid_at\": \"2026-09-08T12:00:05.000Z\",\r\n    \"order\": {\r\n      \"id\": 9999,\r\n        \"merchant_order_id\":  \"59d253e1-2aaa-42a6-a0d6-6f04c39e4463\"\r\n    },\r\n    \"source_data\": {\r\n      \"pan\": \"2345\",\r\n      \"sub_type\": \"VISA\",\r\n      \"type\": \"card\"\r\n    }\r\n  }\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{BASE_URL}}/payments/webhook",
+                  "host": ["{{BASE_URL}}"],
+                  "path": ["payments", "webhook"]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
     }
   ],
   "auth": {
