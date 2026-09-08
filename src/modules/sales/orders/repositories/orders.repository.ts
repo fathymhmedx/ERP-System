@@ -103,4 +103,17 @@ export class OrdersRepository extends BaseRepository<Order> {
       .where('order.id = :id', { id })
       .getOne();
   }
+
+  async findByIdForUpdateWithCustomer(
+    id: string,
+    manager: EntityManager,
+  ): Promise<Order | null> {
+    return manager
+      .getRepository(Order)
+      .createQueryBuilder('order')
+      .innerJoinAndSelect('order.customer', 'customer')
+      .setLock('pessimistic_write')
+      .where('order.id = :id', { id })
+      .getOne();
+  }
 }

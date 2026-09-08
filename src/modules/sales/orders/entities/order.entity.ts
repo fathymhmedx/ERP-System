@@ -12,6 +12,7 @@ import { BaseEntity } from 'src/common/entities/base.entity';
 import { Customer } from '../../customers/entities/customer.entity';
 import { OrderStatus } from '../enums/order-status.enum';
 import { OrderItem } from './order-item.entity';
+import { Payment } from '../../payments/entities/payment.entity';
 
 @Entity('orders')
 @Index(['customerId'])
@@ -66,4 +67,7 @@ export class Order extends BaseEntity {
 
   @OneToMany(() => OrderItem, (orderItem) => orderItem.order)
   items!: OrderItem[];
+
+  @OneToMany(() => Payment, (payment) => payment.order)
+  payments!: Payment[];
 }
