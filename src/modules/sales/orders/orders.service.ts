@@ -227,14 +227,16 @@ export class OrdersService {
 
   async cancel(id: string) {
     return this.dataSource.transaction(async (manager) => {
-      const order = await this.ordersRepository.findByIdForUpdateWithItems(
-        id,
-        manager,
-      );
+      const order = await this.ordersRepository.findByIdForUpdate(id, manager);
 
       if (!order) {
         throw new NotFoundException('Order not found');
       }
+
+      const orderItems = await this.ordersRepository.findItemsByOrderId(
+        id,
+        manager,
+      );
 
       if (
         order.status !== OrderStatus.PENDING &&
@@ -246,7 +248,7 @@ export class OrdersService {
       }
 
       if (order.status === OrderStatus.CONFIRMED) {
-        const items = [...order.items].sort((a, b) =>
+        const items = [...orderItems].sort((a, b) =>
           a.productId.localeCompare(b.productId),
         );
 

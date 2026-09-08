@@ -6,6 +6,7 @@ import { BaseRepository } from 'src/common/repositories/base.repository';
 
 import { Order } from '../entities/order.entity';
 import { OrderStatus } from '../enums/order-status.enum';
+import { OrderItem } from '../entities/order-item.entity';
 
 @Injectable()
 export class OrdersRepository extends BaseRepository<Order> {
@@ -91,17 +92,15 @@ export class OrdersRepository extends BaseRepository<Order> {
       .getOne();
   }
 
-  async findByIdForUpdateWithItems(
-    id: string,
+  async findItemsByOrderId(
+    orderId: string,
     manager: EntityManager,
-  ): Promise<Order | null> {
-    return manager
-      .getRepository(Order)
-      .createQueryBuilder('order')
-      .leftJoinAndSelect('order.items', 'items')
-      .setLock('pessimistic_write')
-      .where('order.id = :id', { id })
-      .getOne();
+  ): Promise<OrderItem[]> {
+    return manager.getRepository(OrderItem).find({
+      where: {
+        orderId,
+      },
+    });
   }
 
   async findByIdForUpdateWithCustomer(
