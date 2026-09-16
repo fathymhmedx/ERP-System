@@ -1,6 +1,8 @@
 import { Res } from '@nestjs/common';
 import type { Response } from 'express';
 import { Body, Controller, Patch, Post } from '@nestjs/common';
+import { Throttle } from '@nestjs/throttler';
+import { RATE_LIMIT } from 'src/common/constants/rate-limit.constants';
 import {
   ChangePasswordDto,
   LoginDto,
@@ -25,6 +27,7 @@ export class AuthController {
     private readonly cookieService: CookieService,
   ) {}
   @Public()
+  @Throttle({ default: RATE_LIMIT.AUTH.REGISTER })
   @Post('signup')
   @SuccessMessage('Account created successfully')
   signup(@Body() signupDto: SignupDto) {
@@ -32,6 +35,7 @@ export class AuthController {
   }
 
   @Public()
+  @Throttle({ default: RATE_LIMIT.AUTH.LOGIN })
   @Post('login')
   @SuccessMessage('Logged in successfully')
   async login(
@@ -48,6 +52,7 @@ export class AuthController {
     };
   }
   @Public()
+  @Throttle({ default: RATE_LIMIT.AUTH.REFRESH_TOKEN })
   @Post('refresh')
   @SuccessMessage('Token refreshed successfully')
   async refresh(
@@ -87,6 +92,7 @@ export class AuthController {
     this.cookieService.clearRefreshTokenCookie(response);
   }
 
+  @Throttle({ default: RATE_LIMIT.AUTH.CHANGE_PASSWORD })
   @Patch('change-password')
   @SuccessMessage('Password changed successfully')
   changePassword(

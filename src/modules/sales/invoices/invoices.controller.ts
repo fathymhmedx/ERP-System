@@ -7,8 +7,10 @@ import {
   Post,
   Res,
 } from '@nestjs/common';
+import { Throttle } from '@nestjs/throttler';
 
 import { InvoicesService } from './invoices.service';
+import { RATE_LIMIT } from 'src/common/constants/rate-limit.constants';
 import { CreateInvoiceDto } from './dto/create-invoice.dto';
 import { InvoiceResponseDto } from './dto/invoice-response.dto';
 import { SuccessMessage } from 'src/common/decorators/success-message.decorator';
@@ -41,6 +43,7 @@ export class InvoicesController {
 
   @Get(':id/pdf')
   @Permissions(PERMISSIONS.INVOICES.PDF)
+  @Throttle({ default: RATE_LIMIT.INVOICES.PDF })
   @SuccessMessage('Invoice PDF generated successfully')
   async generatePdf(
     @Param('id', ParseUUIDPipe) id: string,

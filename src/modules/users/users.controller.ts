@@ -8,7 +8,9 @@ import {
   Post,
   Query,
 } from '@nestjs/common';
+import { Throttle } from '@nestjs/throttler';
 import { UsersService } from './users.service';
+import { RATE_LIMIT } from 'src/common/constants/rate-limit.constants';
 import { SuccessMessage } from 'src/common/decorators/success-message.decorator';
 import { Permissions } from 'src/common/decorators/permissions.decorator';
 import { CurrentUser } from 'src/common/decorators/current-user.decorator';
@@ -63,6 +65,7 @@ export class UsersController {
   }
 
   @SuccessMessage('Password reset successfully')
+  @Throttle({ default: RATE_LIMIT.USERS.RESET_PASSWORD })
   @Patch(':id/reset-password')
   @Permissions(PERMISSIONS.USERS.RESET_PASSWORD)
   resetPassword(

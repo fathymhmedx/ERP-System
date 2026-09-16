@@ -8,8 +8,10 @@ import {
   Post,
   Query,
 } from '@nestjs/common';
+import { Throttle } from '@nestjs/throttler';
 
 import { PayrollService } from './payroll.service';
+import { RATE_LIMIT } from 'src/common/constants/rate-limit.constants';
 import {
   GeneratePayrollDto,
   CreateBonusDto,
@@ -37,6 +39,7 @@ export class PayrollController {
   // --- Payrolls ---
   @Post('generate')
   @Permissions(PERMISSIONS.PAYROLL.GENERATE)
+  @Throttle({ default: RATE_LIMIT.PAYROLL.GENERATE })
   @SuccessMessage('Payroll generated successfully')
   generatePayroll(
     @Body() generatePayrollDto: GeneratePayrollDto,

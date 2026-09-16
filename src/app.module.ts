@@ -18,8 +18,11 @@ import { RedisModule } from './common/redis/redis.module';
 import { RbacCacheModule } from './common/cache/rbac-cache.module';
 import { InventoryModule } from './modules/inventory/inventory.module';
 import { SalesModule } from './modules/sales/sales.module';
+import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
+import { RATE_LIMIT } from './common/constants/rate-limit.constants';
 @Module({
   imports: [
+    ThrottlerModule.forRoot([RATE_LIMIT.DEFAULT]),
     ConfigModule.forRoot({
       envFilePath: `.env.${process.env.NODE_ENV}`,
       isGlobal: true,
@@ -39,6 +42,10 @@ import { SalesModule } from './modules/sales/sales.module';
     SalesModule,
   ],
   providers: [
+    {
+      provide: APP_GUARD,
+      useClass: ThrottlerGuard,
+    },
     {
       provide: APP_FILTER,
       useClass: HttpExceptionFilter,
