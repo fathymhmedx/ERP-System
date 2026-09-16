@@ -5,6 +5,7 @@ import { DeepPartial, EntityManager, Repository } from 'typeorm';
 import { BaseRepository } from 'src/common/repositories/base.repository';
 
 import { Payment } from './entities/payment.entity';
+import { PaymentStatus } from './enums/payment-status.enum';
 
 @Injectable()
 export class PaymentsRepository extends BaseRepository<Payment> {
@@ -107,5 +108,20 @@ export class PaymentsRepository extends BaseRepository<Payment> {
         providerTransactionId,
       })
       .getOne();
+  }
+
+  async findPaidByOrderId(
+    orderId: string,
+    manager: EntityManager,
+  ): Promise<Payment | null> {
+    return manager.getRepository(Payment).findOne({
+      where: {
+        orderId,
+        status: PaymentStatus.PAID,
+      },
+      order: {
+        createdAt: 'DESC',
+      },
+    });
   }
 }

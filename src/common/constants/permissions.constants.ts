@@ -134,6 +134,7 @@ export const PERMISSIONS = {
   INVOICES: {
     GENERATE: 'invoices.generate',
     READ: 'invoices.read',
+    PDF: 'invoices.pdf',
   },
 
   // NOTIFICATIONS

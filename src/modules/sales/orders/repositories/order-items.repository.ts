@@ -70,4 +70,18 @@ export class OrderItemsRepository extends BaseRepository<OrderItem> {
       },
     });
   }
+
+  async findByOrderIdWithProducts(
+    orderId: string,
+    manager: EntityManager,
+  ): Promise<OrderItem[]> {
+    return manager.getRepository(OrderItem).find({
+      where: {
+        orderId,
+      },
+      relations: {
+        product: true,
+      },
+    });
+  }
 }

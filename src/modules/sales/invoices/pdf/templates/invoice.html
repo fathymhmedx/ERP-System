@@ -1,0 +1,503 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>{{invoiceNumber}}</title>
+
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      @page {
+        size: A4;
+        margin: 14mm 14mm 16mm 14mm;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: #ffffff;
+      }
+
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        color: #1f2937;
+        font-size: 12px;
+        line-height: 1.5;
+
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .invoice {
+        width: 100%;
+      }
+
+      /* Header */
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+
+        padding-bottom: 22px;
+        border-bottom: 2px solid #111827;
+
+        margin-bottom: 24px;
+      }
+
+      .brand {
+        max-width: 55%;
+      }
+
+      .company-name {
+        margin: 0;
+
+        color: #111827;
+        font-size: 25px;
+        font-weight: 700;
+        letter-spacing: -0.5px;
+      }
+
+      .company-subtitle {
+        margin-top: 3px;
+
+        color: #6b7280;
+        font-size: 11px;
+      }
+
+      .invoice-heading {
+        text-align: right;
+      }
+
+      .invoice-heading h1 {
+        margin: 0;
+
+        color: #111827;
+        font-size: 30px;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        line-height: 1;
+      }
+
+      .invoice-number {
+        margin-top: 8px;
+
+        color: #374151;
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      .issued-date {
+        margin-top: 3px;
+
+        color: #6b7280;
+        font-size: 10.5px;
+      }
+
+      /* Information Cards  */
+      .info-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+
+        margin-bottom: 28px;
+      }
+
+      .info-card {
+        padding: 15px 16px;
+
+        border: 1px solid #e5e7eb;
+        border-radius: 6px;
+
+        background: #ffffff;
+      }
+
+      .info-label {
+        margin-bottom: 9px;
+
+        color: #6b7280;
+        font-size: 9.5px;
+        font-weight: 700;
+        letter-spacing: 0.8px;
+        text-transform: uppercase;
+      }
+
+      .customer-name {
+        margin-bottom: 5px;
+
+        color: #111827;
+        font-size: 14px;
+        font-weight: 700;
+      }
+
+      .info-line {
+        margin-top: 3px;
+
+        color: #4b5563;
+        font-size: 11px;
+
+        word-break: break-word;
+      }
+
+      .invoice-meta {
+        display: table;
+        width: 100%;
+      }
+
+      .meta-row {
+        display: table-row;
+      }
+
+      .meta-label,
+      .meta-value {
+        display: table-cell;
+        padding: 3px 0;
+
+        font-size: 11px;
+      }
+
+      .meta-label {
+        width: 40%;
+
+        color: #6b7280;
+      }
+
+      .meta-value {
+        color: #111827;
+        font-weight: 600;
+        text-align: right;
+      }
+
+      .status {
+        display: inline-block;
+
+        padding: 3px 8px;
+
+        border-radius: 999px;
+
+        background: #ecfdf5;
+        color: #047857;
+
+        font-size: 9px;
+        font-weight: 700;
+
+        letter-spacing: 0.4px;
+        text-transform: uppercase;
+      }
+
+      /* Items Table */
+      .items-section {
+        margin-top: 4px;
+      }
+
+      .section-title {
+        margin-bottom: 9px;
+
+        color: #111827;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+      }
+
+      table {
+        width: 100%;
+
+        border-collapse: collapse;
+
+        table-layout: fixed;
+      }
+
+      thead {
+        display: table-header-group;
+      }
+
+      thead th {
+        padding: 9px 8px;
+
+        background: #111827;
+        color: #ffffff;
+
+        font-size: 9.5px;
+        font-weight: 700;
+
+        letter-spacing: 0.4px;
+        text-transform: uppercase;
+
+        text-align: left;
+      }
+
+      thead th:first-child {
+        border-radius: 4px 0 0 4px;
+      }
+
+      thead th:last-child {
+        border-radius: 0 4px 4px 0;
+      }
+
+      tbody tr {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+
+      tbody tr:nth-child(even) {
+        background: #f9fafb;
+      }
+
+      tbody td {
+        padding: 10px 8px;
+
+        border-bottom: 1px solid #e5e7eb;
+
+        color: #374151;
+        font-size: 10.5px;
+
+        vertical-align: middle;
+      }
+
+      .col-number {
+        width: 7%;
+      }
+
+      .col-product {
+        width: 39%;
+      }
+
+      .col-quantity {
+        width: 12%;
+      }
+
+      .col-price {
+        width: 21%;
+      }
+
+      .col-subtotal {
+        width: 21%;
+      }
+
+      .center {
+        text-align: center;
+      }
+
+      .amount {
+        text-align: right;
+        white-space: nowrap;
+      }
+
+      .product-name {
+        color: #111827;
+        font-weight: 600;
+      }
+
+      /* Summary */
+
+      .summary-area {
+        display: flex;
+        justify-content: flex-end;
+
+        margin-top: 20px;
+      }
+
+      .summary {
+        width: 290px;
+      }
+
+      .summary-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        padding: 5px 0;
+
+        color: #4b5563;
+        font-size: 11px;
+      }
+
+      .summary-row span:last-child {
+        color: #111827;
+        font-weight: 600;
+      }
+
+      .summary-divider {
+        height: 1px;
+
+        margin: 7px 0;
+
+        background: #d1d5db;
+      }
+
+      .summary-row.total {
+        margin-top: 5px;
+        padding: 11px 12px;
+
+        border-radius: 5px;
+
+        background: #111827;
+
+        color: #ffffff;
+        font-size: 14px;
+        font-weight: 700;
+      }
+
+      .summary-row.total span:last-child {
+        color: #ffffff;
+        font-size: 15px;
+      }
+
+      /* Footer */
+      .footer {
+        margin-top: 42px;
+        padding-top: 14px;
+
+        border-top: 1px solid #e5e7eb;
+
+        text-align: center;
+
+        color: #9ca3af;
+        font-size: 9.5px;
+        line-height: 1.6;
+      }
+
+      .footer strong {
+        color: #6b7280;
+      }
+
+      /* Print */
+      @media print {
+        .info-card,
+        .summary-row.total {
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <main class="invoice">
+      <!-- Header -->
+      <header class="header">
+        <div class="brand">
+          <div class="company-name">ERP System</div>
+
+          <div class="company-subtitle">Sales &amp; Management System</div>
+        </div>
+
+        <div class="invoice-heading">
+          <h1>INVOICE</h1>
+
+          <div class="invoice-number">{{invoiceNumber}}</div>
+
+          <div class="issued-date">Issued: {{issuedAt}}</div>
+        </div>
+      </header>
+
+      <!-- Customer & Invoice Info -->
+      <section class="info-grid">
+        <!-- Customer -->
+        <div class="info-card">
+          <div class="info-label">Bill To</div>
+
+          <div class="customer-name">{{customerName}}</div>
+
+          {{customerEmail}}
+
+          <div class="info-line">{{customerPhone}}</div>
+
+          {{customerAddress}}
+        </div>
+
+        <!-- Invoice Information -->
+        <div class="info-card">
+          <div class="info-label">Invoice Information</div>
+
+          <div class="invoice-meta">
+            <div class="meta-row">
+              <div class="meta-label">Invoice Number</div>
+
+              <div class="meta-value">{{invoiceNumber}}</div>
+            </div>
+
+            <div class="meta-row">
+              <div class="meta-label">Issue Date</div>
+
+              <div class="meta-value">{{issuedAt}}</div>
+            </div>
+
+            <div class="meta-row">
+              <div class="meta-label">Status</div>
+
+              <div class="meta-value">
+                <span class="status"> {{status}} </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Invoice Items -->
+      <section class="items-section">
+        <div class="section-title">Invoice Items</div>
+
+        <table>
+          <thead>
+            <tr>
+              <th class="col-number center">#</th>
+
+              <th class="col-product">Product</th>
+
+              <th class="col-quantity center">Qty</th>
+
+              <th class="col-price amount">Unit Price</th>
+
+              <th class="col-subtotal amount">Subtotal</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {{items}}
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Summary -->
+      <section class="summary-area">
+        <div class="summary">
+          <div class="summary-row">
+            <span> Subtotal </span>
+
+            <span> {{subtotal}} </span>
+          </div>
+
+          <div class="summary-row">
+            <span> Discount </span>
+
+            <span> {{discount}} </span>
+          </div>
+
+          <div class="summary-divider"></div>
+
+          <div class="summary-row total">
+            <span> Total </span>
+
+            <span> {{total}} </span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <strong> Thank you for your business. </strong>
+
+        <br />
+
+        This invoice was generated automatically by ERP System.
+      </footer>
+    </main>
+  </body>
+</html>
