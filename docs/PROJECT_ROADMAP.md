@@ -92,6 +92,8 @@ The main goal is to practice enterprise backend architecture using NestJS.
 - Dynamic Role-Based Access Control (RBAC)
 - JWT Authentication
 - Refresh Token Rotation
+- Global Rate Limiting
+- Per-Endpoint Rate Limiting
 
 ## Data Management
 
@@ -185,6 +187,7 @@ src
 - [x] Base Entity
 - [x] CORS Configuration
 - [x] Global Prefix
+- [x] Per-Endpoint Rate Limiting
 
 ---
 
@@ -400,9 +403,9 @@ src
 
 ### Invoices
 
-- [ ] Generate Invoice
-- [ ] Get Invoice
-- [ ] Invoice History
+- [x] Invoice Creation
+- [x] Invoice Retrieval
+- [x] Invoice PDF Generation
 
 ---
 
@@ -487,7 +490,8 @@ src
 | Customers           | ✅ Completed   |
 | Orders              | ✅ Completed   |
 | Payments            | ✅ Completed   |
-| Invoices            | ⏳ Not Started |
+| Invoices            | ✅ Completed   |
+| Rate Limiting       | ✅ Completed   |
 | Notifications       | ⏳ Not Started |
 | Audit Logs          | ⏳ Not Started |
 | Dashboard           | ⏳ Not Started |
