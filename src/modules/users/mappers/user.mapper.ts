@@ -1,6 +1,7 @@
 import { User } from '../entities/user.entity';
 import { UserResponseDto } from '../dto/user-response.dto';
 import { UserManagementResponseDto } from '../dto';
+import { AuthUserResponseDto } from '../dto/auth-user-response.dto';
 
 export class UserMapper {
   static toResponseDto(user: User): UserResponseDto {
@@ -27,6 +28,17 @@ export class UserMapper {
       isActive: user.isActive,
       lastLoginAt: user.lastLoginAt,
       createdAt: user.createdAt,
+    };
+  }
+
+  static toAuthResponseDto(user: User): AuthUserResponseDto {
+    return {
+      ...this.toResponseDto(user),
+      permissions: [
+        ...new Set(
+          user.role.rolePermissions.map(({ permission }) => permission.name),
+        ),
+      ].sort(),
     };
   }
 }

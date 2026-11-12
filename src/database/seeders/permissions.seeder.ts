@@ -395,6 +395,11 @@ export class PermissionsSeeder {
         name: 'orders.update-item',
         description: 'Update order item',
       },
+      {
+        module: 'orders',
+        name: 'orders.confirm',
+        description: 'Confirm order',
+      },
 
       // INVOICES
       {

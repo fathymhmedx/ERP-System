@@ -18,4 +18,15 @@ export class RolesRepository extends BaseRepository<Role> {
       name,
     });
   }
+
+  findByIdWithPermissions(id: string): Promise<Role | null> {
+    return this.repository.findOne({
+      where: { id },
+      relations: {
+        rolePermissions: {
+          permission: true,
+        },
+      },
+    });
+  }
 }

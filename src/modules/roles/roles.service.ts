@@ -10,6 +10,7 @@ import { CreateRoleDto, UpdateRoleDto, RoleResponseDto } from './dto';
 import { RoleMapper } from './mappers/role.mapper';
 import { SYSTEM_ROLES } from 'src/common/constants/system-roles.constants';
 import { RbacCacheService } from 'src/common/cache/rbac-cache.service';
+import { RoleDetailsResponseDto } from './dto/role-details-response.dto';
 
 @Injectable()
 export class RolesService {
@@ -43,14 +44,14 @@ export class RolesService {
     return roles.map((role) => RoleMapper.toResponseDto(role));
   }
 
-  async findOne(id: string): Promise<RoleResponseDto> {
-    const role = await this.rolesRepository.findById(id);
+  async findOne(id: string): Promise<RoleDetailsResponseDto> {
+    const role = await this.rolesRepository.findByIdWithPermissions(id);
 
     if (!role) {
       throw new NotFoundException('Role not found');
     }
 
-    return RoleMapper.toResponseDto(role);
+    return RoleMapper.toDetailsResponseDto(role);
   }
 
   async update(

@@ -98,6 +98,13 @@ export class AuthService {
 
     await this.usersRepository.updateLastLogin(user.id);
 
+    const userWithPermissions =
+      await this.usersRepository.findByIdWithPermissions(user.id);
+
+    if (!userWithPermissions) {
+      throw new NotFoundException('User not found');
+    }
+
     const payload: JwtPayload = {
       sub: user.id,
       roleId: user.role.id,
@@ -109,7 +116,7 @@ export class AuthService {
       await this.refreshTokensService.createSession(user);
 
     return {
-      user: UserMapper.toResponseDto(user),
+      user: UserMapper.toAuthResponseDto(userWithPermissions),
       accessToken,
       refreshToken,
     };
@@ -122,15 +129,22 @@ export class AuthService {
     const { user, refreshToken: newRefreshToken } =
       await this.refreshTokensService.rotateSession(refreshToken);
 
+    const userWithPermissions =
+      await this.usersRepository.findByIdWithPermissions(user.id);
+
+    if (!userWithPermissions) {
+      throw new UnauthorizedException('User not found');
+    }
+
     const payload: JwtPayload = {
-      sub: user.id,
-      roleId: user.role.id,
+      sub: userWithPermissions.id,
+      roleId: userWithPermissions.role.id,
     };
 
     const accessToken = this.generateAccessToken(payload);
 
     return {
-      user: UserMapper.toResponseDto(user),
+      user: UserMapper.toAuthResponseDto(userWithPermissions),
       accessToken,
       refreshToken: newRefreshToken,
     };

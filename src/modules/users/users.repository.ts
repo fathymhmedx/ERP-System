@@ -143,4 +143,17 @@ export class UsersRepository extends BaseRepository<User> {
       },
     );
   }
+
+  async findByIdWithPermissions(id: string): Promise<User | null> {
+    return this.repository.findOne({
+      where: { id },
+      relations: {
+        role: {
+          rolePermissions: {
+            permission: true,
+          },
+        },
+      },
+    });
+  }
 }
