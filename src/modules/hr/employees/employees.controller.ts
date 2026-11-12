@@ -44,7 +44,7 @@ export class EmployeesController {
   }
 
   /**
-   * Create a new employee.
+   * Create a new.
    */
   @Post()
   @Permissions(PERMISSIONS.EMPLOYEES.CREATE)
