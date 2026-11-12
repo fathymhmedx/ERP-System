@@ -1,4 +1,11 @@
-import { Body, Controller, Headers, Post, Query } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Headers,
+  Post,
+  Query,
+  ValidationPipe,
+} from '@nestjs/common';
 import { Throttle } from '@nestjs/throttler';
 import { CreatePaymentDto } from './dto/create-payment.dto';
 import { PaymentsService } from './payments.service';
@@ -28,9 +35,21 @@ export class PaymentsController {
   @SuccessMessage('Webhook processed successfully')
   @Public()
   webhook(
-    @Body() dto: PaymobTransactionWebhookDto,
+    @Body(
+      new ValidationPipe({
+        expectedType: PaymobTransactionWebhookDto,
+        transform: true,
+        whitelist: true,
+        forbidNonWhitelisted: false,
+      }),
+    )
+    payload: unknown,
+
     @Query('hmac') hmac: string,
   ) {
-    return this.paymentsService.handleWebhook(dto, hmac);
+    return this.paymentsService.handleWebhook(
+      payload as PaymobTransactionWebhookDto,
+      hmac,
+    );
   }
 }
