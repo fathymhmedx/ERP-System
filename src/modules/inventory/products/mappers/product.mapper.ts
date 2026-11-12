@@ -9,16 +9,20 @@ export class ProductMapper {
       sku: product.sku,
       description: product.description,
 
-      category: {
-        id: product.category.id,
-        name: product.category.name,
-      },
+      category: product.category
+        ? {
+            id: product.category.id,
+            name: product.category.name,
+          }
+        : null,
 
-      supplier: {
-        id: product.supplier.id,
-        name: product.supplier.name,
-        phone: product.supplier.phone,
-      },
+      supplier: product.supplier
+        ? {
+            id: product.supplier.id,
+            name: product.supplier.name,
+            phone: product.supplier.phone,
+          }
+        : null,
 
       costPrice: product.costPrice,
       sellingPrice: product.sellingPrice,

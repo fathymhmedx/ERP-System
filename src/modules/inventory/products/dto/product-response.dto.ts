@@ -10,9 +10,9 @@ export class ProductResponseDto {
 
   description!: string | null;
 
-  category!: SimpleCategoryDto;
+  category!: SimpleCategoryDto | null;
 
-  supplier!: SimpleSupplierDto;
+  supplier!: SimpleSupplierDto | null;
 
   costPrice!: string;
 
